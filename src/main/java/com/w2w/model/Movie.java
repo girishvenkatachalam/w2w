@@ -1,9 +1,5 @@
 package com.w2w.model;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
