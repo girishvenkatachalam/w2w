@@ -1,3 +1,5 @@
+@import "../../common/styles/variables";
+
 .site-loader {
   display: flex;
   flex-direction: column;
@@ -10,13 +12,13 @@
   align-items: center;
   top: 0;
   font-size: 25px;
-  color: #000000;
-}
+  color: $black;
 
-.site-loader .loader-img {
-  width: 200px;
-}
+  .loader-img {
+    width: 200px;
+  }
 
-.site-loader svg {
-  width: 100%;
+  svg {
+    width: 100%;
+  }
 }

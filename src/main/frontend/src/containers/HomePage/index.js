@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { viewDetails } from "../../store/action-creator";
-import "./index.css";
+import "./index.scss";
 
 class HomePage extends Component {
   render() {
