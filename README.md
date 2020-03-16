@@ -1,12 +1,14 @@
-w2w
+# What to Watch
 
-# Installation
+Decide what to watch using this recommendation platform.
 
-## Maven
+## Installation
+
+### Maven
 
  - `brew install maven`
  
-## Frontend
+### Frontend
  - `brew install yarn`
  - `brew install node`
  
@@ -14,19 +16,19 @@ In Chrome, install the following Extensions,
 - `React Developer Tools`
 - `Redux DevTools`
 
-## Mongodb local
+### Mongodb local
  - `brew tap mongodb/brew`
  - `brew install mongodb-community`
 
 To start mongo services,
 - `brew services start mongodb-community`
 
-## Heroku (Optional)
+### Heroku (Optional)
 
  - `brew install heroku/brew/heroku`
  - `heroku login`
 
-## Travis (Optional)
+### Travis (Optional)
 
 Travis commandline is needed if you want to setup the apikey in `.travis.yml`
 
