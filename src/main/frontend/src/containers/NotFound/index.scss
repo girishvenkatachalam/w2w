@@ -1,0 +1,21 @@
+@import "../../common/styles/variables";
+
+.not-found-wrapper {
+  text-align: center;
+  margin: 150px auto;
+
+  h2,
+  h4 {
+    margin: 0;
+    padding: 10px 0;
+  }
+
+  .pathname {
+    font-size: 18px;
+    font-weight: 600;
+    color: $white;
+    background: $darkorange;
+    border-radius: 3px;
+    padding: 5px;
+  }
+}
