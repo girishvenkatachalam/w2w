@@ -51,3 +51,23 @@ Phew!
 To verify application is running locally, try http://localhost:8080/hello
 
 Integration URL https://whattowatch-int.herokuapp.com/
+
+## Developer Guidelines
+
+### Commit messages
+
+Use the follow format for commit messages,
+
+```
+<dev1><|dev2> <commit message>
+```
+
+For example,
+```
+commit d82e7b517edc965fb8530835077a5a541ebb8a39 (HEAD -> master)
+Author: Anoop Elias <anoopelias@gmail.com>
+Date:   Mon Mar 16 13:59:40 2020 +0530
+
+    <Anoop>|<Tapas> Added integrtion URL to readme
+
+```
