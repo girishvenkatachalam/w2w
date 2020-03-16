@@ -1,0 +1,22 @@
+.site-loader {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  justify-content: center;
+  height: 100vh;
+  vertical-align: middle;
+  align-items: center;
+  top: 0;
+  font-size: 25px;
+  color: #000000;
+}
+
+.site-loader .loader-img {
+  width: 200px;
+}
+
+.site-loader svg {
+  width: 100%;
+}
