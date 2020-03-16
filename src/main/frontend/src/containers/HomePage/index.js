@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { viewDetails } from "../../store/action-creator";
+import { viewDetails } from "../../store/actions";
 import "./index.scss";
 
 const HomePage = props => (

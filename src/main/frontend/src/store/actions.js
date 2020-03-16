@@ -1,5 +1,8 @@
-const actions = {
-  VIEW_DETAILS: "VIEW_DETAILS"
-};
+import actions from "./constants";
 
-export default actions;
+export const viewDetails = payload => dispatch => {
+  dispatch({
+    type: actions.VIEW_DETAILS,
+    payload
+  });
+};
