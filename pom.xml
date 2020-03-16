@@ -121,15 +121,6 @@
 						</configuration>
 					</execution>
 
-					<execution>
-						<id>run-tests</id>
-						<goals>
-							<goal>yarn</goal>
-						</goals>
-						<configuration>
-							<arguments>test --coverage --watchAll=false</arguments>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
 			<plugin>
