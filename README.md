@@ -1,4 +1,4 @@
-# What to Watch
+# What to Watch [![Build Status](https://travis-ci.org/anoopelias/w2w.svg?branch=master)](https://travis-ci.org/anoopelias/w2w)
 
 Decide what to watch using this recommendation platform.
 
