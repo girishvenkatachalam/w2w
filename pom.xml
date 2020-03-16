@@ -100,7 +100,7 @@
 						</goals>
 					</execution>
 
-					<!--<execution>
+					<execution>
 						<id>yarn-install</id>
 						<goals>
 							<goal>yarn</goal>
@@ -109,7 +109,6 @@
 							<arguments>install</arguments>
 						</configuration>
 					</execution>
--->
 					<execution>
 						<id>build-frontend</id>
 						<goals>
