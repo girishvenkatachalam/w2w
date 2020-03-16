@@ -48,4 +48,6 @@ Phew!
 
 ## Verify
 
-To verify application is running try http://localhost:8080/hello
+To verify application is running locally, try http://localhost:8080/hello
+
+Integration URL https://whattowatch-int.herokuapp.com/
