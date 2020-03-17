@@ -1,7 +1,6 @@
-package com.w2w.fileimport;
+package com.w2w.What2Watch.utils;
 
 import com.w2w.What2Watch.models.Movie;
-import com.w2w.helper.CSVFileExtractor;
 
 import org.junit.jupiter.api.Test;
 

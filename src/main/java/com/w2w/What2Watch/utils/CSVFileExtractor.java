@@ -1,4 +1,4 @@
-package com.w2w.helper;
+package com.w2w.What2Watch.utils;
 
 import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.Movie;
