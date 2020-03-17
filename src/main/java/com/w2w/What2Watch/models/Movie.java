@@ -14,7 +14,9 @@ public class Movie {
     public String originalTitle;
     public String overview;
     public String title;
-    public List<Genre> genre;
     public String language;
     public double popularity;
+
+    public List<Genre> genre;
+    public List<ProductionCompany> productionCompany;
 }

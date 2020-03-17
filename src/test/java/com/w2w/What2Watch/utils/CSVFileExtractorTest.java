@@ -31,6 +31,19 @@ public class CSVFileExtractorTest {
     }
 
     @Test
+    public void testGenreProductionCompany() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
+        assertEquals("",2, movies.get(0).productionCompany.size());
+
+        assertEquals("",289, movies.get(0).productionCompany.get(0).id);
+        assertEquals("","Ingenious Film Partners", movies.get(0).productionCompany.get(0).name);
+
+        assertEquals("",306, movies.get(0).productionCompany.get(1).id);
+        assertEquals("","Twentieth Century Fox Film Corporation",
+                movies.get(0).productionCompany.get(1).name);
+    }
+
+    @Test
     public void testLanguage() throws IOException {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("","en", movies.get(0).language);
