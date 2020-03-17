@@ -1,6 +1,6 @@
-package com.w2w.What2Watch.Controller;
+package com.w2w.What2Watch.controllers;
 
-import com.w2w.model.Movie;
+import com.w2w.What2Watch.models.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;

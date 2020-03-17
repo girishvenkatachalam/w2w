@@ -1,7 +1,8 @@
 package com.w2w.fileimport;
 
+import com.w2w.What2Watch.models.Movie;
 import com.w2w.helper.CSVFileExtractor;
-import com.w2w.model.Movie;
+
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

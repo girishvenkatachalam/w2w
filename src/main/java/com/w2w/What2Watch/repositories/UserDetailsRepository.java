@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface myHelloWorldCollectionRepository extends MongoRepository<myHelloWorldCollection,String> {
+public interface UserDetailsRepository extends MongoRepository<UserDetails,String> {
 
-    public List<myHelloWorldCollection> findAll();
+    public List<UserDetails> findByEmailId(String email);
 }

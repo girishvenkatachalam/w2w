@@ -1,6 +1,6 @@
 package com.w2w.helper;
 
-import com.w2w.model.Movie;
+import com.w2w.What2Watch.models.Movie;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

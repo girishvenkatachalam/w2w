@@ -1,4 +1,4 @@
-package com.w2w.model;
+package com.w2w.What2Watch.models;
 
 import java.util.ArrayList;
 import java.util.List;
