@@ -15,4 +15,5 @@ public class Movie {
     public String overview;
     public String title;
     public List<Genre> genre;
+    public String language;
 }

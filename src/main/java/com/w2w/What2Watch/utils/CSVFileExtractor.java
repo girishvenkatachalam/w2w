@@ -49,6 +49,7 @@ public class CSVFileExtractor {
         movie.homepage = record.get("homepage");
         movie.originalTitle = record.get("original_title");
         movie.overview = record.get("overview");
+        movie.language = record.get("original_language");
 
         movie.genre = getGenres(record.get("genres"));
         return movie;

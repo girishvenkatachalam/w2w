@@ -16,6 +16,11 @@ public class CSVFileExtractorTest {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",1, movies.size());
         assertEquals("",19995, movies.get(0).id);
+    }
+
+    @Test
+    public void testGenre() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",2, movies.get(0).genre.size());
 
         assertEquals("",28, movies.get(0).genre.get(0).id);
@@ -23,6 +28,12 @@ public class CSVFileExtractorTest {
 
         assertEquals("",12, movies.get(0).genre.get(1).id);
         assertEquals("","Adventure", movies.get(0).genre.get(1).name);
+    }
+
+    @Test
+    public void testLanguage() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
+        assertEquals("","en", movies.get(0).language);
     }
 
     @Test
