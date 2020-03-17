@@ -1,0 +1,44 @@
+@import "../../common/styles/variables";
+
+$card_spacer: 7px;
+
+.listcard-wrapper {
+  background: $card_background;
+  width: auto;
+  display: inline-block;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 15px 15px 10px;
+  header {
+    display: flex;
+    justify-content: space-between;
+    font-size: $font-large;
+    font-weight: 600;
+    color: $secondary;
+  }
+}
+
+.movie-list {
+  margin: 0;
+  padding: 10px 0 5px;
+  .movie-card {
+    list-style: none;
+    padding: $card_spacer;
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+  }
+  .movie-poster {
+    max-width: 200px;
+    height: auto;
+  }
+  .movie-title {
+    text-align: center;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: $font-medium;
+    font-weight: 500;
+    color: $white;
+    background: $grey;
+  }
+}

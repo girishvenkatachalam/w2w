@@ -11,17 +11,43 @@ export const initialState = {
     }
   },
   promise: {
-    isReady: false
+    isPending: false,
+    isRejected: false,
+    isFulfilled: false
   },
-  movies: [],
+  movies: [
+    {
+      name: "Trending",
+      list: [
+        {
+          title: "Avatar",
+          image: ""
+        },
+        {
+          title: "Gladiator",
+          image: ""
+        },
+        {
+          title: "Rush Hour",
+          image: ""
+        },
+        {
+          title: "Titanic",
+          image: ""
+        }
+      ]
+    }
+  ],
   movieDetail: {},
   suggestions: [
-    { id: "USA", text: "USA" },
-    { id: "Germany", text: "Germany" },
-    { id: "Austria", text: "Austria" },
-    { id: "Costa Rica", text: "Costa Rica" },
-    { id: "Sri Lanka", text: "Sri Lanka" },
-    { id: "Thailand", text: "Thailand" }
+    { id: "romantic", text: "Romantic" },
+    { id: "action", text: "Action" },
+    { id: "fantasy", text: "Fantasy" },
+    { id: "adventure", text: "Adventure" },
+    { id: "thriller", text: "Thriller" },
+    { id: "crime", text: "Crime" },
+    { id: "scienceFiction", text: "Science Fiction" },
+    { id: "family", text: "Family" }
   ]
 };
 
