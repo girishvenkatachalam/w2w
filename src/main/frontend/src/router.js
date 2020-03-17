@@ -7,12 +7,18 @@ import HomePage from "./containers/HomePage";
 import PageNotFound from "./containers/NotFound";
 import LoginPage from "./containers/LoginPage";
 
-const PrivateRoute = ({ component: Component, authed, ...rest }) => {
+const isUserLoggedIn = () => {
+  // TO DO: check for authentication through auth-token in cookie/storage
+  // Remove the below hardcoded return
+  return true;
+};
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        authed ? (
+        isUserLoggedIn() ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -24,12 +30,12 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   );
 };
 
-const PublicRoute = ({ component: Component, authed, ...rest }) => {
+const PublicRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={props =>
-        authed ? (
+        isUserLoggedIn() ? (
           <Redirect to={{ pathname: "/", state: { from: props.location } }} />
         ) : (
           <Component {...props} />
@@ -40,28 +46,12 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => {
 };
 
 const App = () => {
-  const [authenticated, setAuthenticated] = useState(false);
-  useEffect(() => {
-    // TO DO: check for authentication through auth-token in cookie/storage
-    setAuthenticated(true);
-  }, []);
-
   return (
     <Provider store={configureStore()}>
       <Router>
         <Switch>
-          <PrivateRoute
-            authed={authenticated}
-            exact
-            path="/"
-            component={HomePage}
-          />
-          <PublicRoute
-            authed={authenticated}
-            exact
-            path="/login"
-            component={LoginPage}
-          />
+          <PrivateRoute exact path="/" component={HomePage} />
+          <PublicRoute exact path="/login" component={LoginPage} />
           <Route component={PageNotFound} />
         </Switch>
       </Router>
