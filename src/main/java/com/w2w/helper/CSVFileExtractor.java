@@ -1,9 +1,12 @@
 package com.w2w.helper;
 
+import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.Movie;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -46,6 +49,20 @@ public class CSVFileExtractor {
         movie.homepage = record.get("homepage");
         movie.originalTitle = record.get("original_title");
         movie.overview = record.get("overview");
+
+        movie.genre = getGenres(record.get("genres"));
         return movie;
+    }
+
+    private static List<Genre> getGenres(String genreString) {
+        List<Genre> genres = new ArrayList<>();
+        JSONArray arr = new JSONArray(genreString);
+        for (int i=0; i<arr.length(); i++) {
+            JSONObject genreJson = arr.getJSONObject(i);
+            int id = genreJson.getInt("id");
+            String name = genreJson.getString("name");
+            genres.add(new Genre(id, name));
+        }
+        return genres;
     }
 }

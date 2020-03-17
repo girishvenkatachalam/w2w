@@ -17,6 +17,7 @@ public class CSVFileExtractorTest {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",1, movies.size());
         assertEquals("",19995, movies.get(0).id);
+        assertEquals("",2, movies.get(0).genre.size());
     }
 
     @Test
