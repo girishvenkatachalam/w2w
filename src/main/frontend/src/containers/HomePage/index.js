@@ -1,24 +1,30 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { viewDetails } from "../../store/actions";
 import "./index.scss";
+import ListCard from "../../components/ListCard";
 
-const HomePage = props => (
+const HomePage = ({ movies }) => (
   <div className="homepage-container">
-    <header className="App-header">
-      <h1 className="page-title">Welcome to W2W</h1>
-      <img src="images/logo.png" alt="logo" />
-    </header>
+    {movies.map((dictionary, index) => {
+      const { name, list } = dictionary;
+      return <ListCard key={index} header={name} list={list} />;
+    })}
   </div>
 );
 
-const mapStateToProps = state => ({
-  ...state
+const mapStateToProps = ({ movies }) => ({
+  movies
 });
 
 const mapDispatchToProps = dispatch => ({
   viewDetails: () => dispatch(viewDetails())
 });
+
+HomePage.propTypes = {
+  movies: PropTypes.array
+};
 
 export { HomePage };
 
