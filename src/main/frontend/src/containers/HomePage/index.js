@@ -7,6 +7,7 @@ const HomePage = props => (
   <div className="homepage-container">
     <header className="App-header">
       <h1 className="page-title">Welcome to W2W</h1>
+      <img src="images/logo.png" alt="logo" />
     </header>
   </div>
 );
