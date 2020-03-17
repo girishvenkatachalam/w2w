@@ -6,3 +6,14 @@ export const viewDetails = payload => dispatch => {
     payload
   });
 };
+
+//export const fetchUserProfile = (userId) => dispatch => {
+//  fetch()
+//};
+
+export const addPreference = payload => dispatch => {
+  dispatch({
+    type: actions.ADD_GENRE_PREFERENCE,
+    payload
+  });
+};

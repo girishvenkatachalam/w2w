@@ -1,5 +1,9 @@
 {
   "notfound": "Page not found!",
   "visit": "Please visit ",
-  "homePage": "home page"
+  "homePage": "home page",
+  "preferences": "Preferences",
+  "genre": "Genre",
+  "language": "Language",
+  "productionCompanies": "Production Companies"
 }

@@ -6,6 +6,7 @@ import configureStore from "./store";
 import HomePage from "./containers/HomePage";
 import PageNotFound from "./containers/NotFound";
 import LoginPage from "./containers/LoginPage";
+import ProfilePage from "./containers/Profile";
 
 const isUserLoggedIn = () => {
   // TO DO: check for authentication through auth-token in cookie/storage
@@ -51,6 +52,12 @@ const App = () => {
       <Router>
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
+          <PrivateRoute
+            authed={true}
+            exact
+            path="/profile"
+            component={ProfilePage}
+          />
           <PublicRoute exact path="/login" component={LoginPage} />
           <Route component={PageNotFound} />
         </Switch>
