@@ -12,17 +12,10 @@ import static org.springframework.test.util.AssertionErrors.*;
 public class CSVFileExtractorTest {
 
     @Test
-    public void testCSVParser() {
-        try {
-            List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
-            assertEquals("",1, movies.size());
-            assertEquals("",19995, movies.get(0).id);
-            assertEquals("","Avatar", movies.get(0).title);
-        }
-        catch (IOException ex){
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }
+    public void testCSVParser() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
+        assertEquals("",1, movies.size());
+        assertEquals("",19995, movies.get(0).id);
     }
 
     @Test
