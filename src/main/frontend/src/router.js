@@ -52,12 +52,7 @@ const App = () => {
       <Router>
         <Switch>
           <PrivateRoute exact path="/" component={HomePage} />
-          <PrivateRoute
-            authed={true}
-            exact
-            path="/profile"
-            component={ProfilePage}
-          />
+          <PrivateRoute exact path="/profile" component={ProfilePage} />
           <PublicRoute exact path="/login" component={LoginPage} />
           <Route component={PageNotFound} />
         </Switch>

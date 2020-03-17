@@ -47,6 +47,7 @@ const ProfilePage = ({ user, suggestions, addPreference }) => {
           src={
             "https://timesofindia.indiatimes.com/thumb/msid-69902898,imgsize-115506,width-800,height-600,resizemode-4/69902898.jpg"
           }
+          alt="Your profile pic"
         />
         <h3 className="page-title">"~~NAME WILL BE HERE~~"</h3>
         <p className="page-title">"~~EMAIL WILL BE HERE~~"</p>
