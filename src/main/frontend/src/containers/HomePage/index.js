@@ -5,7 +5,7 @@ import { viewDetails } from "../../store/actions";
 import "./index.scss";
 import ListCard from "../../components/ListCard";
 
-const HomePage = ({ movies }) => (
+const HomePage = ({ movies = [] }) => (
   <div className="homepage-container">
     {movies.map((dictionary, index) => {
       const { name, list } = dictionary;
