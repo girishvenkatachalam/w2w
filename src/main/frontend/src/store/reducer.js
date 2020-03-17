@@ -60,6 +60,10 @@ export default (state = {}, action) => {
       };
     case actions.ADD_GENRE_PREFERENCE:
       return addGenrePreference(state, action.payload);
+    case actions.ADD_LANGUAGE_PREFERENCE:
+      return addLanguagePreference(state, action.payload);
+    case actions.ADD_COMPANY_PREFERENCE:
+      return addCompanyPreference(state, action.payload);
     default:
       return state;
   }
@@ -68,6 +72,17 @@ export default (state = {}, action) => {
 const addGenrePreference = (state, payload) => {
   const newState = { ...state };
   newState.user.preferences.genre.push(payload);
+  return newState;
+};
 
+const addLanguagePreference = (state, payload) => {
+  const newState = { ...state };
+  newState.user.preferences.language.push(payload);
+  return newState;
+};
+
+const addCompanyPreference = (state, payload) => {
+  const newState = { ...state };
+  newState.user.preferences.company.push(payload);
   return newState;
 };

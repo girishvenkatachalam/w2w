@@ -11,9 +11,23 @@ export const viewDetails = payload => dispatch => {
 //  fetch()
 //};
 
-export const addPreference = payload => dispatch => {
+export const addGenrePreference = payload => dispatch => {
   dispatch({
     type: actions.ADD_GENRE_PREFERENCE,
+    payload
+  });
+};
+
+export const addLanguagePreference = payload => dispatch => {
+  dispatch({
+    type: actions.ADD_LANGUAGE_PREFERENCE,
+    payload
+  });
+};
+
+export const addCompanyPreference = payload => dispatch => {
+  dispatch({
+    type: actions.ADD_COMPANY_PREFERENCE,
     payload
   });
 };

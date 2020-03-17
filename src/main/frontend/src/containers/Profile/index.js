@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { addPreference } from "../../store/actions";
+import { addGenrePreference } from "../../store/actions";
+import { addLanguagePreference } from "../../store/actions";
+import { addCompanyPreference } from "../../store/actions";
 import "./index.scss";
 import { WithContext as ReactTags } from "react-tag-input";
 import texts from "../../texts.json";
 
-const ProfilePage = ({ user, suggestions, addPreference }) => {
+const ProfilePage = ({
+  user,
+  suggestions,
+  addGenrePreference,
+  addLanguagePreference,
+  addCompanyPreference
+}) => {
   const delimiters = [];
   const { genre, language, company } = user.preferences;
-  const [showDropDown, setShowDropDown] = useState(false);
+  const [dropDown, setDropDownState] = useState({
+    genre: false,
+    language: false,
+    company: false
+  });
 
   useEffect(() => {
     //const fetchUserDetails = () => {
@@ -18,26 +30,71 @@ const ProfilePage = ({ user, suggestions, addPreference }) => {
 
   const handleDelete = i => {
     const { tags } = this.tags;
-
     this.tags = tags.filter((tag, index) => index !== i);
     // this.setState({
     //  tags: tags.filter((tag, index) => index !== i),
     // });
   };
 
-  const handleAddition = tag => {
-    addPreference(tag);
+  const handleGenreAddition = tag => {
+    addGenrePreference(tag);
   };
 
-  const shouldRenderSuggestions = query => {
-    if (query.length >= 0) {
-      return showDropDown;
-    }
+  const handleLanguageAddition = tag => {
+    addLanguagePreference(tag);
   };
 
-  function handleInputFocus() {
-    setShowDropDown(true);
-  }
+  const handleCompanyAddition = tag => {
+    addCompanyPreference(tag);
+  };
+
+  const shouldRenderGenreSuggestions = query => {
+    return dropDown.genre;
+  };
+
+  const shouldRenderLanguageSuggestions = query => {
+    return dropDown.language;
+  };
+
+  const shouldRenderCompanySuggestions = query => {
+    return dropDown.company;
+  };
+
+  const handleGenreInputFocus = inputText => {
+    let dropDownStateCopy = {
+      genre: true,
+      language: false,
+      company: false
+    };
+    setDropDownState(dropDownStateCopy);
+  };
+
+  const handleLanguageInputFocus = inputText => {
+    let dropDownStateCopy = {
+      genre: false,
+      language: true,
+      company: false
+    };
+    setDropDownState(dropDownStateCopy);
+  };
+
+  const handleCompanyInputFocus = inputText => {
+    let dropDownStateCopy = {
+      genre: false,
+      language: false,
+      company: true
+    };
+    setDropDownState(dropDownStateCopy);
+  };
+
+  const handleInputBlur = () => {
+    let dropDownStateCopy = {
+      genre: false,
+      language: false,
+      company: false
+    };
+    setDropDownState(dropDownStateCopy);
+  };
 
   return (
     <div className="profilepage-container">
@@ -59,9 +116,10 @@ const ProfilePage = ({ user, suggestions, addPreference }) => {
           allowDragDrop={false}
           suggestions={suggestions}
           handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          handleInputFocus={handleInputFocus}
-          shouldRenderSuggestions={shouldRenderSuggestions}
+          handleAddition={handleGenreAddition}
+          handleInputFocus={handleGenreInputFocus}
+          handleInputBlur={handleInputBlur}
+          shouldRenderSuggestions={shouldRenderGenreSuggestions}
           delimiters={delimiters}
         />
         <p className="page-title">{texts.language}:</p>
@@ -71,9 +129,10 @@ const ProfilePage = ({ user, suggestions, addPreference }) => {
           allowDragDrop={false}
           suggestions={suggestions}
           handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          handleInputFocus={handleInputFocus}
-          shouldRenderSuggestions={shouldRenderSuggestions}
+          handleAddition={handleLanguageAddition}
+          handleInputFocus={handleLanguageInputFocus}
+          handleInputBlur={handleInputBlur}
+          shouldRenderSuggestions={shouldRenderLanguageSuggestions}
           delimiters={delimiters}
         />
         <p className="page-title">{texts.productionCompanies}:</p>
@@ -83,9 +142,10 @@ const ProfilePage = ({ user, suggestions, addPreference }) => {
           allowDragDrop={false}
           suggestions={suggestions}
           handleDelete={handleDelete}
-          handleAddition={handleAddition}
-          handleInputFocus={handleInputFocus}
-          shouldRenderSuggestions={shouldRenderSuggestions}
+          handleAddition={handleCompanyAddition}
+          handleInputFocus={handleCompanyInputFocus}
+          handleInputBlur={handleInputBlur}
+          shouldRenderSuggestions={shouldRenderCompanySuggestions}
           delimiters={delimiters}
         />
       </header>
@@ -99,7 +159,9 @@ const mapStateToProps = ({ user, suggestions }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addPreference: payload => dispatch(addPreference(payload))
+  addGenrePreference: payload => dispatch(addGenrePreference(payload)),
+  addLanguagePreference: payload => dispatch(addLanguagePreference(payload)),
+  addCompanyPreference: payload => dispatch(addCompanyPreference(payload))
 });
 
 export { ProfilePage };
