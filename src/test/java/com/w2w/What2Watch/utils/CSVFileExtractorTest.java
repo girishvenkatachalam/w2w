@@ -37,6 +37,12 @@ public class CSVFileExtractorTest {
     }
 
     @Test
+    public void testPopularity() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
+        assertEquals("",150.437577, movies.get(0).popularity);
+    }
+
+    @Test
     public void testExtractIfNullFilePathProvided(){
         try {
             String filePath = null;

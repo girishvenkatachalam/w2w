@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.DoubleAccumulator;
 
 public class CSVFileExtractor {
     public static List<Movie> extract(String path) throws IOException {
@@ -50,6 +51,7 @@ public class CSVFileExtractor {
         movie.originalTitle = record.get("original_title");
         movie.overview = record.get("overview");
         movie.language = record.get("original_language");
+        movie.popularity = Double.parseDouble(record.get("popularity"));
 
         movie.genre = getGenres(record.get("genres"));
         return movie;
