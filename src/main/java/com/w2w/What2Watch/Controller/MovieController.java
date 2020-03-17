@@ -1,4 +1,4 @@
-package com.w2w.controller;
+package com.w2w.What2Watch.Controller;
 
 import com.w2w.model.Movie;
 import org.springframework.stereotype.Controller;
