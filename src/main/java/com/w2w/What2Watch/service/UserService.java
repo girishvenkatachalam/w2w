@@ -24,7 +24,12 @@ public class UserService {
     @Autowired
     UserDetailsRepository userDetailsRepository;
     @Autowired
-    UserRepository userRepository;
+   private UserRepository userRepository;
+
+    public UserService(UserRepository userRepositorymock) {
+        this.userRepository=userRepositorymock;
+    }
+
 
     public ResponseEntity Register(Principal principal) {
         //TODO : take user preferences and then save to DB
@@ -49,9 +54,9 @@ public class UserService {
     }
 
     public User getUserByGivenEmail(String email) throws UserNotFoundException {
-        if (userRepository.findByEmail(email).equals(null))
-            throw new UserNotFoundException("User with email :" + email + " not found");
         User user = userRepository.findByEmail(email);
+        if (user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
         user.setPassword("");
         return user;
     }
