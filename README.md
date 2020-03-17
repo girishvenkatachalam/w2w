@@ -71,3 +71,20 @@ Date:   Mon Mar 16 13:59:40 2020 +0530
     <Anoop>|<Tapas> Added integrtion URL to readme
 
 ```
+
+### Logging
+
+Use slf4j logging as shown below, do _not_ use `System.out.println`.
+
+```
+public class What2WatchApplication {
+
+	private static final Logger logger = LoggerFactory.getLogger(What2WatchApplication.class);
+
+	@GetMapping("/hello")
+	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+		logger.debug("Inside hello");
+		return String.format("Hello World !");
+	}
+}
+```
