@@ -8,8 +8,8 @@ public class Genre {
     @Id
     String _id;
 
-    int id;
-    String name;
+    public int id;
+    public String name;
 
     public Genre(int id, String name) {
         this.id = id;

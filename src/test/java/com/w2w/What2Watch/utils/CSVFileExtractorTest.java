@@ -17,6 +17,12 @@ public class CSVFileExtractorTest {
         assertEquals("",1, movies.size());
         assertEquals("",19995, movies.get(0).id);
         assertEquals("",2, movies.get(0).genre.size());
+
+        assertEquals("",28, movies.get(0).genre.get(0).id);
+        assertEquals("","Action", movies.get(0).genre.get(0).name);
+
+        assertEquals("",12, movies.get(0).genre.get(1).id);
+        assertEquals("","Adventure", movies.get(0).genre.get(1).name);
     }
 
     @Test
