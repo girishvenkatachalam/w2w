@@ -34,14 +34,6 @@ const ProfilePage = ({
     // fetchUserDetails();
   }, []);
 
-  const handleDelete = i => {
-    const { tags } = this.tags;
-    this.tags = tags.filter((tag, index) => index !== i);
-    // this.setState({
-    //  tags: tags.filter((tag, index) => index !== i),
-    // });
-  };
-
   const handleGenreAddition = tag => {
     addGenrePreference(tag);
   };
