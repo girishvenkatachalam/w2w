@@ -5,7 +5,7 @@ $card_spacer: 7px;
 .listcard-wrapper {
   background: $card_background;
   width: auto;
-  display: inline-block;
+  display: block;
   border-radius: 10px;
   margin: 10px 0;
   padding: 15px 15px 10px;
@@ -21,15 +21,23 @@ $card_spacer: 7px;
 .movie-list {
   margin: 0;
   padding: 10px 0 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
   .movie-card {
     list-style: none;
     padding: $card_spacer;
     position: relative;
-    display: inline-flex;
-    flex-direction: column;
+  }
+  figure {
+    display: flex;
+    flex-flow: column;
+    max-width: 200px;
+    margin: auto;
   }
   .movie-poster {
-    max-width: 200px;
+    width: 100%;
     height: auto;
   }
   .movie-title {
