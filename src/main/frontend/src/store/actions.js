@@ -31,3 +31,24 @@ export const addCompanyPreference = payload => dispatch => {
     payload
   });
 };
+
+export const deleteGenrePreference = payload => dispatch => {
+  dispatch({
+    type: actions.DELETE_GENRE_PREFERENCE,
+    payload
+  });
+};
+
+export const deleteLanguagePreference = payload => dispatch => {
+  dispatch({
+    type: actions.DELETE_LANGUAGE_PREFERENCE,
+    payload
+  });
+};
+
+export const deleteCompanyPreference = payload => dispatch => {
+  dispatch({
+    type: actions.DELETE_COMPANY_PREFERENCE,
+    payload
+  });
+};

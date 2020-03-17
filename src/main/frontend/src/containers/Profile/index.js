@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { addGenrePreference } from "../../store/actions";
 import { addLanguagePreference } from "../../store/actions";
 import { addCompanyPreference } from "../../store/actions";
+import { deleteGenrePreference } from "../../store/actions";
+import { deleteLanguagePreference } from "../../store/actions";
+import { deleteCompanyPreference } from "../../store/actions";
 import "./index.scss";
 import { WithContext as ReactTags } from "react-tag-input";
 import texts from "../../texts.json";
@@ -12,7 +15,10 @@ const ProfilePage = ({
   suggestions,
   addGenrePreference,
   addLanguagePreference,
-  addCompanyPreference
+  addCompanyPreference,
+  deleteGenrePreference,
+  deleteLanguagePreference,
+  deleteCompanyPreference
 }) => {
   const delimiters = [];
   const { genre, language, company } = user.preferences;
@@ -46,6 +52,18 @@ const ProfilePage = ({
 
   const handleCompanyAddition = tag => {
     addCompanyPreference(tag);
+  };
+
+  const handleGenreDeletion = index => {
+    deleteGenrePreference(genre[index]);
+  };
+
+  const handleLanguageDeletion = index => {
+    deleteLanguagePreference(language[index]);
+  };
+
+  const handleCompanyDeletion = index => {
+    deleteCompanyPreference(company[index]);
   };
 
   const shouldRenderGenreSuggestions = query => {
@@ -114,8 +132,8 @@ const ProfilePage = ({
           tags={genre}
           placeholder="Select genre"
           allowDragDrop={false}
-          suggestions={suggestions}
-          handleDelete={handleDelete}
+          suggestions={suggestions.genre}
+          handleDelete={handleGenreDeletion}
           handleAddition={handleGenreAddition}
           handleInputFocus={handleGenreInputFocus}
           handleInputBlur={handleInputBlur}
@@ -127,8 +145,8 @@ const ProfilePage = ({
           tags={language}
           placeholder="Select Language"
           allowDragDrop={false}
-          suggestions={suggestions}
-          handleDelete={handleDelete}
+          suggestions={suggestions.language}
+          handleDelete={handleLanguageDeletion}
           handleAddition={handleLanguageAddition}
           handleInputFocus={handleLanguageInputFocus}
           handleInputBlur={handleInputBlur}
@@ -140,8 +158,8 @@ const ProfilePage = ({
           tags={company}
           placeholder="Select Company"
           allowDragDrop={false}
-          suggestions={suggestions}
-          handleDelete={handleDelete}
+          suggestions={suggestions.company}
+          handleDelete={handleCompanyDeletion}
           handleAddition={handleCompanyAddition}
           handleInputFocus={handleCompanyInputFocus}
           handleInputBlur={handleInputBlur}
@@ -161,7 +179,11 @@ const mapStateToProps = ({ user, suggestions }) => ({
 const mapDispatchToProps = dispatch => ({
   addGenrePreference: payload => dispatch(addGenrePreference(payload)),
   addLanguagePreference: payload => dispatch(addLanguagePreference(payload)),
-  addCompanyPreference: payload => dispatch(addCompanyPreference(payload))
+  addCompanyPreference: payload => dispatch(addCompanyPreference(payload)),
+  deleteGenrePreference: payload => dispatch(deleteGenrePreference(payload)),
+  deleteLanguagePreference: payload =>
+    dispatch(deleteLanguagePreference(payload)),
+  deleteCompanyPreference: payload => dispatch(deleteCompanyPreference(payload))
 });
 
 export { ProfilePage };
