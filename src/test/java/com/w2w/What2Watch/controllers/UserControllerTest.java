@@ -1,7 +1,8 @@
-package com.w2w.What2Watch;
+package com.w2w.What2Watch.controllers;
 
+import com.w2w.What2Watch.What2WatchApplication;
 import com.w2w.What2Watch.models.User;
-import com.w2w.What2Watch.service.UserService;
+import com.w2w.What2Watch.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
