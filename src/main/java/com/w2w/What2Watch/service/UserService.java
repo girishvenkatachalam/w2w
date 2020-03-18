@@ -31,21 +31,18 @@ public class UserService {
     }
 
 
-    public ResponseEntity Register(Principal principal) {
+    public ResponseEntity Register(UserDetails userDetails) {
         //TODO : take user preferences and then save to DB
-        UserDetails userDetails = ConvertPrincipalIntoUserDetails(principal);
         userDetailsRepository.save(userDetails);
-        return Login(principal);
+        return Login(userDetails);
     }
 
-    public ResponseEntity Login(Principal principal) {
-        UserDetails userDetails = ConvertPrincipalIntoUserDetails(principal);
+    public ResponseEntity Login(UserDetails userDetails) {
         return ResponseEntity.status(HttpStatus.OK).body(userDetails);
         //TODO : redirect to dashboard
     }
 
-    public boolean IsRegistered(Principal principal) {
-        UserDetails details = ConvertPrincipalIntoUserDetails(principal);
+    public boolean IsRegistered(UserDetails details) {
         List<UserDetails> userDetails = userDetailsRepository.findByEmailId(details.getEmailId());
         if (userDetails.size() == 0){
             return false;
@@ -59,15 +56,5 @@ public class UserService {
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
         user.setPassword("");
         return user;
-    }
-
-    public UserDetails ConvertPrincipalIntoUserDetails(Principal principal)
-    {
-        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
-        Authentication authentication = oAuth2Authentication.getUserAuthentication();
-        Map<String, String> details = new LinkedHashMap<>();
-        details = (Map<String, String>) authentication.getDetails();
-        UserDetails userDetails = new UserDetails(details.get("id"), details.get("email"),details.get("name"));
-        return userDetails;
     }
 }

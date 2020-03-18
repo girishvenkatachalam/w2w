@@ -28,11 +28,16 @@ public class UserController {
     public ResponseEntity userGetLoginDetails(Principal principal) {
 
         ResponseEntity response;
-        if(!userService.IsRegistered(principal))
+        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
+        Authentication authentication = oAuth2Authentication.getUserAuthentication();
+        Map<String, String> details = new LinkedHashMap<>();
+        details = (Map<String, String>) authentication.getDetails();
+        UserDetails userDetails = new UserDetails(details.get("id"), details.get("email"),details.get("name"));
+        if(!userService.IsRegistered(userDetails))
         {
-            response = userService.Register(principal);
+            response = userService.Register(userDetails);
         } else {
-            response = userService.Login(principal);            ;
+            response = userService.Login(userDetails);            ;
         }
         return response;
     }
