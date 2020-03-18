@@ -1,8 +1,8 @@
 package com.w2w.What2Watch.controllers;
 
-import com.w2w.What2Watch.exceptions.GenreNotFoundException;
-import com.w2w.What2Watch.models.Genre;
-import com.w2w.What2Watch.services.GenreService;
+import com.w2w.What2Watch.exceptions.ProductionCompanyNotFoundException;
+import com.w2w.What2Watch.models.ProductionCompany;
+import com.w2w.What2Watch.services.ProductionCompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +14,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-public class GenreController {
+public class ProductionCompanyController {
 
     @Autowired
-    GenreService genreService;
+    ProductionCompanyService productionCompanyService;
 
-    @GetMapping("genres")
+    @GetMapping("productionCompanies")
     @ResponseStatus(HttpStatus.OK)
-    public List<Genre> getGenres() throws GenreNotFoundException {
-        return genreService.getGenres();
+    public List<ProductionCompany> getProductionCompanies() throws ProductionCompanyNotFoundException {
+        return productionCompanyService.getProductionCompanies();
     }
 
 }
