@@ -2,10 +2,9 @@ import actions from "./constants";
 
 export const initialState = {
   user: {
-    name: "Tanvi", //TODO: remove hardcoded
-    email: "tanvi@movie.com", //TODO: remove hardcoded
-    picture:
-      "https://timesofindia.indiatimes.com/thumb/msid-69902898,imgsize-115506,width-800,height-600,resizemode-4/69902898.jpg", //TODO: remove hardcoded
+    name: "",
+    email: "",
+    picture: "images/profile-image.png",
     preferences: {
       genre: [],
       language: [],
@@ -17,29 +16,7 @@ export const initialState = {
     isRejected: false,
     isFulfilled: false
   },
-  movies: [
-    {
-      name: "Trending",
-      list: [
-        {
-          title: "Avatar",
-          image: ""
-        },
-        {
-          title: "Gladiator",
-          image: ""
-        },
-        {
-          title: "Rush Hour",
-          image: ""
-        },
-        {
-          title: "Titanic",
-          image: ""
-        }
-      ]
-    }
-  ],
+  movies: [],
   movieDetail: {},
   suggestions: {
     genre: [

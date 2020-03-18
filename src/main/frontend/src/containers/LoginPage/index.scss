@@ -1,0 +1,93 @@
+@import "../../common/styles/variables";
+@import "../../common/styles/mixins";
+
+.login-container {
+  background-color: $white;
+  background-image: url(/images/roll.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100vh;
+  padding-top: 40vh;
+  position: relative;
+  text-align: center;
+  box-sizing: border-box;
+
+  @include tablet {
+    & {
+      padding-top: 30vh;
+    }
+  }
+  @include desktop {
+    & {
+      padding-top: 25vh;
+    }
+  }
+
+  .login-block {
+    text-align: center;
+    font-family: cursive;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1;
+    display: inline-block;
+    background: $white;
+    padding: 15px;
+    box-shadow: 0 0 10px 3px $grey;
+    border-radius: 7px;
+    img {
+      height: 100px;
+    }
+    @include desktop {
+      & {
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.google-button {
+  cursor: pointer;
+  height: 50px;
+  border-width: 0;
+  color: $white;
+  border-radius: 3px;
+  $white-space: nowrap;
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  transition-property: background-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
+  padding: 2px;
+  background: $login_btn_color;
+  margin-top: 30px;
+
+  &:focus,
+  &:hover {
+    box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background-color: $lightgrey;
+    box-shadow: none;
+    transition-duration: 10ms;
+  }
+}
+
+.google-button__icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 45px;
+  height: 100%;
+  box-sizing: border-box;
+  background: $white;
+  padding: 10px;
+}
+
+.google-button__text {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0px 25px;
+  font-size: $font-default;
+  font-weight: bold;
+  font-family: "Roboto", arial, sans-serif;
+}

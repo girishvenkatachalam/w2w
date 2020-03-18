@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { Fragment, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUserDetails } from "../../store/actions";
 import texts from "../../texts.json";
@@ -19,7 +20,9 @@ const Header = ({ fetchUserData }) => {
           <div>{texts.pagetitle}</div>
         </div>
         <div className="profile-icon-wrapper">
-          <img src="images/profile-icon.png" alt="profile icon" />
+          <Link to={"/profile"}>
+            <img src="images/profile-icon.png" alt="profile icon" />
+          </Link>
         </div>
       </header>
     </Fragment>

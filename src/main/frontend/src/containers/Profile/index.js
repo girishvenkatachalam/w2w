@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { fetchUserProfile } from "../../store/actions";
 import { addGenrePreference } from "../../store/actions";
 import { addLanguagePreference } from "../../store/actions";
 import { addCompanyPreference } from "../../store/actions";
@@ -14,7 +13,6 @@ import texts from "../../texts.json";
 const ProfilePage = ({
   user,
   suggestions,
-  fetchUserProfile,
   addGenrePreference,
   addLanguagePreference,
   addCompanyPreference,
@@ -28,13 +26,6 @@ const ProfilePage = ({
     genre: false,
     language: false,
     company: false
-  });
-
-  useEffect(() => {
-    const fetchUserDetails = () => {
-      fetchUserProfile(user.email);
-    };
-    fetchUserDetails();
   });
 
   const handleGenreAddition = tag => {
@@ -165,7 +156,6 @@ const mapStateToProps = ({ user, suggestions }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchUserProfile: payload => dispatch(fetchUserProfile(payload)),
   addGenrePreference: payload => dispatch(addGenrePreference(payload)),
   addLanguagePreference: payload => dispatch(addLanguagePreference(payload)),
   addCompanyPreference: payload => dispatch(addCompanyPreference(payload)),
