@@ -1,9 +1,13 @@
 package com.w2w.What2Watch.models;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
 
+@Data
+@Document(collection = "productionCompany")
 public class ProductionCompany {
 
     @Id
