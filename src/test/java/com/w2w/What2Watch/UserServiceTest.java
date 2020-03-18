@@ -51,11 +51,8 @@ public class UserServiceTest {
 
     @Test
     void shouldGetUserSuccessfullyByGivenEmail() throws UserNotFoundException {
-        UserRepository userRepositorymock = mock(UserRepository.class);
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com","123456"));
 
-        when(userRepositorymock.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com","123456"));
-
-        UserService userService = new UserService(userRepositorymock);
         User user = userService.getUserByGivenEmail("tanvi@movie.com");
 
         assertEquals("Tanvi", user.getName());
@@ -65,11 +62,7 @@ public class UserServiceTest {
 
     @Test
     void shouldNotGetUserByGivenEmailWhenUserIsNotPresent() {
-        UserRepository userRepositorymock = mock(UserRepository.class);
-
-        when(userRepositorymock.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com","123456"));
-
-        UserService userService = new UserService(userRepositorymock);
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com","123456"));
 
         Throwable exception = assertThrows(UserNotFoundException.class, () -> userService.getUserByGivenEmail("asd@qwqw"));
         assertEquals("User with email \"asd@qwqw\" not found", exception.getMessage());

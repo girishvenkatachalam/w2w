@@ -26,11 +26,6 @@ public class UserService {
     @Autowired
    private UserRepository userRepository;
 
-    public UserService(UserRepository userRepositorymock) {
-        this.userRepository=userRepositorymock;
-    }
-
-
     public ResponseEntity Register(UserDetails userDetails) {
         //TODO : take user preferences and then save to DB
         userDetailsRepository.save(userDetails);
