@@ -24,7 +24,7 @@ To start mongo services,
 - `brew services start mongodb-community`
 
 
-Mongo use 27017 as default port, update your connection string to following, (this is already updated in `application-dev.properties` correctly. Mentioned here as a reference in case anyone wants to change this)
+Mongo use 27017 as default port, update your connection string to following
 
 - `spring.data.mongodb.uri=mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb`
 
@@ -69,7 +69,7 @@ Integration URL https://whattowatch-int.herokuapp.com/
 Use the follow format for commit messages,
 
 ```
-<dev1>|<dev2> <commit message>
+<dev1><|dev2> <commit message>
 ```
 
 For example,
