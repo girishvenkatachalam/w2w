@@ -18,10 +18,8 @@ public class MovieService {
     @Autowired
     MovieRepository movieRepository;
 
-    public ResponseEntity getAllMovies() {
-        Page<Movie> movies =  movieRepository.findAll( PageRequest.of(0, 2, Sort.Direction.DESC, "popularity"));
-        HashMap<String, Page<Movie>> movieMap = new HashMap<String, Page<Movie>>();
-        movieMap.put("Trending", movies);
-        return ResponseEntity.status(HttpStatus.OK).body(movieMap);
+    public  Page<Movie> getTrendingMovies() {
+        Page<Movie> movies =  movieRepository.findAll( PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
+        return movies;
     }
 }
