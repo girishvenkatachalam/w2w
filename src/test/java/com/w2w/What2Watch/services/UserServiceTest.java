@@ -42,7 +42,7 @@ public class UserServiceTest {
     public void IsRegisteredFalseTest()
     {
         //TODO
-        User user = new User();
+        User user = null;
         when(userRepository.findByEmail("abc@example.com")).thenReturn(user);
         assertFalse(userService.IsRegistered(userDetails));
     }
