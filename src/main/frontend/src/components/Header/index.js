@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import texts from "../../texts.json";
 import "./index.scss";
 
-const Header = ({ auth }) => {
-  return auth ? (
+const Header = () => {
+  return (
     <Fragment>
       <div className="header-buffer-space"></div>
       <header className="page-header">
@@ -16,7 +16,7 @@ const Header = ({ auth }) => {
         </div>
       </header>
     </Fragment>
-  ) : null;
+  );
 };
 
 export default Header;
