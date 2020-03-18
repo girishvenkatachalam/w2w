@@ -35,7 +35,7 @@ const ProfilePage = ({
       fetchUserProfile(user.email);
     };
     fetchUserDetails();
-  }, []);
+  });
 
   const handleGenreAddition = tag => {
     addGenrePreference(tag);
@@ -112,7 +112,7 @@ const ProfilePage = ({
   return (
     <div className="profilepage-container">
       <h1 className="page-title">{texts.profileHeader}</h1>
-      <img src={user.picture} alt="Profile picture" />
+      <img src={user.picture} alt={texts.profileHeader} />
       <h3 className="page-title">{user.name}</h3>
       <p className="page-title">{user.email}</p>
       <h3 className="page-title">{texts.preferences}</h3>
