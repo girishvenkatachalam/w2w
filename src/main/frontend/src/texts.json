@@ -8,5 +8,8 @@
   "genre": "Genre",
   "language": "Language",
   "productionCompanies": "Production Companies",
-  "viewall": "View All"
+  "viewall": "View All",
+  "selectGenre": "Select Genre",
+  "selectLanguage": "Select Language",
+  "selectCompany": "Select Company"
 }

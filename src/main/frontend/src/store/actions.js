@@ -7,9 +7,29 @@ export const viewDetails = payload => dispatch => {
   });
 };
 
-//export const fetchUserProfile = (userId) => dispatch => {
-//  fetch()
-//};
+export const fetchUserProfile = userEmail => dispatch => {
+  fetch("/user/" + userEmail, {
+    method: "GET"
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.text().then(text => {
+          throw new Error(
+            `Request rejected with status ${response.status} and message ${text}`
+          );
+        });
+      } else {
+        return response.json();
+      }
+    })
+    .then(payload => {
+      dispatch({
+        type: actions.FETCH_USER_PROFILE,
+        payload
+      });
+    })
+    .catch(error => console.log(`Catch fetchUserProfile: ${error}`));
+};
 
 export const addGenrePreference = payload => dispatch => {
   dispatch({

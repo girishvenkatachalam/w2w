@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { fetchUserProfile } from "../../store/actions";
 import { addGenrePreference } from "../../store/actions";
 import { addLanguagePreference } from "../../store/actions";
 import { addCompanyPreference } from "../../store/actions";
@@ -13,6 +14,7 @@ import texts from "../../texts.json";
 const ProfilePage = ({
   user,
   suggestions,
+  fetchUserProfile,
   addGenrePreference,
   addLanguagePreference,
   addCompanyPreference,
@@ -29,9 +31,10 @@ const ProfilePage = ({
   });
 
   useEffect(() => {
-    //const fetchUserDetails = () => {
-    //}
-    // fetchUserDetails();
+    const fetchUserDetails = () => {
+      fetchUserProfile(user.email);
+    };
+    fetchUserDetails();
   }, []);
 
   const handleGenreAddition = tag => {
@@ -109,19 +112,14 @@ const ProfilePage = ({
   return (
     <div className="profilepage-container">
       <h1 className="page-title">{texts.profileHeader}</h1>
-      <img
-        src={
-          "https://timesofindia.indiatimes.com/thumb/msid-69902898,imgsize-115506,width-800,height-600,resizemode-4/69902898.jpg"
-        }
-        alt="Your profile pic"
-      />
-      <h3 className="page-title">"~~NAME WILL BE HERE~~"</h3>
-      <p className="page-title">"~~EMAIL WILL BE HERE~~"</p>
+      <img src={user.picture} alt="Profile picture" />
+      <h3 className="page-title">{user.name}</h3>
+      <p className="page-title">{user.email}</p>
       <h3 className="page-title">{texts.preferences}</h3>
       <p className="page-title">{texts.genre}:</p>
       <ReactTags
         tags={genre}
-        placeholder="Select genre"
+        placeholder={texts.selectGenre}
         allowDragDrop={false}
         suggestions={suggestions.genre}
         handleDelete={handleGenreDeletion}
@@ -134,7 +132,7 @@ const ProfilePage = ({
       <p className="page-title">{texts.language}:</p>
       <ReactTags
         tags={language}
-        placeholder="Select Language"
+        placeholder={texts.selectLanguage}
         allowDragDrop={false}
         suggestions={suggestions.language}
         handleDelete={handleLanguageDeletion}
@@ -147,7 +145,7 @@ const ProfilePage = ({
       <p className="page-title">{texts.productionCompanies}:</p>
       <ReactTags
         tags={company}
-        placeholder="Select Company"
+        placeholder={texts.selectCompany}
         allowDragDrop={false}
         suggestions={suggestions.company}
         handleDelete={handleCompanyDeletion}
@@ -167,6 +165,7 @@ const mapStateToProps = ({ user, suggestions }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchUserProfile: payload => dispatch(fetchUserProfile(payload)),
   addGenrePreference: payload => dispatch(addGenrePreference(payload)),
   addLanguagePreference: payload => dispatch(addLanguagePreference(payload)),
   addCompanyPreference: payload => dispatch(addCompanyPreference(payload)),

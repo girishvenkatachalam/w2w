@@ -2,8 +2,10 @@ import actions from "./constants";
 
 export const initialState = {
   user: {
-    name: "",
-    email: "",
+    name: "Tanvi", //TODO: remove hardcoded
+    email: "tanvi@movie.com", //TODO: remove hardcoded
+    picture:
+      "https://timesofindia.indiatimes.com/thumb/msid-69902898,imgsize-115506,width-800,height-600,resizemode-4/69902898.jpg", //TODO: remove hardcoded
     preferences: {
       genre: [],
       language: [],
@@ -69,6 +71,8 @@ export default (state = {}, action) => {
         ...state,
         movieDetail: action.payload
       };
+    case actions.FETCH_USER_PROFILE:
+      return fetchUserProfile(state, action.payload);
     case actions.ADD_GENRE_PREFERENCE:
       return addGenrePreference(state, action.payload);
     case actions.ADD_LANGUAGE_PREFERENCE:
@@ -140,5 +144,17 @@ const deleteCompanyPreference = (state, payload) => {
     }
   }
   newState.user.preferences.company = filtered;
+  return newState;
+};
+
+const fetchUserProfile = (state, payload) => {
+  const newState = { ...state };
+  newState.user.preferences = {
+    genre: payload.genres,
+    language: payload.languages,
+    company: payload.production_companies
+  };
+  newState.user.email = payload.email;
+  newState.user.name = payload.name;
   return newState;
 };
