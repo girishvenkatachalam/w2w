@@ -31,6 +31,20 @@ export const fetchUserProfile = userEmail => dispatch => {
     .catch(error => console.log(`Catch fetchUserProfile: ${error}`));
 };
 
+export const fetchUserDetails = () => dispatch => {
+  fetch("/user/login")
+    .then(res => res.json())
+    .then(data => {
+      dispatch({
+        type: actions.UPDATE_USER_DETAILS,
+        payload: data
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};
+
 export const addGenrePreference = payload => dispatch => {
   dispatch({
     type: actions.ADD_GENRE_PREFERENCE,
