@@ -1,4 +1,4 @@
-package com.w2w.What2Watch.Security;
+package com.w2w.What2Watch.security;
 
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.annotation.Configuration;

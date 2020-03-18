@@ -1,10 +1,8 @@
 package com.w2w.What2Watch.controllers;
 
-import com.w2w.What2Watch.Exception.UserNotFoundException;
+import com.w2w.What2Watch.exceptions.UserNotFoundException;
 import com.w2w.What2Watch.models.User;
-import com.w2w.What2Watch.models.UserDetails;
-import com.w2w.What2Watch.repositories.UserDetailsRepository;
-import com.w2w.What2Watch.service.UserService;
+import com.w2w.What2Watch.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +30,7 @@ public class UserController {
         Authentication authentication = oAuth2Authentication.getUserAuthentication();
         Map<String, String> details = new LinkedHashMap<>();
         details = (Map<String, String>) authentication.getDetails();
-        UserDetails userDetails = new UserDetails(details.get("id"), details.get("email"),details.get("name"));
+        User userDetails = new User(details.get("name"), details.get("email"));
         if(!userService.IsRegistered(userDetails))
         {
             response = userService.Register(userDetails);

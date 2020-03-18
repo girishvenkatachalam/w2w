@@ -1,10 +1,8 @@
 package com.w2w.What2Watch.services;
 
-import com.w2w.What2Watch.models.UserDetails;
-import com.w2w.What2Watch.repositories.UserDetailsRepository;
-import com.w2w.What2Watch.service.UserService;
-import io.restassured.internal.RestAssuredResponseOptionsImpl;
-import org.junit.Before;
+import com.w2w.What2Watch.exceptions.UserNotFoundException;
+import com.w2w.What2Watch.models.User;
+import com.w2w.What2Watch.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -13,11 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 
@@ -27,22 +22,19 @@ public class UserServiceTest {
     UserService userService;
 
     @Mock
-    UserDetailsRepository userDetailsRepository;
+    UserRepository userRepository;
 
-    UserDetails userDetails;
-
-    List<UserDetails> users = new ArrayList<>();
+    User userDetails;
 
     @BeforeEach
     public void SetUp() {
         MockitoAnnotations.initMocks(this);
-        userDetails = new UserDetails("12", "abc@example.com", "abc");
+        userDetails = new User("abc", "abc@example.com");
     }
     @Test
     public void IsRegisteredTrueTest()
     {
-        users.add(userDetails);
-        when(userDetailsRepository.findByEmailId("abc@example.com")).thenReturn(users);
+        when(userRepository.findByEmail("abc@example.com")).thenReturn(userDetails);
         assertTrue(userService.IsRegistered(userDetails));
     }
 
@@ -50,20 +42,40 @@ public class UserServiceTest {
     public void IsRegisteredFalseTest()
     {
         //TODO
-        when(userDetailsRepository.findByEmailId("abc@example.com")).thenReturn(users);
+        User user = new User();
+        when(userRepository.findByEmail("abc@example.com")).thenReturn(user);
         assertFalse(userService.IsRegistered(userDetails));
     }
 
     @Test
     public void RegisterUserTest(){
         userService.Register(userDetails);
-        verify(userDetailsRepository,times(1)).save(userDetails);
+        verify(userRepository,times(1)).save(userDetails);
     }
 
     @Test
     public void LoginuserTest(){
         ResponseEntity responseEntity = userService.Login(userDetails);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
+
+    @Test
+    void shouldGetUserSuccessfullyByGivenEmail() throws UserNotFoundException {
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com"));
+
+        User user = userService.getUserByGivenEmail("tanvi@movie.com");
+
+        assertEquals("Tanvi", user.getName());
+        assertEquals("tanvi@movie.com", user.getEmail());
+
+    }
+
+    @Test
+    void shouldNotGetUserByGivenEmailWhenUserIsNotPresent() {
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com"));
+
+        Throwable exception = assertThrows(UserNotFoundException.class, () -> userService.getUserByGivenEmail("asd@qwqw"));
+        assertEquals("User with email \"asd@qwqw\" not found", exception.getMessage());
     }
 
 }

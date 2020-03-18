@@ -1,4 +1,4 @@
-package com.w2w.What2Watch.Exception;
+package com.w2w.What2Watch.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
