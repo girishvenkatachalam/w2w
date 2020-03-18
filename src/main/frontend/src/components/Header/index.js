@@ -1,8 +1,15 @@
-import React, { Fragment } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { Fragment, useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchUserDetails } from "../../store/actions";
 import texts from "../../texts.json";
 import "./index.scss";
 
-const Header = () => {
+const Header = ({ fetchUserData }) => {
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
   return (
     <Fragment>
       <div className="header-buffer-space"></div>
@@ -19,4 +26,14 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = ({ movies }) => ({
+  movies
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchUserData: () => dispatch(fetchUserDetails())
+});
+
+export { Header };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

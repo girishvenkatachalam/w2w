@@ -85,6 +85,8 @@ export default (state = {}, action) => {
       return deleteLanguagePreference(state, action.payload);
     case actions.DELETE_COMPANY_PREFERENCE:
       return deleteCompanyPreference(state, action.payload);
+    case actions.UPDATE_USER_DETAILS:
+      return updateUserDetails(state, action.payload);
     default:
       return state;
   }
@@ -157,4 +159,17 @@ const fetchUserProfile = (state, payload) => {
   newState.user.email = payload.email;
   newState.user.name = payload.name;
   return newState;
+};
+
+const updateUserDetails = (state, payload) => {
+  const { id, name, emailId, email } = payload;
+  return {
+    ...state,
+    user: {
+      ...state.user,
+      id,
+      name,
+      email: emailId || email
+    }
+  };
 };
