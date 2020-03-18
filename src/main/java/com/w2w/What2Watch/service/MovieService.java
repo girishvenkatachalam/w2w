@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -21,7 +22,9 @@ public class MovieService {
     MovieRepository movieRepository;
 
     public ResponseEntity getAllMovies() {
-        Page<Movie> movies =  movieRepository.findAll( PageRequest.of(0, 2, Sort.Direction.DESC, "id"));
-        return ResponseEntity.status(HttpStatus.OK).body(movies);
+        Page<Movie> movies =  movieRepository.findAll( PageRequest.of(0, 2, Sort.Direction.DESC, "popularity"));
+        HashMap<String, Page<Movie>> movieMap = new HashMap<String, Page<Movie>>();
+        movieMap.put("Trending", movies);
+        return ResponseEntity.status(HttpStatus.OK).body(movieMap);
     }
 }
