@@ -23,6 +23,16 @@ In Chrome, install the following Extensions,
 To start mongo services,
 - `brew services start mongodb-community`
 
+
+Mongo use 27017 as default port, update your connection string to following
+
+- `spring.data.mongodb.uri=mongodb://127.0.0.1:27017/?gssapiServiceName=mongodb`
+
+if you want to monitor local db you can enable that running following command
+
+- `db.enableFreeMonitoring()`
+
+
 ### Heroku (Optional)
 
  - `brew install heroku/brew/heroku`
