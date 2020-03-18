@@ -108,57 +108,55 @@ const ProfilePage = ({
 
   return (
     <div className="profilepage-container">
-      <header className="App-header">
-        <h1 className="page-title">Profile page</h1>
-        <img
-          src={
-            "https://timesofindia.indiatimes.com/thumb/msid-69902898,imgsize-115506,width-800,height-600,resizemode-4/69902898.jpg"
-          }
-          alt="Your profile pic"
-        />
-        <h3 className="page-title">"~~NAME WILL BE HERE~~"</h3>
-        <p className="page-title">"~~EMAIL WILL BE HERE~~"</p>
-        <h3 className="page-title">{texts.preferences}</h3>
-        <p className="page-title">{texts.genre}:</p>
-        <ReactTags
-          tags={genre}
-          placeholder="Select genre"
-          allowDragDrop={false}
-          suggestions={suggestions.genre}
-          handleDelete={handleGenreDeletion}
-          handleAddition={handleGenreAddition}
-          handleInputFocus={handleGenreInputFocus}
-          handleInputBlur={handleInputBlur}
-          shouldRenderSuggestions={shouldRenderGenreSuggestions}
-          delimiters={delimiters}
-        />
-        <p className="page-title">{texts.language}:</p>
-        <ReactTags
-          tags={language}
-          placeholder="Select Language"
-          allowDragDrop={false}
-          suggestions={suggestions.language}
-          handleDelete={handleLanguageDeletion}
-          handleAddition={handleLanguageAddition}
-          handleInputFocus={handleLanguageInputFocus}
-          handleInputBlur={handleInputBlur}
-          shouldRenderSuggestions={shouldRenderLanguageSuggestions}
-          delimiters={delimiters}
-        />
-        <p className="page-title">{texts.productionCompanies}:</p>
-        <ReactTags
-          tags={company}
-          placeholder="Select Company"
-          allowDragDrop={false}
-          suggestions={suggestions.company}
-          handleDelete={handleCompanyDeletion}
-          handleAddition={handleCompanyAddition}
-          handleInputFocus={handleCompanyInputFocus}
-          handleInputBlur={handleInputBlur}
-          shouldRenderSuggestions={shouldRenderCompanySuggestions}
-          delimiters={delimiters}
-        />
-      </header>
+      <h1 className="page-title">{texts.profileHeader}</h1>
+      <img
+        src={
+          "https://timesofindia.indiatimes.com/thumb/msid-69902898,imgsize-115506,width-800,height-600,resizemode-4/69902898.jpg"
+        }
+        alt="Your profile pic"
+      />
+      <h3 className="page-title">"~~NAME WILL BE HERE~~"</h3>
+      <p className="page-title">"~~EMAIL WILL BE HERE~~"</p>
+      <h3 className="page-title">{texts.preferences}</h3>
+      <p className="page-title">{texts.genre}:</p>
+      <ReactTags
+        tags={genre}
+        placeholder="Select genre"
+        allowDragDrop={false}
+        suggestions={suggestions.genre}
+        handleDelete={handleGenreDeletion}
+        handleAddition={handleGenreAddition}
+        handleInputFocus={handleGenreInputFocus}
+        handleInputBlur={handleInputBlur}
+        shouldRenderSuggestions={shouldRenderGenreSuggestions}
+        delimiters={delimiters}
+      />
+      <p className="page-title">{texts.language}:</p>
+      <ReactTags
+        tags={language}
+        placeholder="Select Language"
+        allowDragDrop={false}
+        suggestions={suggestions.language}
+        handleDelete={handleLanguageDeletion}
+        handleAddition={handleLanguageAddition}
+        handleInputFocus={handleLanguageInputFocus}
+        handleInputBlur={handleInputBlur}
+        shouldRenderSuggestions={shouldRenderLanguageSuggestions}
+        delimiters={delimiters}
+      />
+      <p className="page-title">{texts.productionCompanies}:</p>
+      <ReactTags
+        tags={company}
+        placeholder="Select Company"
+        allowDragDrop={false}
+        suggestions={suggestions.company}
+        handleDelete={handleCompanyDeletion}
+        handleAddition={handleCompanyAddition}
+        handleInputFocus={handleCompanyInputFocus}
+        handleInputBlur={handleInputBlur}
+        shouldRenderSuggestions={shouldRenderCompanySuggestions}
+        delimiters={delimiters}
+      />
     </div>
   );
 };

@@ -1,13 +1,13 @@
 @import "../../common/styles/variables";
 
-$card_spacer: 7px;
+$card_spacer: 20px;
 
 .listcard-wrapper {
   background: $card_background;
   width: auto;
   display: block;
   border-radius: 10px;
-  margin: 10px 0;
+  margin: 10px 0 20px;
   padding: 15px 15px 10px;
   header {
     display: flex;
@@ -23,7 +23,7 @@ $card_spacer: 7px;
   padding: 10px 0 5px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   .movie-card {
     list-style: none;

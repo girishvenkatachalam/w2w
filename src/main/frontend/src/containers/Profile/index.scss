@@ -1,32 +1,29 @@
-/* Example Styles for React Tags*/
-#app {
-  padding: 40px;
-}
+@import "../../common/styles/variables";
 
-div.ReactTags__tags {
+.react-tags-wrapper {
   position: relative;
 }
 
 /* Styles for the input */
-div.ReactTags__tagInput {
+.ReactTags__tagInput {
   width: 200px;
   border-radius: 2px;
   display: inline-block;
 }
-div.ReactTags__tagInput input.ReactTags__tagInputField,
-div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+.ReactTags__tagInput input.ReactTags__tagInputField,
+.ReactTags__tagInput input.ReactTags__tagInputField:focus {
   height: 31px;
   margin: 0;
   font-size: 12px;
   width: 100%;
-  border: 1px solid #eee;
+  border: 1px solid $lightgrey;
   padding: 0 4px;
 }
 
 /* Styles for selected tags */
-div.ReactTags__selected span.ReactTags__tag {
-  border: 1px solid #ddd;
-  background: #eee;
+.ReactTags__selected span.ReactTags__tag {
+  border: 1px solid $lightgrey2;
+  background: $lightgrey;
   font-size: 13px;
   display: inline-block;
   padding: 6px;
@@ -34,47 +31,47 @@ div.ReactTags__selected span.ReactTags__tag {
   cursor: default !important;
   border-radius: 2px;
 }
-div.ReactTags__selected a.ReactTags__remove {
-  color: #9c9c9c;
+.ReactTags__selected a.ReactTags__remove {
+  color: $grey;
   margin-left: 5px;
   cursor: pointer;
 }
 
 /* Styles for suggestions */
-div.ReactTags__suggestions {
+.ReactTags__suggestions {
   position: absolute;
   color: #000 !important;
   font-weight: normal !important;
   font-size: 14px !important;
   z-index: 3;
 }
-div.ReactTags__suggestions ul {
+.ReactTags__suggestions ul {
   list-style-type: none;
   box-shadow: 0.05em 0.01em 0.5em rgba(0, 0, 0, 0.2);
-  background: white;
+  background: $white;
   width: 200px;
 }
-div.ReactTags__suggestions li {
-  border-bottom: 1px solid #ddd;
+.ReactTags__suggestions li {
+  border-bottom: 1px solid $lightgrey2;
   padding: 15px 10px;
   margin: 0;
 }
-div.ReactTags__suggestions li mark {
+.ReactTags__suggestions li mark {
   text-decoration: underline;
   background: none;
   font-weight: 600;
 }
-div.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
-  background: #b7cfe0;
+.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
+  background: $cyan;
   cursor: pointer;
 }
 
-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-
 .profilepage-container {
-  padding: 40px;
+  padding: 10px 40px 40px;
+
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
 }

@@ -1,0 +1,42 @@
+@import "../../common/styles/variables";
+
+$header-height: 80px;
+
+.header-buffer-space {
+  height: $header-height;
+}
+
+.page-header {
+  width: 100%;
+  height: $header-height;
+  color: $white;
+  background-color: $black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+
+  img {
+    max-height: #{$header-height / 2};
+  }
+
+  .logo-wrapper {
+    text-align: center;
+    font-family: cursive;
+    font-size: $font-medium;
+    line-height: 1;
+
+    img {
+      vertical-align: bottom;
+      padding-bottom: 5px;
+    }
+  }
+
+  .profile-icon-wrapper {
+    cursor: pointer;
+  }
+}

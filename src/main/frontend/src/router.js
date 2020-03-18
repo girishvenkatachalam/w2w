@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Redirect } from "react-router";
 import { Provider } from "react-redux";
@@ -7,6 +7,7 @@ import HomePage from "./containers/HomePage";
 import PageNotFound from "./containers/NotFound";
 import LoginPage from "./containers/LoginPage";
 import ProfilePage from "./containers/Profile";
+import Header from "./components/Header";
 
 const isUserLoggedIn = () => {
   // TO DO: check for authentication through auth-token in cookie/storage
@@ -50,12 +51,15 @@ const App = () => {
   return (
     <Provider store={configureStore()}>
       <Router>
-        <Switch>
-          <PrivateRoute exact path="/" component={HomePage} />
-          <PrivateRoute exact path="/profile" component={ProfilePage} />
-          <PublicRoute exact path="/login" component={LoginPage} />
-          <Route component={PageNotFound} />
-        </Switch>
+        <Fragment>
+          <Header auth={isUserLoggedIn()} />
+          <Switch>
+            <PrivateRoute exact path="/" component={HomePage} />
+            <PrivateRoute exact path="/profile" component={ProfilePage} />
+            <PublicRoute exact path="/login" component={LoginPage} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </Fragment>
       </Router>
     </Provider>
   );
