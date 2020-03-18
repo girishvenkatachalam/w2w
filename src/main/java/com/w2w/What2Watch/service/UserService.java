@@ -8,14 +8,9 @@ import com.w2w.What2Watch.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Service;
 
-import java.security.Principal;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserService {
@@ -24,7 +19,7 @@ public class UserService {
     @Autowired
     UserDetailsRepository userDetailsRepository;
     @Autowired
-   private UserRepository userRepository;
+    private UserRepository userRepository;
 
     public ResponseEntity Register(UserDetails userDetails) {
         //TODO : take user preferences and then save to DB

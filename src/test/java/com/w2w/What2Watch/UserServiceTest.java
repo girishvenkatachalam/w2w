@@ -6,7 +6,7 @@ import com.w2w.What2Watch.models.UserDetails;
 import com.w2w.What2Watch.repositories.UserDetailsRepository;
 import com.w2w.What2Watch.repositories.UserRepository;
 import com.w2w.What2Watch.service.UserService;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -37,7 +37,7 @@ public class UserServiceTest {
 
     UserDetails userDetails;
 
-    @Before
+    @BeforeEach
     public void SetUp() {
         MockitoAnnotations.initMocks(this);
         userDetails = new UserDetails("12", "abc@example.com", "abc");
