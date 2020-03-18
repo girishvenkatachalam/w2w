@@ -2,6 +2,7 @@ package com.w2w.What2Watch.models;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -19,4 +20,9 @@ public class Movie {
 
     public List<Genre> genre;
     public List<ProductionCompany> productionCompany;
+
+    public Movie() {
+        this.genre = new ArrayList<>();
+        this.productionCompany = new ArrayList<>();
+    }
 }

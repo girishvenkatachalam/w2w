@@ -13,8 +13,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.DoubleAccumulator;
+import java.util.Set;
 
 public class CSVFileExtractor {
     public static List<Movie> extract(String path) throws IOException {
@@ -81,5 +82,18 @@ public class CSVFileExtractor {
             genres.add(new Genre(id, name));
         }
         return genres;
+    }
+
+    public static List<Genre> getAllGenres(Movie movie) {
+        return new ArrayList<>(new HashSet<Genre>(movie.genre));
+    }
+
+    public static List<Genre> getAllGenres(List<Movie> movies) {
+        Set genres = new HashSet<Genre>();
+        for(Movie movie : movies){
+            genres.addAll(getAllGenres(movie));
+        }
+
+        return new ArrayList<>(genres);
     }
 }

@@ -1,10 +1,12 @@
 package com.w2w.What2Watch.utils;
 
+import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.Movie;
 
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.util.AssertionErrors.*;
@@ -75,5 +77,43 @@ public class CSVFileExtractorTest {
         } catch (Exception ex){
             assertEquals("", "File path can not be empty.", ex.getMessage());
         }
+    }
+
+    @Test
+    public void testGetAllGenresFromMovie() {
+        Movie movie = new Movie();
+        movie.genre.add(new Genre(1, "SCI-FI"));
+        movie.genre.add(new Genre(2, "Action"));
+        List<Genre> genres = CSVFileExtractor.getAllGenres(movie);
+        assertEquals("Should not fail", 2, genres.size());
+    }
+
+    @Test
+    public void testGetAllGenresFromMovieWithDuplicates() {
+        Movie movie = new Movie();
+        movie.genre.add(new Genre(1, "SCI-FI"));
+        movie.genre.add(new Genre(2, "Action"));
+        movie.genre.add(new Genre(2, "Action"));
+        List<Genre> genres = CSVFileExtractor.getAllGenres(movie);
+        assertEquals("Should not fail", 2, genres.size());
+    }
+
+
+    @Test
+    public void testGetAllGenresFromMovies() {
+        Movie movie = new Movie();
+        movie.genre.add(new Genre(1, "SCI-FI"));
+        movie.genre.add(new Genre(2, "Action"));
+
+        Movie newMovie = new Movie();
+        newMovie.genre.add(new Genre(1, "SCI-FI"));
+        newMovie.genre.add(new Genre(2, "Thriller"));
+
+        List<Movie> movies = new ArrayList<>();
+        movies.add(movie);
+        movies.add(newMovie);
+
+        List<Genre> genres = CSVFileExtractor.getAllGenres(movies);
+        assertEquals("Should not fail", 3, genres.size());
     }
 }

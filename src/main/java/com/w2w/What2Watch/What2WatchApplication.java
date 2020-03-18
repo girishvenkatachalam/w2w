@@ -28,28 +28,9 @@ public class What2WatchApplication {
 	@Autowired
 	private myHelloWorldCollectionRepository myHelloWorldCollectionRepository;
 
-	@Autowired
-	private MovieRepository movieRepository;
-
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
 		logger.debug("Inside hello");
 		return String.format("Hello World !");
-	}
-
-	@GetMapping("/import")
-	public String importFile() {
-		try {
-			List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
-			if(movies != null && movies.size() > 0) {
-				movieRepository.deleteAll();
-				movieRepository.insert(movies);
-			}
-
-			return "Imported " + movies.size() + " movies";
-		}
-		catch (Exception ex){
-			return "Exception occured: " + ex.getMessage();
-		}
 	}
 }
