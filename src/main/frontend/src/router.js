@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Redirect } from "react-router";
+// import { Redirect } from "react-router";
 import { Provider } from "react-redux";
 import configureStore from "./store";
 import HomePage from "./containers/HomePage";
