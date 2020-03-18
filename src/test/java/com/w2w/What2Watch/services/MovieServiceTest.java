@@ -1,4 +1,4 @@
-package com.w2w.What2Watch;
+package com.w2w.What2Watch.services;
 
 import com.w2w.What2Watch.Service.MovieService;
 import com.w2w.What2Watch.models.Movie;
