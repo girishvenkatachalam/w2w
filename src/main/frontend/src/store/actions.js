@@ -86,3 +86,15 @@ export const deleteCompanyPreference = payload => dispatch => {
     payload
   });
 };
+
+
+export const fetchAllMovies = () => {
+  fetch('/movie-details/home')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+}
