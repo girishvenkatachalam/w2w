@@ -3,6 +3,7 @@ package com.w2w.What2Watch.utils;
 import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.Movie;
 
+import com.w2w.What2Watch.models.ProductionCompany;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -115,5 +116,23 @@ public class CSVFileExtractorTest {
 
         List<Genre> genres = CSVFileExtractor.getAllGenres(movies);
         assertEquals("Should not fail", 3, genres.size());
+    }
+
+    @Test
+    public void testGetAllProductionCompaniesFromMovies() {
+        Movie movie = new Movie();
+        movie.productionCompany.add(new ProductionCompany(1, "Marvel"));
+        movie.productionCompany.add(new ProductionCompany(2, "DC"));
+
+        Movie newMovie = new Movie();
+        newMovie.productionCompany.add(new ProductionCompany(1, "Marvel"));
+        newMovie.productionCompany.add(new ProductionCompany(3, "Universal Studio"));
+
+        List<Movie> movies = new ArrayList<>();
+        movies.add(movie);
+        movies.add(newMovie);
+
+        List<ProductionCompany> productionCompanies = CSVFileExtractor.getAllProductionCompanies(movies);
+        assertEquals("Should not fail", 3, productionCompanies.size());
     }
 }

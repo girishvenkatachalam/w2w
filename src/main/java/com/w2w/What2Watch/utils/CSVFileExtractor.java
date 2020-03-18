@@ -96,4 +96,13 @@ public class CSVFileExtractor {
 
         return new ArrayList<>(genres);
     }
+
+    public static List<ProductionCompany> getAllProductionCompanies(List<Movie> movies) {
+        Set genres = new HashSet<ProductionCompany>();
+        for(Movie movie : movies){
+            genres.addAll(movie.productionCompany);
+        }
+
+        return new ArrayList<>(genres);
+    }
 }
