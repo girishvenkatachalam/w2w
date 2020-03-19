@@ -9,7 +9,7 @@ import java.util.Objects;
 @Document(collection = "genre")
 public class Genre {
     @Id
-    String _id;
+    public String _id;
 
     public int id;
     public String name;
