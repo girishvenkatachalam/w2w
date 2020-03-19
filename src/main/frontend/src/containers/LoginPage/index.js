@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import texts from "../../texts.json";
 import "./index.scss";
 
@@ -8,8 +8,7 @@ const LoginPage = () => (
     <div className="login-block">
       <img src="images/logo.png" alt="W2W Logo" />
       <div>{texts.pagetitle}</div>
-      <Link to={"/"}>
-        <button type="button" class="google-button">
+        <button type="button" class="google-button" onClick={() => {window.location.href="/dashboard"}}>
           <span class="google-button__icon">
             <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -35,7 +34,6 @@ const LoginPage = () => (
           </span>
           <span class="google-button__text">Sign in with Google</span>
         </button>
-      </Link>
     </div>
   </div>
 );

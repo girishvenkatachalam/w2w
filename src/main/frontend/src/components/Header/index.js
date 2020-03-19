@@ -16,7 +16,7 @@ const Header = ({ fetchUserData }) => {
       <div className="header-buffer-space"></div>
       <header className="page-header">
         <div className="logo-wrapper">
-          <Link to={"/"}>
+          <Link to={"/dashboard"}>
             <img src="images/logo.png" alt="W2W Logo" />
           </Link>
           <div>{texts.pagetitle}</div>

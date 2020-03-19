@@ -21,9 +21,9 @@ const App = () => {
       <Router>
         <Fragment>
           <Switch>
-            <LoggedInRoute exact path="/" component={HomePage} />
+            <LoggedInRoute exact path="/dashboard" component={HomePage} />
             <LoggedInRoute exact path="/profile" component={ProfilePage} />
-            <Route exact path="/signin" component={LoginPage} />
+            <Route exact path="/" component={LoginPage} />
             <LoggedInRoute component={PageNotFound} />
           </Switch>
         </Fragment>
