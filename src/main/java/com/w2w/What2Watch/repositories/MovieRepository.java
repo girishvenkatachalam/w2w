@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface MovieRepository extends MongoRepository<Movie,String> {
     public List<Movie> findAll(Sort sort);
+    public Movie findById(int movieId);
 }

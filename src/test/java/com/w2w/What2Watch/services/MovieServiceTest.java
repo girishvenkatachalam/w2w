@@ -1,6 +1,5 @@
 package com.w2w.What2Watch.services;
 
-import com.w2w.What2Watch.Service.MovieService;
 import com.w2w.What2Watch.models.Movie;
 import com.w2w.What2Watch.repositories.MovieRepository;
 import org.junit.Before;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -29,10 +29,14 @@ public class MovieServiceTest {
     @Mock
     private MovieRepository movieRepository;
 
+    Movie movie;
+
     @Before
     public void setUp()
     {
         MockitoAnnotations.initMocks(this);
+        movie = new Movie();
+        movie.id = 123;
     }
 
     @Test
@@ -42,13 +46,13 @@ public class MovieServiceTest {
         moviesList.add(new Movie());
         moviesList.add(new Movie());
         moviesList.add(new Movie());
+    }
 
-//        Page<Movie> page = new PageImpl<Movie>(moviesList.subList(0, 2), PageRequest.of(0, 2, Sort.Direction.DESC, "id"), moviesList.size());
-//        when(movieRepository.findAll(any(PageRequest.class))).thenReturn(page);
-//        ResponseEntity responseEntity = movieService.getTrendingMovies();
-//
-//        assertEquals(page, responseEntity.getBody());
-//        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-//        verify(movieRepository,times(1)).findAll(any(PageRequest.class));
+    @Test
+    public void TestGetSingleMovie()
+    {
+        when(movieRepository.findById("123")).thenReturn(java.util.Optional.ofNullable(movie));
+        assertEquals(123,movie.id);
+
     }
 }

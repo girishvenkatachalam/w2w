@@ -5,32 +5,18 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 @EnableOAuth2Sso
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
-/*    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf()
-                .disable()
-                .oauth2Login()
-                .redirectionEndpoint()
-                .baseUri("/login")
-                .and()
-                .loginPage("/signin")
-                .and()
-                .antMatcher("/**")
-                .authorizeRequests()
-                .anyRequest()
-                .authenticated();
-    }*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/images/**","/static/**",
+                .antMatchers("/images/**","/static/**",
                         "/index*", "/static/**", "/*.js", "/*.json", "/*.ico")
                 .permitAll()
                 .and()
@@ -38,6 +24,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
-                .and().logout().logoutSuccessUrl("/").permitAll();
+                .and().formLogin().loginPage("/").permitAll()
+                .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).invalidateHttpSession(true)
+                .clearAuthentication(true).logoutSuccessUrl("/").deleteCookies("JSESSIONID").permitAll();
     }
 }

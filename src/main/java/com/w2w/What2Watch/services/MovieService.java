@@ -1,4 +1,4 @@
-package com.w2w.What2Watch.Service;
+package com.w2w.What2Watch.services;
 
 import com.w2w.What2Watch.models.Movie;
 import com.w2w.What2Watch.repositories.MovieRepository;
@@ -21,5 +21,10 @@ public class MovieService {
     public  Page<Movie> getTrendingMovies() {
         Page<Movie> movies =  movieRepository.findAll( PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
         return movies;
+    }
+
+    public Movie getMovieByGivenId(String movieId){
+        Movie movie = movieRepository.findById(Integer.parseInt(movieId));
+        return movie;
     }
 }
