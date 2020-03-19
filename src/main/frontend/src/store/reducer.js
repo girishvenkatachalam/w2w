@@ -19,25 +19,13 @@ export const initialState = {
   movies: [],
   movieDetail: {},
   suggestions: {
-    genre: [
-      { id: "romantic", text: "Romantic" },
-      { id: "action", text: "Action" },
-      { id: "fantasy", text: "Fantasy" },
-      { id: "adventure", text: "Adventure" },
-      { id: "thriller", text: "Thriller" },
-      { id: "crime", text: "Crime" },
-      { id: "scienceFiction", text: "Science Fiction" },
-      { id: "family", text: "Family" }
-    ],
+    genre: [],
     language: [
       { id: "english", text: "English" },
       { id: "hindi", text: "Hindi" },
       { id: "french", text: "French" }
     ],
-    company: [
-      { id: "dc", text: "DC" },
-      { id: "marvel", text: "Marvel" }
-    ]
+    company: []
   }
 };
 
@@ -110,7 +98,6 @@ const fetchAllCompanyPreference = (state, payload) => {
     return newElement;
   });
   newState.suggestions.company = strArr;
-  debugger;
   return newState;
 };
 

@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { fetchAllGenres } from "../../store/actions";
+import { fetchAllLanguages } from "../../store/actions";
+import { fetchAllProductionCompanies } from "../../store/actions";
 import { addGenrePreference } from "../../store/actions";
 import { addLanguagePreference } from "../../store/actions";
 import { addCompanyPreference } from "../../store/actions";
@@ -13,6 +16,9 @@ import texts from "../../texts.json";
 const ProfilePage = ({
   user,
   suggestions,
+  fetchAllGenres,
+  fetchAllLanguages,
+  fetchAllProductionCompanies,
   addGenrePreference,
   addLanguagePreference,
   addCompanyPreference,
@@ -26,6 +32,13 @@ const ProfilePage = ({
     genre: false,
     language: false,
     company: false
+  });
+
+  useEffect(() => {
+    if (!suggestions.genre || suggestions.genre.length === 0) fetchAllGenres();
+    // if (!suggestions.language || suggestions.language.length === 0) fetchAllLanguages(); //TODO: uncomment this once backend fix null reponse issue. Also remove the common state hardcoded values
+    if (!suggestions.company || suggestions.company.length === 0)
+      fetchAllProductionCompanies();
   });
 
   const handleGenreAddition = tag => {
@@ -156,6 +169,10 @@ const mapStateToProps = ({ user, suggestions }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  fetchAllGenres: payload => dispatch(fetchAllGenres(payload)),
+  fetchAllLanguages: payload => dispatch(fetchAllLanguages(payload)),
+  fetchAllProductionCompanies: payload =>
+    dispatch(fetchAllProductionCompanies(payload)),
   addGenrePreference: payload => dispatch(addGenrePreference(payload)),
   addLanguagePreference: payload => dispatch(addLanguagePreference(payload)),
   addCompanyPreference: payload => dispatch(addCompanyPreference(payload)),
