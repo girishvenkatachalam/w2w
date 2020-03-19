@@ -16,6 +16,7 @@ public class Movie {
     public String overview;
     public String title;
     public String language;
+    public String image;
     public double popularity;
 
     public List<Genre> genre;
