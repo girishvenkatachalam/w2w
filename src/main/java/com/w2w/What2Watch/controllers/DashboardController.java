@@ -2,25 +2,24 @@ package com.w2w.What2Watch.controllers;
 
 import com.w2w.What2Watch.exceptions.LanguageNotFoundException;
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
-import com.w2w.What2Watch.models.Movie;
-import com.w2w.What2Watch.models.SpokenLanguage;
+import com.w2w.What2Watch.models.*;
 import com.w2w.What2Watch.services.LanguageService;
 import com.w2w.What2Watch.services.MovieService;
+import com.w2w.What2Watch.services.UserService;
 import com.w2w.What2Watch.utils.PreferenceVsMoviesMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/movie-details")
@@ -32,18 +31,29 @@ public class DashboardController {
     @Autowired
     LanguageService languageService;
 
-    @RequestMapping(value="/home", method = RequestMethod.GET)
-    public ResponseEntity getMovieDetails(Principal principal, ModelMap modelMap)
-    {
-        List<PreferenceVsMoviesMap> preferenceVsMoviesMap = new ArrayList<>();
+    @Autowired
+    UserService userService;
 
+    @RequestMapping(value="/home", method = RequestMethod.GET)
+    public ResponseEntity getMovieDetails(Principal principal, ModelMap modelMap) throws UserNotFoundException {
+        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
+        Authentication authentication = oAuth2Authentication.getUserAuthentication();
+        Map<String, String> details = (Map<String, String>) authentication.getDetails();
+        User user = userService.getUserByGivenEmail(details.get("email"));;
+        List<Genre> genres = user.getGenres();
+        List<SpokenLanguage> spokenLanguages= user.getLanguages();
+        List<ProductionCompany> productionCompanies= user.getProduction_companies();
+
+        List<PreferenceVsMoviesMap> preferenceVsMoviesMap = new ArrayList<>();
         Page<Movie> movies = movieService.getTrendingMovies();
         preferenceVsMoviesMap.add(new PreferenceVsMoviesMap("Trending", movies.toList()));
 
+
         List<String> genrePreference = new ArrayList<>();
-        genrePreference.add("Action");
-        genrePreference.add("Thriller");
-        genrePreference.add("Drama");
+        for (Genre genre : genres) {
+            genrePreference.add(genre.name);
+        }
+
         HashMap<String, List<Movie>> moviesByGenrePreference = movieService.getMoviesByPreference(genrePreference);
 
         for(Map.Entry<String, List<Movie>> map : moviesByGenrePreference.entrySet()) {
@@ -63,8 +73,10 @@ public class DashboardController {
         }
 
         List<String> languagePreference = new ArrayList<>();
-        languagePreference.add("en");
-        languagePreference.add("fr");
+        for (SpokenLanguage spokenLanguage : spokenLanguages) {
+            languagePreference.add(spokenLanguage.iso_639_1);
+        }
+
         HashMap<String, List<Movie>> moviesByLanguagePreference = movieService.getMoviesByLanguagePreference(languagePreference);
 
         for(Map.Entry<String, List<Movie>> map : moviesByLanguagePreference.entrySet()) {
@@ -72,8 +84,10 @@ public class DashboardController {
         }
 
         List<String> productionCompanyPreference = new ArrayList<>();
-        productionCompanyPreference.add("Warner Bros.");
-        productionCompanyPreference.add("Lightstorm Entertainment");
+        for (ProductionCompany productionCompany : productionCompanies) {
+            productionCompanyPreference.add(productionCompany.name);
+        }
+
         HashMap<String, List<Movie>> moviesByCompanyPreference = movieService.getMoviesByProductionCompanyPreference(productionCompanyPreference);
 
         for(Map.Entry<String, List<Movie>> map : moviesByCompanyPreference.entrySet()) {

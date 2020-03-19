@@ -28,15 +28,16 @@ public class MovieService {
         Movie movie = movieRepository.findById(Integer.parseInt(movieId));
         return movie;
     }
-    // Get user preferences from the db -> call to user service
-    // Iterate over each preference and return individual list back to the UI
 
     public HashMap<String, List<Movie>> getMoviesByPreference(List<String> preferences)
     {
         HashMap<String, List<Movie>> movieMap = new HashMap<>();
         for(String preference: preferences)
         {
-            movieMap.put(preference, movieRepository.findByGenre(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity")));
+            List<Movie> movies = movieRepository.findByGenre(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
+            if (movies.size() > 0) {
+                movieMap.put(preference, movies);
+            }
         }
         return movieMap;
     }
@@ -46,7 +47,10 @@ public class MovieService {
         HashMap<String, List<Movie>> movieMap = new HashMap<>();
         for(String preference: preferences)
         {
-            movieMap.put(preference, movieRepository.findByProductionCompany(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity")));
+            List<Movie> movies = movieRepository.findByProductionCompany(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
+            if (movies.size() > 0) {
+                movieMap.put(preference, movies);
+            }
         }
         return movieMap;
     }
@@ -56,7 +60,10 @@ public class MovieService {
         HashMap<String, List<Movie>> movieMap = new HashMap<>();
         for(String preference: preferences)
         {
-            movieMap.put(preference, movieRepository.findByLanguage(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity")));
+            List<Movie> movies =movieRepository.findByLanguage(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
+            if (movies.size() > 0) {
+                movieMap.put(preference, movies);
+            }
         }
         return movieMap;
     }
