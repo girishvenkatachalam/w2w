@@ -84,6 +84,7 @@ export const fetchAllLanguages = () => dispatch => {
   fetch("/languages")
     .then(res => res.json())
     .then(data => {
+      data = data.filter(language => language.name);
       dispatch({
         type: actions.FETCH_ALL_LANGUAGES,
         payload: data
