@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -15,10 +16,12 @@ public class User {
     private String userId;
     private String name;
     private String email;
+
     private String pictureUrl;
-    private List<String> genres;
-    private List<String> languages;
-    private List<String> production_companies;
+    private List<Genre> genres;
+    private List<spokenLanguage> languages;
+    private List<ProductionCompany> production_companies;
+
 
     public User() {
 
@@ -51,11 +54,16 @@ public class User {
         return email;
     }
 
-    public List<String> getLanguages() {
+
+    public List<Genre> getGeneres() {
+        return genres;
+    }
+
+    public List<spokenLanguage> getLanguages() {
         return languages;
     }
 
-    public List<String> getProduction_companies() {
+    public List<ProductionCompany> getProduction_companies() {
         return production_companies;
     }
 
@@ -63,16 +71,12 @@ public class User {
         this.userId = userId;
     }
 
-    public List<String> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
     public String getUserId() {
         return userId;
-    }
-
-    public void setGenres(List<String> genres) {
-        this.genres = genres;
     }
 
     public String getPictureUrl() {
@@ -91,11 +95,19 @@ public class User {
         this.email = email;
     }
 
-    public void setLanguages(List<String> languages) {
+
+    public void setGeneres(Genre genre) {
+        Genre setgenre =new Genre();
+        setgenre.id=genre.id;
+        setgenre.name=genre.name;
+        this.genres.add(setgenre);
+    }
+
+    public void setLanguages(List<spokenLanguage> languages) {
         this.languages = languages;
     }
 
-    public void setProduction_companies(List<String> production_companies) {
+    public void setProduction_companies(List<ProductionCompany> production_companies) {
         this.production_companies = production_companies;
     }
 
@@ -113,4 +125,6 @@ public class User {
     public int hashCode() {
         return Objects.hash(userId, name, email);
     }
+
+
 }

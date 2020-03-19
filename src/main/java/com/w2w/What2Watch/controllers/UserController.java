@@ -1,6 +1,7 @@
 package com.w2w.What2Watch.controllers;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
+import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,12 @@ public class UserController {
     public User getUserByGivenEmail(@PathVariable("email") @NotEmpty String email) throws UserNotFoundException {
         return userService.getUserByGivenEmail(email);
     }
+
+    @PutMapping("/genre/{email}")
+    @ResponseStatus(value = HttpStatus.OK)
+    public User updateWalletByGivenId(@PathVariable(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
+        User user = userService.updateUserGenreByEmail(email, genre);
+        return user;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.w2w.What2Watch.services;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
+import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +41,15 @@ public class UserService {
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
         return user;
     }
+
+    public User updateUserGenreByEmail(String email, Genre genre) throws UserNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
+        user.setGeneres(genre);
+        return userRepository.save(user);
+
+    }
+
+
 }
