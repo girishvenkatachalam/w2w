@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -46,10 +48,22 @@ public class UserService {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
-        user.setGenres(genre);
+        List<Genre>genres= user.getGenres();
+        genres.add(genre);
+        user.setGenres(genres);
         return userRepository.save(user);
 
     }
 
+    public User deleteUserGenreByEmail(String email, Genre genre) throws UserNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
+        List<Genre> genres = user.getGenres();
+        genres.remove(genre);
+        user.setGenres(genres);
+        return userRepository.save(user);
+
+    }
 
 }

@@ -18,6 +18,9 @@ public class User {
     private String email;
 
     private String pictureUrl;
+
+
+
     private List<Genre> genres;
     private List<spokenLanguage> languages;
     private List<ProductionCompany> production_companies;
@@ -92,14 +95,16 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
-    public void setGenres(Genre genre) {
-        Genre setgenre =new Genre();
-        setgenre.id=genre.id;
-        setgenre.name=genre.name;
-        this.genres.add(setgenre);
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
+
+//    public void setGenres(Genre genre) {
+//        Genre setgenre =new Genre();
+//        setgenre.id=genre.id;
+//        setgenre.name=genre.name;
+//        this.genres.add(setgenre);
+//    }
 
     public void setLanguages(List<spokenLanguage> languages) {
         this.languages = languages;
