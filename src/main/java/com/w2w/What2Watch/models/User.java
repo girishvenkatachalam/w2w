@@ -1,10 +1,10 @@
 package com.w2w.What2Watch.models;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -12,10 +12,12 @@ import java.util.Objects;
 @Document(collection = "user")
 public class User {
 
+    @Id
+    public String _id;
 
-    private String userId;
-    private String name;
-    private String email;
+    public String userId;
+    public String name;
+    public String email;
 
     private String pictureUrl;
 
