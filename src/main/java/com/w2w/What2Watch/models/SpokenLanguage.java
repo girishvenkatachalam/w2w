@@ -8,14 +8,18 @@ import java.util.Objects;
 
 @Data
 @Document(collection = "language")
-public class spokenLanguage {
+public class SpokenLanguage {
 
     @Id
-    String _id;
-    String iso_639_1;
-    String name;
+    public String _id;
+    public String iso_639_1;
+    public String name;
 
-    public spokenLanguage(String iso_639_1, String name) {
+    public SpokenLanguage(){
+
+    }
+
+    public SpokenLanguage(String iso_639_1, String name) {
         this.iso_639_1 = iso_639_1;
         this.name=name;
     }
@@ -41,7 +45,7 @@ public class spokenLanguage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        spokenLanguage that = (spokenLanguage) o;
+        SpokenLanguage that = (SpokenLanguage) o;
         return Objects.equals(iso_639_1, that.iso_639_1) &&
                 Objects.equals(name, that.name);
     }

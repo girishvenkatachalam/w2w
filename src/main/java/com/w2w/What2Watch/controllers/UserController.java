@@ -2,6 +2,7 @@ package com.w2w.What2Watch.controllers;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
 import com.w2w.What2Watch.models.Genre;
+import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,8 @@ public class UserController {
 
     @PutMapping("/genre/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public User updateGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
-        User user = userService.updateUserGenreByEmail(email, genre);
+    public User addGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
+        User user = userService.addUserGenreByEmail(email, genre);
         return user;
     }
 
@@ -62,6 +63,24 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.OK)
     public User deleteGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
         User user = userService.deleteUserGenreByEmail(email, genre);
+        return user;
+    }
+
+    @PutMapping("/language/add")
+    @ResponseStatus(value = HttpStatus.OK)
+    public User addLanguageByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
+        User user = userService.addUserLanguageByEmail(email, spokenLanguage);
+        return user;
+    }
+
+    @GetMapping("/language/remove")
+    @ResponseStatus(value = HttpStatus.OK)
+    public User deleteLanguageByGivenEmail() throws UserNotFoundException {
+        String email="jyoti2106j@gmail.com";
+        SpokenLanguage spokenLanguage= new SpokenLanguage();
+        spokenLanguage.iso_639_1="en";
+        spokenLanguage.name="English";
+        User user = userService.deleteUserLanguageByEmail(email, spokenLanguage);
         return user;
     }
 

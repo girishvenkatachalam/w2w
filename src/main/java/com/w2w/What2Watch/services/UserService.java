@@ -2,6 +2,7 @@ package com.w2w.What2Watch.services;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
 import com.w2w.What2Watch.models.Genre;
+import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class UserService {
         return user;
     }
 
-    public User updateUserGenreByEmail(String email, Genre genre) throws UserNotFoundException {
+    public User addUserGenreByEmail(String email, Genre genre) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
@@ -69,5 +70,32 @@ public class UserService {
         return userRepository.save(user);
 
     }
+
+    public User addUserLanguageByEmail(String email, SpokenLanguage spokenLanguage) throws UserNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
+        List<SpokenLanguage> spokenLanguages= user.getLanguages();
+        if(!spokenLanguages.contains(spokenLanguage)) {
+            spokenLanguages.add(spokenLanguage);
+        }
+        user.setLanguages(spokenLanguages);
+        return userRepository.save(user);
+
+    }
+    public User deleteUserLanguageByEmail(String email, SpokenLanguage spokenLanguage) throws UserNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
+        List<SpokenLanguage> spokenLanguages= user.getLanguages();
+        if(spokenLanguages !=null  && spokenLanguages.contains(spokenLanguage)) {
+            spokenLanguages.remove(spokenLanguage);
+        }
+        user.setLanguages(spokenLanguages);
+        return userRepository.save(user);
+
+    }
+
+
 
 }

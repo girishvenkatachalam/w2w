@@ -24,7 +24,7 @@ public class User {
 
 
     private List<Genre> genres;
-    private List<spokenLanguage> languages;
+    private List<SpokenLanguage> languages;
     private List<ProductionCompany> production_companies;
 
 
@@ -66,7 +66,7 @@ public class User {
         return genres;
     }
 
-    public List<spokenLanguage> getLanguages() {
+    public List<SpokenLanguage> getLanguages() {
         return languages;
     }
 
@@ -108,7 +108,7 @@ public class User {
 //        this.genres.add(setgenre);
 //    }
 
-    public void setLanguages(List<spokenLanguage> languages) {
+    public void setLanguages(List<SpokenLanguage> languages) {
         this.languages = languages;
     }
 

@@ -1,7 +1,7 @@
 package com.w2w.What2Watch.controllers;
 
 import com.w2w.What2Watch.exceptions.LanguageNotFoundException;
-import com.w2w.What2Watch.models.spokenLanguage;
+import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.services.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,7 +21,7 @@ public class LanguageController  {
 
     @GetMapping("languages")
     @ResponseStatus(HttpStatus.OK)
-    public List<spokenLanguage> getLanguages() throws LanguageNotFoundException {
+    public List<SpokenLanguage> getLanguages() throws LanguageNotFoundException {
         return languageService.getLanguages();
     }
 
