@@ -49,7 +49,9 @@ public class UserService {
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
         List<Genre>genres= user.getGenres();
-        genres.add(genre);
+        if(!genres.contains(genre)) {
+            genres.add(genre);
+        }
         user.setGenres(genres);
         return userRepository.save(user);
 
@@ -60,7 +62,9 @@ public class UserService {
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
         List<Genre> genres = user.getGenres();
-        genres.remove(genre);
+        if(genres !=null  && genres.contains(genre)) {
+            genres.remove(genre);
+        }
         user.setGenres(genres);
         return userRepository.save(user);
 
