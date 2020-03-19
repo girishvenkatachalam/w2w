@@ -33,11 +33,11 @@ public class SpokenLanguage {
         this.iso_639_1 = iso_639_1;
     }
 
-    public String getCountryName() {
+    public String getLanguageName() {
         return name;
     }
 
-    public void setCountryName(String name) {
+    public void setLanguageName(String name) {
         this.name = name;
     }
 
