@@ -122,6 +122,7 @@ const ProfilePage = ({
       <h3 className="page-title">{texts.preferences}</h3>
       <p className="page-title">{texts.genre}:</p>
       <ReactTags
+        autofocus={false}
         tags={genre}
         placeholder={texts.selectGenre}
         allowDragDrop={false}
@@ -135,6 +136,7 @@ const ProfilePage = ({
       />
       <p className="page-title">{texts.language}:</p>
       <ReactTags
+        autofocus={false}
         tags={language}
         placeholder={texts.selectLanguage}
         allowDragDrop={false}
@@ -148,6 +150,7 @@ const ProfilePage = ({
       />
       <p className="page-title">{texts.productionCompanies}:</p>
       <ReactTags
+        autofocus={false}
         tags={company}
         placeholder={texts.selectCompany}
         allowDragDrop={false}

@@ -1,6 +1,6 @@
 {
   "pagetitle": "What to Watch",
-  "profileHeader": "Profile",
+  "profileHeader": "My Profile",
   "notfound": "Page not found!",
   "visit": "Please visit ",
   "homePage": "home page",
@@ -11,5 +11,7 @@
   "viewall": "View All",
   "selectGenre": "Select Genre",
   "selectLanguage": "Select Language",
-  "selectCompany": "Select Company"
+  "selectCompany": "Select Company",
+  "noPreferenceMessage": "Please update your preferences in ",
+  "profilePage": "profile page"
 }

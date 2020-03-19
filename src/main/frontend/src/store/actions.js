@@ -7,6 +7,27 @@ export const viewDetails = payload => dispatch => {
   });
 };
 
+export const setApiPendingStatus = payload => dispatch => {
+  dispatch({
+    type: actions.SET_PROMISE_PENDING,
+    payload
+  });
+};
+
+export const setApiFulfilledStatus = payload => dispatch => {
+  dispatch({
+    type: actions.SET_PROMISE_FULFILLED,
+    payload
+  });
+};
+
+export const setApiFailedStatus = payload => dispatch => {
+  dispatch({
+    type: actions.SET_PROMISE_REJECTED,
+    payload
+  });
+};
+
 export const fetchUserProfile = userEmail => dispatch => {
   fetch("/user/" + userEmail, {
     method: "GET"
@@ -130,6 +151,8 @@ export const deleteCompanyPreference = payload => dispatch => {
 };
 
 export const fetchAllMovies = () => dispatch => {
+  dispatch(setApiPendingStatus(true));
+
   fetch("/movie-details/home")
     .then(response => response.json())
     .then(data => {
@@ -137,8 +160,10 @@ export const fetchAllMovies = () => dispatch => {
         type: actions.UPDATE_DASHBOARD_MOVIES,
         payload: data
       });
+      dispatch(setApiPendingStatus(false));
     })
     .catch(error => {
       console.error("Error:", error);
+      dispatch(setApiPendingStatus(false));
     });
 };

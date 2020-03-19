@@ -1,10 +1,11 @@
-import actions from "./constants";
+import actions, { appConstants } from "./constants";
 
 export const initialState = {
   user: {
+    id: "",
     name: "",
     email: "",
-    picture: "images/profile-image.png",
+    picture: "",
     preferences: {
       genre: [],
       language: [],
@@ -35,6 +36,14 @@ export default (state = {}, action) => {
       return {
         ...state,
         movieDetail: action.payload
+      };
+    case actions.SET_PROMISE_PENDING:
+      return {
+        ...state,
+        promise: {
+          ...state.promise,
+          isPending: action.payload
+        }
       };
     case actions.FETCH_USER_PROFILE:
       return fetchUserProfile(state, action.payload);
@@ -171,14 +180,28 @@ const fetchUserProfile = (state, payload) => {
 };
 
 const updateUserDetails = (state, payload) => {
-  const { id, name, emailId, email } = payload;
+  const {
+    userId: id = "",
+    name = "",
+    email = "",
+    pictureUrl: picture = appConstants.defaultProfileImage,
+    genres: genre = [],
+    languages: language = [],
+    production_companies: company = []
+  } = payload;
+
   return {
     ...state,
     user: {
-      ...state.user,
       id,
       name,
-      email: emailId || email
+      email,
+      picture,
+      preferences: {
+        genre,
+        language,
+        company
+      }
     }
   };
 };

@@ -7,6 +7,7 @@ import { fetchAllMovies } from "../../store/actions";
 import "./index.scss";
 import ListCard from "../../components/ListCard";
 import Loader from "../../components/Loader";
+import texts from "../../texts.json";
 
 const HomePage = ({ movies = [], promise, fetchMovies }) => {
   useEffect(() => {
@@ -25,8 +26,8 @@ const HomePage = ({ movies = [], promise, fetchMovies }) => {
       })}
       {movies.length === 1 && movies[0].preferenceName === "Trending" && (
         <div className="no-preferences">
-          Please update your preferences in
-          <Link to={"/profile"}>profile page</Link>.
+          {texts.noPreferenceMessage}
+          <Link to={"/profile"}>{texts.profilePage}</Link>.
         </div>
       )}
     </div>

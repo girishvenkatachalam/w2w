@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.scss";
 
 const Loader = () => (
   <div className="site-loader">

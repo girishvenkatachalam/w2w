@@ -28,13 +28,13 @@ $card_spacer: 20px;
   .movie-card {
     list-style: none;
     padding: $card_spacer;
-    position: relative;
   }
   figure {
     display: flex;
     flex-flow: column;
     max-width: 200px;
     margin: auto;
+    height: 100%;
   }
   .movie-poster {
     width: 100%;
@@ -48,5 +48,9 @@ $card_spacer: 20px;
     font-weight: 500;
     color: $white;
     background: $grey;
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
   }
 }
