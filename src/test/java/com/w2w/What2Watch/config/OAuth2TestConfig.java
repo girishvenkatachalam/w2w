@@ -1,5 +1,5 @@
 package com.w2w.What2Watch.config;
-
+/*
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -88,4 +88,4 @@ public class OAuth2TestConfig {
         }
         return map;
     }
-}
+}*/
