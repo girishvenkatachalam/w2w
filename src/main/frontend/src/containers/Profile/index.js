@@ -47,27 +47,62 @@ const ProfilePage = ({
   });
 
   const handleGenreAddition = tag => {
-    addGenrePreference(tag);
+    const payload = {
+      _id: tag._id,
+      id: Number(tag.id),
+      name: tag.text
+    };
+    addGenrePreference(user.email, payload);
   };
 
   const handleLanguageAddition = tag => {
-    addLanguagePreference(tag);
+    const payload = {
+      _id: tag._id,
+      iso_639_1: tag.iso_639_1,
+      name: tag.text,
+      languageName: tag.languageName
+    };
+    addLanguagePreference(user.email, payload);
   };
 
   const handleCompanyAddition = tag => {
-    addCompanyPreference(tag);
+    const payload = {
+      _id: tag._id,
+      id: parseInt(tag.id),
+      name: tag.text
+    };
+    addCompanyPreference(user.email, payload);
   };
 
   const handleGenreDeletion = index => {
-    deleteGenrePreference(genre[index]);
+    const selectedGenre = genre[index];
+    const payload = {
+      _id: selectedGenre._id,
+      id: parseInt(selectedGenre.id),
+      name: selectedGenre.text
+    };
+    deleteGenrePreference(user.email, payload);
   };
 
   const handleLanguageDeletion = index => {
-    deleteLanguagePreference(language[index]);
+    const selectedLanguage = language[index];
+    const payload = {
+      _id: selectedLanguage._id,
+      iso_639_1: selectedLanguage.iso_639_1,
+      name: selectedLanguage.text,
+      languageName: selectedLanguage.languageName
+    };
+    deleteLanguagePreference(user.email, payload);
   };
 
   const handleCompanyDeletion = index => {
-    deleteCompanyPreference(company[index]);
+    const selectedLanguage = company[index];
+    const payload = {
+      _id: selectedLanguage._id,
+      id: parseInt(selectedLanguage.id),
+      name: selectedLanguage.text
+    };
+    deleteCompanyPreference(user.email, payload);
   };
 
   const shouldRenderGenreSuggestions = query => {
@@ -196,13 +231,18 @@ const mapDispatchToProps = dispatch => ({
   fetchAllLanguages: payload => dispatch(fetchAllLanguages(payload)),
   fetchAllProductionCompanies: payload =>
     dispatch(fetchAllProductionCompanies(payload)),
-  addGenrePreference: payload => dispatch(addGenrePreference(payload)),
-  addLanguagePreference: payload => dispatch(addLanguagePreference(payload)),
-  addCompanyPreference: payload => dispatch(addCompanyPreference(payload)),
-  deleteGenrePreference: payload => dispatch(deleteGenrePreference(payload)),
-  deleteLanguagePreference: payload =>
-    dispatch(deleteLanguagePreference(payload)),
-  deleteCompanyPreference: payload => dispatch(deleteCompanyPreference(payload))
+  addGenrePreference: (email, payload) =>
+    dispatch(addGenrePreference(email, payload)),
+  addLanguagePreference: (email, payload) =>
+    dispatch(addLanguagePreference(email, payload)),
+  addCompanyPreference: (email, payload) =>
+    dispatch(addCompanyPreference(email, payload)),
+  deleteGenrePreference: (email, payload) =>
+    dispatch(deleteGenrePreference(email, payload)),
+  deleteLanguagePreference: (email, payload) =>
+    dispatch(deleteLanguagePreference(email, payload)),
+  deleteCompanyPreference: (email, payload) =>
+    dispatch(deleteCompanyPreference(email, payload))
 });
 
 export { ProfilePage };

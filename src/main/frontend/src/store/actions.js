@@ -126,46 +126,148 @@ export const fetchAllProductionCompanies = () => dispatch => {
     });
 };
 
-export const addGenrePreference = payload => dispatch => {
+export const addGenrePreference = (userEmail, payload) => dispatch => {
   dispatch({
     type: actions.ADD_GENRE_PREFERENCE,
-    payload
+    payload: payload
   });
+  fetch("/user/genre/add?email=" + userEmail, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(error => {
+      console.error("Error:", error);
+      dispatch({
+        type: actions.DELETE_GENRE_PREFERENCE,
+        payload: payload
+      });
+    });
 };
 
-export const addLanguagePreference = payload => dispatch => {
+export const addLanguagePreference = (userEmail, payload) => dispatch => {
   dispatch({
     type: actions.ADD_LANGUAGE_PREFERENCE,
-    payload
+    payload: payload
   });
+  fetch("/user/language/add?email=" + userEmail, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(error => {
+      console.error("Error:", error);
+      dispatch({
+        type: actions.DELETE_LANGUAGE_PREFERENCE,
+        payload: payload
+      });
+    });
 };
 
-export const addCompanyPreference = payload => dispatch => {
+export const addCompanyPreference = (userEmail, payload) => dispatch => {
   dispatch({
     type: actions.ADD_COMPANY_PREFERENCE,
-    payload
+    payload: payload
   });
+  fetch("/user/ProductionCompany/add?email=" + userEmail, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(error => {
+      dispatch({
+        type: actions.DELETE_COMPANY_PREFERENCE,
+        payload: payload
+      });
+      console.error("Error:", error);
+    });
 };
 
-export const deleteGenrePreference = payload => dispatch => {
+export const deleteGenrePreference = (userEmail, payload) => dispatch => {
   dispatch({
     type: actions.DELETE_GENRE_PREFERENCE,
-    payload
+    payload: payload
   });
+  fetch("/user/genre/remove?email=" + userEmail, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(error => {
+      dispatch({
+        type: actions.ADD_GENRE_PREFERENCE,
+        payload: payload
+      });
+      console.error("Error:", error);
+    });
 };
 
-export const deleteLanguagePreference = payload => dispatch => {
+export const deleteLanguagePreference = (userEmail, payload) => dispatch => {
   dispatch({
     type: actions.DELETE_LANGUAGE_PREFERENCE,
-    payload
+    payload: payload
   });
+  fetch("/user/language/remove?email=" + userEmail, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(error => {
+      console.error("Error:", error);
+      dispatch({
+        type: actions.ADD_LANGUAGE_PREFERENCE,
+        payload: payload
+      });
+    });
 };
 
-export const deleteCompanyPreference = payload => dispatch => {
+export const deleteCompanyPreference = (userEmail, payload) => dispatch => {
   dispatch({
     type: actions.DELETE_COMPANY_PREFERENCE,
-    payload
+    payload: payload
   });
+  fetch("/user/ProductionCompany/remove?email=" + userEmail, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    }
+  })
+    .then(res => res.json())
+    .then(data => {})
+    .catch(error => {
+      dispatch({
+        type: actions.ADD_COMPANY_PREFERENCE,
+        payload: payload
+      });
+      console.error("Error:", error);
+    });
 };
 
 export const fetchAllMovies = () => dispatch => {

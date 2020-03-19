@@ -109,18 +109,21 @@ const fetchAllCompanyPreference = (state, payload) => {
 
 const addGenrePreference = (state, payload) => {
   const newState = { ...state };
+  payload = mapOnePreference(payload);
   newState.user.preferences.genre.push(payload);
   return newState;
 };
 
 const addLanguagePreference = (state, payload) => {
   const newState = { ...state };
+  payload = mapOnePreference(payload);
   newState.user.preferences.language.push(payload);
   return newState;
 };
 
 const addCompanyPreference = (state, payload) => {
   const newState = { ...state };
+  payload = mapOnePreference(payload);
   newState.user.preferences.company.push(payload);
   return newState;
 };
@@ -130,8 +133,9 @@ const deleteGenrePreference = (state, payload) => {
   const genreCopy = newState.user.preferences.genre;
   var filtered = [];
   for (var i = 0; i < genreCopy.length; i++) {
-    if (genreCopy[i].id !== payload.id) {
-      filtered.push(genreCopy[i]);
+    if (genreCopy[i]._id !== payload._id) {
+      const mappedGenre = mapOnePreference(genreCopy[i]);
+      filtered.push(mappedGenre);
     }
   }
   newState.user.preferences.genre = filtered;
@@ -140,11 +144,12 @@ const deleteGenrePreference = (state, payload) => {
 
 const deleteLanguagePreference = (state, payload) => {
   const newState = { ...state };
-  const genreCopy = newState.user.preferences.language;
+  const languageCopy = newState.user.preferences.language;
   var filtered = [];
-  for (var i = 0; i < genreCopy.length; i++) {
-    if (genreCopy[i].id !== payload.id) {
-      filtered.push(genreCopy[i]);
+  for (var i = 0; i < languageCopy.length; i++) {
+    if (languageCopy[i]._id !== payload._id) {
+      const mappedLanguage = mapOnePreference(languageCopy[i]);
+      filtered.push(mappedLanguage);
     }
   }
   newState.user.preferences.language = filtered;
@@ -153,11 +158,12 @@ const deleteLanguagePreference = (state, payload) => {
 
 const deleteCompanyPreference = (state, payload) => {
   const newState = { ...state };
-  const genreCopy = newState.user.preferences.company;
+  const companyCopy = newState.user.preferences.company;
   var filtered = [];
-  for (var i = 0; i < genreCopy.length; i++) {
-    if (genreCopy[i].id !== payload.id) {
-      filtered.push(genreCopy[i]);
+  for (var i = 0; i < companyCopy.length; i++) {
+    if (companyCopy[i]._id !== payload._id) {
+      const mappedCompany = mapOnePreference(companyCopy[i]);
+      filtered.push(mappedCompany);
     }
   }
   newState.user.preferences.company = filtered;
@@ -176,7 +182,34 @@ const fetchUserProfile = (state, payload) => {
   return newState;
 };
 
+const mapArrayOfPreferences = payload => {
+  if (!payload || payload.length === 0) {
+    return payload;
+  }
+  var strArr = payload.map(function(e) {
+    var newElement = mapOnePreference(e);
+    return newElement;
+  });
+  return strArr;
+};
+
+const mapOnePreference = payload => {
+  var newElement = { ...payload };
+  if (payload.id) {
+    newElement.id = String(payload.id);
+  } else {
+    newElement.id = String(payload._id);
+  }
+  newElement.text = payload.name;
+  return newElement;
+};
+
 const updateUserDetails = (state, payload) => {
+  payload.genres = mapArrayOfPreferences(payload.genres);
+  payload.languages = mapArrayOfPreferences(payload.languages);
+  payload.production_companies = mapArrayOfPreferences(
+    payload.production_companies
+  );
   const {
     userId: id = "",
     name = "",
