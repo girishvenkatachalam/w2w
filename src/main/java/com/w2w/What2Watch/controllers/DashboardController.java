@@ -17,7 +17,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotEmpty;
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.security.Principal;
 import java.util.*;
 
@@ -107,6 +106,30 @@ public class DashboardController {
     @ResponseStatus(HttpStatus.OK)
     public Movie getMovieByGivenId(@PathVariable("movieId") @NotEmpty String movieId) throws UserNotFoundException {
         return movieService.getMovieByGivenId(movieId);
+    }
+
+    @GetMapping(value="/search/{searchTerm}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Movie> searchMovie(@PathVariable("searchTerm") @NotEmpty String searchTerm,Principal principal)
+    {
+        List<Movie> searchResult = new ArrayList<>();
+        if (!searchTerm.isEmpty() || !("".equals(searchTerm.trim()))) {
+            searchTerm = searchTerm.toLowerCase();
+            List<Movie> titleSearch = new ArrayList<>();
+            List<Movie> similarTitleSearch = new ArrayList<>();
+            List<Movie> keywordSearch = new ArrayList<>();
+            titleSearch = movieService.getMovieByTitle(searchTerm);
+            similarTitleSearch = movieService.getMovieSimilarToTitle(searchTerm);
+            keywordSearch = movieService.getMoviesByKeyword(searchTerm);
+            if (titleSearch != null && titleSearch.size() != 0)
+                searchResult.addAll(titleSearch);
+            if (similarTitleSearch != null && similarTitleSearch.size() != 0)
+                searchResult.addAll(similarTitleSearch);
+            if (keywordSearch != null && keywordSearch.size() != 0)
+                searchResult.addAll(keywordSearch);
+            return searchResult;
+        }
+        return searchResult;
     }
 }
 

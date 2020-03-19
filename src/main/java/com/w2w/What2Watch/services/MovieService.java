@@ -1,5 +1,6 @@
 package com.w2w.What2Watch.services;
 
+import com.w2w.What2Watch.models.Keyword;
 import com.w2w.What2Watch.models.Movie;
 import com.w2w.What2Watch.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,12 @@ public class MovieService {
     }
 
     public Movie getMovieByGivenId(String movieId) {
-        Movie movie = movieRepository.findById(Integer.parseInt(movieId));
-        return movie;
+        Movie movie = new Movie();
+        if("".equals(movieId.trim()) && movieId != null && !movieId.matches("[0-9]+")) {
+            movie = movieRepository.findById(Integer.parseInt(movieId));
+            return movie;
+        }
+        return null;
     }
 
     public HashMap<String, List<Movie>> getMoviesByPreference(List<String> preferences)
@@ -66,5 +71,17 @@ public class MovieService {
             }
         }
         return movieMap;
+    }
+
+    public List<Movie> getMovieByTitle(String movieTitle){
+        return movieRepository.findByTitleIgnoreCase(movieTitle);
+    }
+
+    public List<Movie> getMovieSimilarToTitle(String movieTitle){
+        return movieRepository.findByTitleLikeIgnoreCase(movieTitle);
+    }
+
+    public List<Movie> getMoviesByKeyword(String keyword){
+        return movieRepository.findByKeyword(keyword);
     }
 }
