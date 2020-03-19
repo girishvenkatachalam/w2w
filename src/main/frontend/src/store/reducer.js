@@ -21,12 +21,9 @@ export const initialState = {
   movieDetail: {},
   suggestions: {
     genre: [],
-    language: [
-      { id: "english", text: "English" },
-      { id: "hindi", text: "Hindi" },
-      { id: "french", text: "French" }
-    ],
-    company: []
+    language: [],
+    company: [],
+    isCompanyLoaded: false //FIXME: in profile, index.js "useEffect" method is getting invoked many times. fetchAllProductionCompanies() will take time respond.
   }
 };
 

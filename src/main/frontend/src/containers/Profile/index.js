@@ -36,9 +36,13 @@ const ProfilePage = ({
 
   useEffect(() => {
     if (!suggestions.genre || suggestions.genre.length === 0) fetchAllGenres();
-    // if (!suggestions.language || suggestions.language.length === 0) fetchAllLanguages(); //TODO: uncomment this once backend fix null reponse issue. Also remove the common state hardcoded values
-    if (!suggestions.company || suggestions.company.length === 0)
-      fetchAllProductionCompanies();
+    if (!suggestions.language || suggestions.language.length === 0)
+      fetchAllLanguages();
+    if (suggestions.isCompanyLoaded === false) {
+      suggestions.isCompanyLoaded = true;
+      if (!suggestions.company || suggestions.company.length === 0)
+        fetchAllProductionCompanies();
+    }
   });
 
   const handleGenreAddition = tag => {
