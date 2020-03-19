@@ -29,7 +29,7 @@ export const initialState = {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case actions.VIEW_DETAILS:
+    case actions.UPDATE_MOVIE_DETAIL:
       return {
         ...state,
         movieDetail: action.payload

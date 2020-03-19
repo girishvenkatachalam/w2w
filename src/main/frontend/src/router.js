@@ -8,6 +8,7 @@ import PageNotFound from "./containers/NotFound";
 import ProfilePage from "./containers/Profile";
 import Header from "./components/Header";
 import LoginPage from "./containers/LoginPage";
+import MovieDetail from "./containers/MovieDetail";
 import { getCookie } from "./common/utils";
 
 const LoggedInRoute = ({ component: Component, ...otherProps }) => (
@@ -42,6 +43,7 @@ const App = () => {
           <Switch>
             <LoggedInRoute exact path="/dashboard" component={HomePage} />
             <LoggedInRoute exact path="/profile" component={ProfilePage} />
+            <LoggedInRoute path="/movie/:movieId" component={MovieDetail} />
             <PublicRoute exact path="/" component={LoginPage} />
             <LoggedInRoute component={PageNotFound} />
           </Switch>

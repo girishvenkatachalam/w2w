@@ -1,21 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
-import texts from "../../texts.json";
 import "./index.scss";
 
-const ListCard = ({ header, list = [] }) => {
+const ListCard = ({ header, list = [], upadateMovieDetail }) => {
+  const showMovieDetail = movie => {
+    upadateMovieDetail(movie);
+  };
   return (
     <section className="listcard-wrapper">
-      <header>
-        {header}
-        <button type="button" className="btn primary" onClick={() => {}}>
-          {texts.viewall}
-        </button>
-      </header>
+      <header>{header}</header>
       <ul className="movie-list">
         {list.map(movie => (
           <li key={movie.id} className="movie-card">
-            <figure>
+            <figure
+              className="movie-figure"
+              onClick={() => showMovieDetail(movie)}
+            >
               <img
                 className="movie-poster"
                 src={movie.image || "images/default-poster.png"}
@@ -33,7 +33,7 @@ const ListCard = ({ header, list = [] }) => {
 ListCard.propTypes = {
   header: PropTypes.string.isRequired,
   list: PropTypes.array,
-  viewCompleteList: PropTypes.func
+  upadateMovieDetail: PropTypes.func
 };
 
 export default ListCard;

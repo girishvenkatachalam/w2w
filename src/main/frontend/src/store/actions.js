@@ -1,10 +1,27 @@
 import actions from "./constants";
 
-export const viewDetails = payload => dispatch => {
+export const upadateMovieDetail = payload => dispatch => {
   dispatch({
-    type: actions.VIEW_DETAILS,
+    type: actions.UPDATE_MOVIE_DETAIL,
     payload
   });
+};
+
+export const fetchMovieDetail = movieId => dispatch => {
+  dispatch(setApiPendingStatus(true));
+
+  fetch(`/movie-details/${movieId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.id) {
+        dispatch(upadateMovieDetail(data));
+      }
+      dispatch(setApiPendingStatus(false));
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      dispatch(setApiPendingStatus(false));
+    });
 };
 
 export const setApiPendingStatus = payload => dispatch => {

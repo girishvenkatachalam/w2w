@@ -1,4 +1,5 @@
 @import "./variables";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -47,4 +48,40 @@ a {
     background: $tertiary;
     color: $white;
   }
+}
+
+.tag {
+  background: $grey;
+  border-radius: 3px 0 0 3px;
+  color: $white;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 7px 7px;
+  text-decoration: none;
+}
+
+.tag::before {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+  content: "";
+  height: 6px;
+  left: 10px;
+  position: absolute;
+  width: 6px;
+  top: 10px;
+}
+
+.tag::after {
+  background: $white;
+  border-bottom: 13px solid transparent;
+  border-left: 10px solid $grey;
+  border-top: 13px solid transparent;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
 }
