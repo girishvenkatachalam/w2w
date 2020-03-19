@@ -12,6 +12,6 @@
   "selectGenre": "Select Genre",
   "selectLanguage": "Select Language",
   "selectCompany": "Select Company",
-  "noPreferenceMessage": "Please update your preferences in ",
+  "noPreferenceMessage": "Currently no recommendations are available for your preferences. You can update your preferences in ",
   "profilePage": "profile page"
 }

@@ -115,53 +115,63 @@ const ProfilePage = ({
 
   return (
     <div className="profilepage-container">
-      <h1 className="page-title">{texts.profileHeader}</h1>
+      <h1 className="page-title profile-header">{texts.profileHeader}</h1>
       <img src={user.picture} alt={texts.profileHeader} />
-      <h3 className="page-title">{user.name}</h3>
-      <p className="page-title">{user.email}</p>
-      <h3 className="page-title">{texts.preferences}</h3>
-      <p className="page-title">{texts.genre}:</p>
-      <ReactTags
-        autofocus={false}
-        tags={genre}
-        placeholder={texts.selectGenre}
-        allowDragDrop={false}
-        suggestions={suggestions.genre}
-        handleDelete={handleGenreDeletion}
-        handleAddition={handleGenreAddition}
-        handleInputFocus={handleGenreInputFocus}
-        handleInputBlur={handleInputBlur}
-        shouldRenderSuggestions={shouldRenderGenreSuggestions}
-        delimiters={delimiters}
-      />
-      <p className="page-title">{texts.language}:</p>
-      <ReactTags
-        autofocus={false}
-        tags={language}
-        placeholder={texts.selectLanguage}
-        allowDragDrop={false}
-        suggestions={suggestions.language}
-        handleDelete={handleLanguageDeletion}
-        handleAddition={handleLanguageAddition}
-        handleInputFocus={handleLanguageInputFocus}
-        handleInputBlur={handleInputBlur}
-        shouldRenderSuggestions={shouldRenderLanguageSuggestions}
-        delimiters={delimiters}
-      />
-      <p className="page-title">{texts.productionCompanies}:</p>
-      <ReactTags
-        autofocus={false}
-        tags={company}
-        placeholder={texts.selectCompany}
-        allowDragDrop={false}
-        suggestions={suggestions.company}
-        handleDelete={handleCompanyDeletion}
-        handleAddition={handleCompanyAddition}
-        handleInputFocus={handleCompanyInputFocus}
-        handleInputBlur={handleInputBlur}
-        shouldRenderSuggestions={shouldRenderCompanySuggestions}
-        delimiters={delimiters}
-      />
+      <div className="basic-information">
+        <h3 className="page-title user-name">{user.name}</h3>
+        <p className="page-title">{user.email}</p>
+        <h3 className="page-title preferences-header">{texts.preferences}</h3>
+        <div className="preference-block">
+          <p className="page-title">{texts.genre}:</p>
+          <ReactTags
+            autofocus={false}
+            tags={genre}
+            placeholder={texts.selectGenre}
+            allowDragDrop={false}
+            suggestions={suggestions.genre}
+            handleDelete={handleGenreDeletion}
+            handleAddition={handleGenreAddition}
+            handleInputFocus={handleGenreInputFocus}
+            handleInputBlur={handleInputBlur}
+            shouldRenderSuggestions={shouldRenderGenreSuggestions}
+            delimiters={delimiters}
+          />
+        </div>
+
+        <div className="preference-block">
+          <p className="page-title">{texts.language}:</p>
+          <ReactTags
+            autofocus={false}
+            tags={language}
+            placeholder={texts.selectLanguage}
+            allowDragDrop={false}
+            suggestions={suggestions.language}
+            handleDelete={handleLanguageDeletion}
+            handleAddition={handleLanguageAddition}
+            handleInputFocus={handleLanguageInputFocus}
+            handleInputBlur={handleInputBlur}
+            shouldRenderSuggestions={shouldRenderLanguageSuggestions}
+            delimiters={delimiters}
+          />
+        </div>
+
+        <div className="preference-block">
+          <p className="page-title">{texts.productionCompanies}:</p>
+          <ReactTags
+            autofocus={false}
+            tags={company}
+            placeholder={texts.selectCompany}
+            allowDragDrop={false}
+            suggestions={suggestions.company}
+            handleDelete={handleCompanyDeletion}
+            handleAddition={handleCompanyAddition}
+            handleInputFocus={handleCompanyInputFocus}
+            handleInputBlur={handleInputBlur}
+            shouldRenderSuggestions={shouldRenderCompanySuggestions}
+            delimiters={delimiters}
+          />
+        </div>
+      </div>
     </div>
   );
 };
