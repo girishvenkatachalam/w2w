@@ -55,7 +55,7 @@ public class User {
     }
 
 
-    public List<Genre> getGeneres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
@@ -69,10 +69,6 @@ public class User {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public List<Genre> getGenres() {
-        return genres;
     }
 
     public String getUserId() {
@@ -96,7 +92,7 @@ public class User {
     }
 
 
-    public void setGeneres(Genre genre) {
+    public void setGenres(Genre genre) {
         Genre setgenre =new Genre();
         setgenre.id=genre.id;
         setgenre.name=genre.name;

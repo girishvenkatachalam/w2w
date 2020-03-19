@@ -46,7 +46,7 @@ public class UserService {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
-        user.setGeneres(genre);
+        user.setGenres(genre);
         return userRepository.save(user);
 
     }
