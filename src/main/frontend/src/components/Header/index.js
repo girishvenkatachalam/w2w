@@ -8,7 +8,7 @@ import "./index.scss";
 
 const Header = ({ fetchUserData }) => {
   useEffect(() => {
-    fetchUserData();
+    // fetchUserData();
   }, []);
 
   return (

@@ -31,8 +31,15 @@ export const fetchUserProfile = userEmail => dispatch => {
     .catch(error => console.log(`Catch fetchUserProfile: ${error}`));
 };
 
-export const fetchUserDetails = () => dispatch => {
-  fetch("/user/login")
+export const loginUser = (payload) => dispatch => {
+  const data = payload.profileObj;
+  fetch("/user/login", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
     .then(res => res.json())
     .then(data => {
       dispatch({
