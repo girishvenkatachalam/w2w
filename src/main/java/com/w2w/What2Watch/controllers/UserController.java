@@ -51,16 +51,16 @@ public class UserController {
         return userService.getUserByGivenEmail(email);
     }
 
-    @PutMapping("/genre/add/{email}")
+    @PutMapping("/genre/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public User updateGenreByGivenEmail(@PathVariable("email") String email, @RequestBody Genre genre) throws UserNotFoundException {
+    public User updateGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
         User user = userService.updateUserGenreByEmail(email, genre);
         return user;
     }
 
-    @PutMapping("/genre/remove/{email}")
+    @PutMapping("/genre/remove")
     @ResponseStatus(value = HttpStatus.OK)
-    public User deleteGenreByGivenEmail(@PathVariable("email") String email, @RequestBody Genre genre) throws UserNotFoundException {
+    public User deleteGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
         User user = userService.deleteUserGenreByEmail(email, genre);
         return user;
     }
