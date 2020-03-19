@@ -53,7 +53,7 @@ public class ImportController {
     @Autowired
     private LanguageRepository languageRepository;
 
-    @GetMapping("/update-movie-image")
+    //@GetMapping("/update-movie-image")
     public String updateMovieImage() throws Exception {
 
         List<Movie> movies = movieRepository.findAll();
@@ -83,7 +83,7 @@ public class ImportController {
     }
 
 
-    @GetMapping("/update-spoken-languages")
+    //@GetMapping("/update-spoken-languages")
     public String updateSpokenLanguages() throws IOException {
         List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
         Set<SpokenLanguage> spokenLanguages = new HashSet<>();
@@ -102,7 +102,7 @@ public class ImportController {
         return "Added " + spokenLanguages.size() + " languages";
     }
 
-    @GetMapping("/import")
+    //@GetMapping("/import")
     public String importFile() {
         try {
             List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
