@@ -131,9 +131,9 @@ const deleteCompanyPreference = (state, payload) => {
 const fetchUserProfile = (state, payload) => {
   const newState = { ...state };
   newState.user.preferences = {
-    genre: payload.genres,
-    language: payload.languages,
-    company: payload.production_companies
+    genre: payload.genres ? payload.genres : [],
+    language: payload.languages ? payload.languages : [],
+    company: payload.production_companies ? payload.production_companies : []
   };
   newState.user.email = payload.email;
   newState.user.name = payload.name;
