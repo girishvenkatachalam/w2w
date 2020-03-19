@@ -48,6 +48,13 @@ a {
     background: $tertiary;
     color: $white;
   }
+  &.back-btn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+  }
+  &.logout-btn {
+    margin-right: 10px;
+  }
 }
 
 .tag {

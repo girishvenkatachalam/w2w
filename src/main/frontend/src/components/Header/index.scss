@@ -38,5 +38,7 @@ $header-height: 80px;
 
   .profile-icon-wrapper {
     cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 }

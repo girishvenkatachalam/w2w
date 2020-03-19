@@ -120,9 +120,11 @@ const ProfilePage = ({
 
   return (
     <div className="profilepage-container">
-      <div className="no-preferences">
-        <Link to={"/dashboard"}>{texts.backToHomeMessage}</Link>
-      </div>
+      <Link to={"/dashboard"}>
+        <button type="button" className="btn primary back-btn">
+          {texts.backToHomeMessage}
+        </button>
+      </Link>
       <h1 className="page-title profile-header">{texts.profileHeader}</h1>
       <img src={user.picture} alt={texts.profileHeader} />
       <div className="basic-information">

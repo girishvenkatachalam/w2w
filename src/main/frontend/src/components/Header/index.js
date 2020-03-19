@@ -11,6 +11,10 @@ const Header = ({ fetchUserData }) => {
     fetchUserData();
   }, []);
 
+  const logoutUser = () => {
+    window.location.href = "/logout";
+  };
+
   return (
     <Fragment>
       <div className="header-buffer-space"></div>
@@ -22,6 +26,13 @@ const Header = ({ fetchUserData }) => {
           <div>{texts.pagetitle}</div>
         </div>
         <div className="profile-icon-wrapper">
+          <button
+            type="button"
+            className="btn primary logout-btn"
+            onClick={() => logoutUser()}
+          >
+            {texts.logout}
+          </button>
           <Link to={"/profile"}>
             <img src="images/profile-icon.png" alt="profile icon" />
           </Link>

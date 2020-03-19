@@ -7,11 +7,19 @@ import texts from "../../texts.json";
 import { fetchMovieDetail } from "../../store/actions";
 import "./index.scss";
 
-const MovieDetail = ({ movieDetail, match, fetchMovieDetail }) => {
+const MovieDetail = ({ movieDetail, location, fetchMovieDetail }) => {
   useEffect(() => {
-    const { movieId } = match.params;
-    fetchMovieDetail(movieId);
+    const params = location.pathname.split("/movie/");
+    if (params && params[1]) fetchMovieDetail(params[1]);
   }, []);
+
+  const getLanguage = () => {
+    const hasLanguage =
+      movieDetail.spokenLanguage && movieDetail.spokenLanguage.length;
+    return hasLanguage
+      ? movieDetail.spokenLanguage[0].languageName
+      : movieDetail.language;
+  };
 
   return movieDetail.id ? (
     <section className="movie-detail-container">
@@ -41,7 +49,7 @@ const MovieDetail = ({ movieDetail, match, fetchMovieDetail }) => {
               {texts.language}
               {": "}
             </span>
-            {movieDetail.language}
+            {getLanguage()}
           </div>
           <div className="movie-info">
             <span className="label">
@@ -80,12 +88,12 @@ const mapDispatchToProps = dispatch => ({
 
 MovieDetail.defaultProps = {
   movieDetail: {},
-  match: {}
+  location: {}
 };
 
 MovieDetail.propTypes = {
   movieDetail: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired
 };
 
 export { MovieDetail };
