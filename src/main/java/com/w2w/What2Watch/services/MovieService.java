@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 public class MovieService {
@@ -23,8 +24,40 @@ public class MovieService {
         return movies;
     }
 
-    public Movie getMovieByGivenId(String movieId){
+    public Movie getMovieByGivenId(String movieId) {
         Movie movie = movieRepository.findById(Integer.parseInt(movieId));
         return movie;
+    }
+    // Get user preferences from the db -> call to user service
+    // Iterate over each preference and return individual list back to the UI
+
+    public HashMap<String, List<Movie>> getMoviesByPreference(List<String> preferences)
+    {
+        HashMap<String, List<Movie>> movieMap = new HashMap<>();
+        for(String preference: preferences)
+        {
+            movieMap.put(preference, movieRepository.findByGenre(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity")));
+        }
+        return movieMap;
+    }
+
+    public HashMap<String, List<Movie>> getMoviesByProductionCompanyPreference(List<String> preferences)
+    {
+        HashMap<String, List<Movie>> movieMap = new HashMap<>();
+        for(String preference: preferences)
+        {
+            movieMap.put(preference, movieRepository.findByProductionCompany(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity")));
+        }
+        return movieMap;
+    }
+
+    public HashMap<String, List<Movie>> getMoviesByLanguagePreference(List<String> preferences)
+    {
+        HashMap<String, List<Movie>> movieMap = new HashMap<>();
+        for(String preference: preferences)
+        {
+            movieMap.put(preference, movieRepository.findByLanguage(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity")));
+        }
+        return movieMap;
     }
 }
