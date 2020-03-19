@@ -26,8 +26,9 @@ public class UserService {
     }
 
     public ResponseEntity Login(User userDetails) {
-        return ResponseEntity.status(HttpStatus.OK).body(userDetails);
-        //TODO : redirect to dashboard
+        User user = userRepository.findByEmail(userDetails.email);
+        return ResponseEntity.status(HttpStatus.OK).body(user);
+
     }
 
     public boolean IsRegistered(User details) {
