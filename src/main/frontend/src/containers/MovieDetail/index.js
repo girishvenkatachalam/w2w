@@ -73,6 +73,16 @@ const MovieDetail = ({ movieDetail, location, fetchMovieDetail }) => {
               </span>
             ))}
           </div>
+          {movieDetail.homepage && (
+            <div className="movie-info">
+              <a
+                href={movieDetail.homepage}
+                target="_blank noopener noreferrer"
+              >
+                {texts.moreDetails}
+              </a>
+            </div>
+          )}
         </div>
       </article>
       <article className="movie-overview">{movieDetail.overview}</article>
