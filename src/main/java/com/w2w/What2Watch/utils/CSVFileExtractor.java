@@ -1,9 +1,6 @@
 package com.w2w.What2Watch.utils;
 
-import com.w2w.What2Watch.models.Genre;
-import com.w2w.What2Watch.models.Movie;
-import com.w2w.What2Watch.models.ProductionCompany;
-import com.w2w.What2Watch.models.SpokenLanguage;
+import com.w2w.What2Watch.models.*;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -59,6 +56,8 @@ public class CSVFileExtractor {
         movie.genre = getGenres(record.get("genres"));
         movie.productionCompany = getProductionCompany(record.get("production_companies"));
         movie.spokenLanguage = getSpokenLanguages(record.get("spoken_languages"));
+        movie.keyword = getKeywords(record.get("keywords"));
+
         return movie;
     }
 
@@ -84,6 +83,18 @@ public class CSVFileExtractor {
             genres.add(new Genre(id, name));
         }
         return genres;
+    }
+
+    private static List<Keyword> getKeywords(String keywordString) {
+        List<Keyword> keywords = new ArrayList<>();
+        JSONArray arr = new JSONArray(keywordString);
+        for (int i=0; i<arr.length(); i++) {
+            JSONObject keywordJson = arr.getJSONObject(i);
+            int id = keywordJson.getInt("id");
+            String name = keywordJson.getString("name");
+            keywords.add(new Keyword(id, name));
+        }
+        return keywords;
     }
 
     private static List<SpokenLanguage> getSpokenLanguages(String spokenLanguageString) {

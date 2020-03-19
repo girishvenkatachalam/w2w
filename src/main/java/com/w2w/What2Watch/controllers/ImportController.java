@@ -1,14 +1,8 @@
 package com.w2w.What2Watch.controllers;
 
 import com.w2w.What2Watch.What2WatchApplication;
-import com.w2w.What2Watch.models.Genre;
-import com.w2w.What2Watch.models.Movie;
-import com.w2w.What2Watch.models.ProductionCompany;
-import com.w2w.What2Watch.models.SpokenLanguage;
-import com.w2w.What2Watch.repositories.GenreRepository;
-import com.w2w.What2Watch.repositories.LanguageRepository;
-import com.w2w.What2Watch.repositories.MovieRepository;
-import com.w2w.What2Watch.repositories.ProductionCompanyRepository;
+import com.w2w.What2Watch.models.*;
+import com.w2w.What2Watch.repositories.*;
 import com.w2w.What2Watch.utils.CSVFileExtractor;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -52,6 +46,9 @@ public class ImportController {
 
     @Autowired
     private LanguageRepository languageRepository;
+
+    @Autowired
+    private KeywordRepository keywordRepository;
 
     //@GetMapping("/update-movie-image")
     public String updateMovieImage() throws Exception {
@@ -100,6 +97,25 @@ public class ImportController {
         languageRepository.insert(spokenLanguages);
 
         return "Added " + spokenLanguages.size() + " languages";
+    }
+
+    //@GetMapping("/update-keywords")
+    public String updateKeywords() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
+        Set<Keyword> keywords = new HashSet<>();
+
+        for(Movie movie: movies) {
+            Movie dbMovie = movieRepository.findById(movie.id);
+            if (dbMovie.keyword == null && movie.keyword != null) {
+                dbMovie.keyword = movie.keyword;
+                movieRepository.save(dbMovie);
+                keywords.addAll(movie.keyword);
+            }
+        }
+
+        keywordRepository.insert(keywords);
+
+        return "Added " + keywords.size() + " keywords";
     }
 
     //@GetMapping("/import")
