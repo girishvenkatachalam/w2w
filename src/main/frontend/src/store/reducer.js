@@ -64,6 +64,8 @@ export default (state = {}, action) => {
       return deleteCompanyPreference(state, action.payload);
     case actions.UPDATE_USER_DETAILS:
       return updateUserDetails(state, action.payload);
+    case actions.UPDATE_DASHBOARD_MOVIES:
+      return updateDashBoardMovies(state, action.payload);
     default:
       return state;
   }
@@ -148,5 +150,12 @@ const updateUserDetails = (state, payload) => {
       name,
       email: emailId || email
     }
+  };
+};
+
+const updateDashBoardMovies = (state, payload) => {
+  return {
+    ...state,
+    movies: payload
   };
 };

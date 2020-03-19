@@ -13,8 +13,8 @@ const ListCard = ({ header, list = [] }) => {
         </button>
       </header>
       <ul className="movie-list">
-        {list.map((movie, index) => (
-          <li key={index} className="movie-card">
+        {list.map(movie => (
+          <li key={movie.id} className="movie-card">
             <figure>
               <img
                 className="movie-poster"

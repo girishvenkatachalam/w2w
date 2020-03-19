@@ -87,14 +87,16 @@ export const deleteCompanyPreference = payload => dispatch => {
   });
 };
 
-
-export const fetchAllMovies = () => {
-  fetch('/movie-details/home')
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+export const fetchAllMovies = () => dispatch => {
+  fetch("/movie-details/home")
+    .then(response => response.json())
+    .then(data => {
+      dispatch({
+        type: actions.UPDATE_DASHBOARD_MOVIES,
+        payload: data
       });
-}
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};

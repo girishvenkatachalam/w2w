@@ -1,25 +1,45 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { viewDetails } from "../../store/actions";
+import { fetchAllMovies } from "../../store/actions";
 import "./index.scss";
 import ListCard from "../../components/ListCard";
+import Loader from "../../components/Loader";
 
-const HomePage = ({ movies = [] }) => (
-  <div className="homepage-container">
-    {movies.map((dictionary, index) => {
-      const { name, list } = dictionary;
-      return <ListCard key={index} header={name} list={list} />;
-    })}
-  </div>
-);
+const HomePage = ({ movies = [], promise, fetchMovies }) => {
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
-const mapStateToProps = ({ movies }) => ({
-  movies
+  return promise && promise.isPending ? (
+    <Loader />
+  ) : (
+    <div className="homepage-container">
+      {movies.map((dictionary, index) => {
+        const { preferenceName, movieList } = dictionary;
+        return (
+          <ListCard key={index} header={preferenceName} list={movieList} />
+        );
+      })}
+      {movies.length === 1 && movies[0].preferenceName === "Trending" && (
+        <div className="no-preferences">
+          Please update your preferences in
+          <Link to={"/profile"}>profile page</Link>.
+        </div>
+      )}
+    </div>
+  );
+};
+
+const mapStateToProps = ({ movies, promise }) => ({
+  movies,
+  promise
 });
 
 const mapDispatchToProps = dispatch => ({
-  viewDetails: () => dispatch(viewDetails())
+  fetchMovies: () => dispatch(fetchAllMovies())
 });
 
 HomePage.propTypes = {
