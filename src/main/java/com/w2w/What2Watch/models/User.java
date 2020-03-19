@@ -24,7 +24,9 @@ public class User {
 
 
     public User() {
-
+        this.genres = new ArrayList<>();
+        this.languages = new ArrayList<>();
+        this.production_companies = new ArrayList<>();
     }
 
     public User(String userId, String name, String email) {
