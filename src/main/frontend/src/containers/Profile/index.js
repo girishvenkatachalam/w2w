@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchAllGenres } from "../../store/actions";
 import { fetchAllLanguages } from "../../store/actions";
@@ -119,6 +120,9 @@ const ProfilePage = ({
 
   return (
     <div className="profilepage-container">
+      <div className="no-preferences">
+        <Link to={"/dashboard"}>{texts.backToHomeMessage}</Link>
+      </div>
       <h1 className="page-title profile-header">{texts.profileHeader}</h1>
       <img src={user.picture} alt={texts.profileHeader} />
       <div className="basic-information">
