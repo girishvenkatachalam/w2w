@@ -3,6 +3,7 @@ package com.w2w.What2Watch.models;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ public class User {
     private String userId;
     private String name;
     private String email;
+    private String pictureUrl;
     private List<String> genres;
     private List<String> languages;
     private List<String> production_companies;
@@ -22,9 +24,23 @@ public class User {
 
     }
 
-    public User(String name, String email) {
+    public User(String userId, String name, String email) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
+        this.genres = new ArrayList<>();
+        this.languages = new ArrayList<>();
+        this.production_companies = new ArrayList<>();
+    }
+
+    public User(String userId, String name, String email,String pictureUrl) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.pictureUrl = pictureUrl;
+        this.genres = new ArrayList<>();
+        this.languages = new ArrayList<>();
+        this.production_companies = new ArrayList<>();
     }
 
     public String getName() {
@@ -33,10 +49,6 @@ public class User {
 
     public String getEmail() {
         return email;
-    }
-
-    public List<String> getGeneres() {
-        return genres;
     }
 
     public List<String> getLanguages() {
@@ -51,16 +63,32 @@ public class User {
         this.userId = userId;
     }
 
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public void setGeneres(List<String> generes) {
-        this.genres = generes;
     }
 
     public void setLanguages(List<String> languages) {

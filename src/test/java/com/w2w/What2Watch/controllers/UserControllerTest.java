@@ -41,12 +41,13 @@ public class UserControllerTest {
 
     @Test
     public void shouldGetUserSuccessfullyByGivenEmail() throws Exception {
-        when(userServiceMock.getUserByGivenEmail("tanvi@movie.com")).thenReturn(new User("Tanvi", "tanvi@movie.com"));
+        when(userServiceMock.getUserByGivenEmail("tanvi@movie.com")).thenReturn(new User("123","Tanvi", "tanvi@movie.com"));
 
         mockMvc.perform(get("/user/tanvi@movie.com")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(jsonPath("$.userId").value("123"))
                 .andExpect(jsonPath("$.name").value("Tanvi"))
                 .andExpect(jsonPath("$.email").value("tanvi@movie.com"));
 

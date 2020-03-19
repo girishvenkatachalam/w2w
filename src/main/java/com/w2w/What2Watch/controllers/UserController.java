@@ -30,7 +30,11 @@ public class UserController {
         Authentication authentication = oAuth2Authentication.getUserAuthentication();
         Map<String, String> details = new LinkedHashMap<>();
         details = (Map<String, String>) authentication.getDetails();
-        User userDetails = new User(details.get("name"), details.get("email"));
+        User userDetails;
+        if (details.get("picture") == null)
+            userDetails = new User(details.get("id"),details.get("name"), details.get("email"));
+        else
+            userDetails = new User(details.get("id"),details.get("name"), details.get("email"),details.get("picture"));
         if(!userService.IsRegistered(userDetails))
         {
             response = userService.Register(userDetails);

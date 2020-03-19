@@ -29,7 +29,7 @@ public class UserServiceTest {
     @BeforeEach
     public void SetUp() {
         MockitoAnnotations.initMocks(this);
-        userDetails = new User("abc", "abc@example.com");
+        userDetails = new User("123","abc", "abc@example.com");
     }
     @Test
     public void IsRegisteredTrueTest()
@@ -61,7 +61,7 @@ public class UserServiceTest {
 
     @Test
     void shouldGetUserSuccessfullyByGivenEmail() throws UserNotFoundException {
-        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com"));
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("123","Tanvi","tanvi@movie.com"));
 
         User user = userService.getUserByGivenEmail("tanvi@movie.com");
 
@@ -72,7 +72,7 @@ public class UserServiceTest {
 
     @Test
     void shouldNotGetUserByGivenEmailWhenUserIsNotPresent() {
-        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("Tanvi","tanvi@movie.com"));
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(new User("123","Tanvi","tanvi@movie.com"));
 
         Throwable exception = assertThrows(UserNotFoundException.class, () -> userService.getUserByGivenEmail("asd@qwqw"));
         assertEquals("User with email \"asd@qwqw\" not found", exception.getMessage());
