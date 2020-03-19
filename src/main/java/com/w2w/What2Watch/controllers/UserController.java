@@ -73,13 +73,9 @@ public class UserController {
         return user;
     }
 
-    @GetMapping("/language/remove")
+    @PutMapping("/language/remove")
     @ResponseStatus(value = HttpStatus.OK)
-    public User deleteLanguageByGivenEmail() throws UserNotFoundException {
-        String email="jyoti2106j@gmail.com";
-        SpokenLanguage spokenLanguage= new SpokenLanguage();
-        spokenLanguage.iso_639_1="en";
-        spokenLanguage.name="English";
+    public User deleteLanguageByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
         User user = userService.deleteUserLanguageByEmail(email, spokenLanguage);
         return user;
     }
