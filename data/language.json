@@ -1,0 +1,61 @@
+{"_id":{"$oid":"5e73598f8e418b06345687c7"},"iso_639_1":"da","name":"Dansk","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687c8"},"iso_639_1":"so","name":"Somali","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687c9"},"iso_639_1":"sq","name":"shqip","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687cd"},"iso_639_1":"vi","name":"Tiếng Việt","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687ce"},"iso_639_1":"th","name":"ภาษาไทย","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687cf"},"iso_639_1":"fr","name":"Français","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d0"},"iso_639_1":"fi","name":"suomi","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d1"},"iso_639_1":"ja","name":"日本語","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d2"},"iso_639_1":"fa","name":"فارسی","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d3"},"iso_639_1":"cs","name":"Český","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d5"},"iso_639_1":"la","name":"Latin","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d6"},"iso_639_1":"af","name":"Afrikaans","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687d7"},"iso_639_1":"el","name":"ελληνικά","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687db"},"iso_639_1":"zu","name":"isiZulu","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687dd"},"iso_639_1":"id","name":"Bahasa indonesia","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687de"},"iso_639_1":"bm","name":"Bamanankan","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687e1"},"iso_639_1":"ca","name":"Català","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687e2"},"iso_639_1":"gl","name":"Galego","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687e4"},"iso_639_1":"et","name":"Eesti","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687e6"},"iso_639_1":"en","name":"English","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687e8"},"iso_639_1":"ky","name":"??????","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687e9"},"iso_639_1":"hr","name":"Hrvatski","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687ea"},"iso_639_1":"bn","name":"বাংলা","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687eb"},"iso_639_1":"ar","name":"العربية","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687ed"},"iso_639_1":"ga","name":"Gaeilge","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687ef"},"iso_639_1":"sw","name":"Kiswahili","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f0"},"iso_639_1":"sk","name":"Slovenčina","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f1"},"iso_639_1":"it","name":"Italiano","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f2"},"iso_639_1":"hi","name":"हिन्दी","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f3"},"iso_639_1":"is","name":"Íslenska","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f4"},"iso_639_1":"ko","name":"한국어/조선말","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f5"},"iso_639_1":"cy","name":"Cymraeg","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f7"},"iso_639_1":"ur","name":"اردو","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f8"},"iso_639_1":"bs","name":"Bosanski","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687f9"},"iso_639_1":"nl","name":"Nederlands","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687fa"},"iso_639_1":"hu","name":"Magyar","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687fb"},"iso_639_1":"pt","name":"Português","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687fd"},"iso_639_1":"ta","name":"தமிழ்","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687fe"},"iso_639_1":"wo","name":"Wolof","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b06345687ff"},"iso_639_1":"zh","name":"普通话","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568801"},"iso_639_1":"de","name":"Deutsch","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568803"},"iso_639_1":"ka","name":"ქართული","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568805"},"iso_639_1":"pa","name":"ਪੰਜਾਬੀ","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568807"},"iso_639_1":"uk","name":"Український","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568808"},"iso_639_1":"ps","name":"پښتو","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456880a"},"iso_639_1":"xx","name":"No Language","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456880b"},"iso_639_1":"pl","name":"Polski","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456880c"},"iso_639_1":"bg","name":"български език","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456880d"},"iso_639_1":"sl","name":"Slovenščina","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456880e"},"iso_639_1":"es","name":"Español","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456880f"},"iso_639_1":"no","name":"Norsk","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568811"},"iso_639_1":"ro","name":"Română","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568813"},"iso_639_1":"eo","name":"Esperanto","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568814"},"iso_639_1":"te","name":"తెలుగు","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568815"},"iso_639_1":"tr","name":"Türkçe","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568817"},"iso_639_1":"kk","name":"қазақ","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568818"},"iso_639_1":"he","name":"עִבְרִית","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b0634568819"},"iso_639_1":"sv","name":"svenska","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456881b"},"iso_639_1":"ru","name":"Pусский","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456881c"},"iso_639_1":"sr","name":"Srpski","_class":"com.w2w.What2Watch.models.SpokenLanguage"}
+{"_id":{"$oid":"5e73598f8e418b063456881d"},"iso_639_1":"cn","name":"广州话 / 廣州話","_class":"com.w2w.What2Watch.models.SpokenLanguage"}

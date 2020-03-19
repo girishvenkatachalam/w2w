@@ -4,7 +4,9 @@ import com.w2w.What2Watch.What2WatchApplication;
 import com.w2w.What2Watch.models.Genre;
 import com.w2w.What2Watch.models.Movie;
 import com.w2w.What2Watch.models.ProductionCompany;
+import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.repositories.GenreRepository;
+import com.w2w.What2Watch.repositories.LanguageRepository;
 import com.w2w.What2Watch.repositories.MovieRepository;
 import com.w2w.What2Watch.repositories.ProductionCompanyRepository;
 import com.w2w.What2Watch.utils.CSVFileExtractor;
@@ -22,11 +24,17 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class ImportController {
@@ -41,6 +49,9 @@ public class ImportController {
 
     @Autowired
     private ProductionCompanyRepository productionCompanyRepository;
+
+    @Autowired
+    private LanguageRepository languageRepository;
 
     @GetMapping("/update-movie-image")
     public String updateMovieImage() throws Exception {
@@ -69,6 +80,26 @@ public class ImportController {
             }
         }
         return "In Progress";
+    }
+
+
+    @GetMapping("/update-spoken-languages")
+    public String updateSpokenLanguages() throws IOException {
+        List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
+        Set<SpokenLanguage> spokenLanguages = new HashSet<>();
+
+        for(Movie movie: movies) {
+            Movie dbMovie = movieRepository.findById(movie.id);
+            if (dbMovie.spokenLanguage == null && movie.spokenLanguage != null) {
+                dbMovie.spokenLanguage = movie.spokenLanguage;
+                movieRepository.save(dbMovie);
+                spokenLanguages.addAll(movie.spokenLanguage);
+            }
+        }
+
+        languageRepository.insert(spokenLanguages);
+
+        return "Added " + spokenLanguages.size() + " languages";
     }
 
     @GetMapping("/import")

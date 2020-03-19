@@ -21,6 +21,7 @@ public class Movie {
 
     public List<Genre> genre;
     public List<ProductionCompany> productionCompany;
+    public List<SpokenLanguage> spokenLanguage;
 
     public Movie() {
         this.genre = new ArrayList<>();

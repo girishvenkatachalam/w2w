@@ -8,13 +8,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface MovieRepository extends MongoRepository<Movie,String> {
+public interface MovieRepository extends CrudRepository<Movie,String>, MongoRepository<Movie, String> {
     public List<Movie> findAll(Sort sort);
-
-    public Movie findById(int movieId);
 
     @Query(value = "{ 'genre.name' : ?0 }")
     List<Movie> findByGenre(String genre, PageRequest pageRequest);
@@ -24,4 +23,5 @@ public interface MovieRepository extends MongoRepository<Movie,String> {
     List<Movie> findByProductionCompany(String companyName, PageRequest pageRequest);
 
     List<Movie> findByLanguage(String language, PageRequest pageRequest);
+    public Movie findById(int id);
 }
