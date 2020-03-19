@@ -50,6 +50,12 @@ export default (state = {}, action) => {
       };
     case actions.FETCH_USER_PROFILE:
       return fetchUserProfile(state, action.payload);
+    case actions.FETCH_ALL_GENERS:
+      return fetchAllGenrePreference(state, action.payload);
+    case actions.FETCH_ALL_LANGUAGES:
+      return fetchAllLanguagePreference(state, action.payload);
+    case actions.FETCH_ALL_COMPANIES:
+      return fetchAllCompanyPreference(state, action.payload);
     case actions.ADD_GENRE_PREFERENCE:
       return addGenrePreference(state, action.payload);
     case actions.ADD_LANGUAGE_PREFERENCE:
@@ -69,6 +75,43 @@ export default (state = {}, action) => {
     default:
       return state;
   }
+};
+
+const fetchAllGenrePreference = (state, payload) => {
+  const newState = { ...state };
+  var strArr = payload.map(function(e) {
+    var newElement = { ...e };
+    newElement.id = String(e.id);
+    newElement.text = e.name;
+    return newElement;
+  });
+  newState.suggestions.genre = strArr;
+  return newState;
+};
+
+const fetchAllLanguagePreference = (state, payload) => {
+  const newState = { ...state };
+  var strArr = payload.map(function(e) {
+    var newElement = { ...e };
+    newElement.id = e._id;
+    newElement.text = e.name;
+    return newElement;
+  });
+  newState.suggestions.language = strArr;
+  return newState;
+};
+
+const fetchAllCompanyPreference = (state, payload) => {
+  const newState = { ...state };
+  var strArr = payload.map(function(e) {
+    var newElement = { ...e };
+    newElement.id = String(e.id);
+    newElement.text = e.name;
+    return newElement;
+  });
+  newState.suggestions.company = strArr;
+  debugger;
+  return newState;
 };
 
 const addGenrePreference = (state, payload) => {

@@ -45,6 +45,48 @@ export const fetchUserDetails = () => dispatch => {
     });
 };
 
+export const fetchAllGenres = () => dispatch => {
+  fetch("/genres")
+    .then(res => res.json())
+    .then(data => {
+      dispatch({
+        type: actions.FETCH_ALL_GENERS,
+        payload: data
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};
+
+export const fetchAllLanguages = () => dispatch => {
+  fetch("/languages")
+    .then(res => res.json())
+    .then(data => {
+      dispatch({
+        type: actions.FETCH_ALL_LANGUAGES,
+        payload: data
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};
+
+export const fetchAllProductionCompanies = () => dispatch => {
+  fetch("/productionCompanies")
+    .then(res => res.json())
+    .then(data => {
+      dispatch({
+        type: actions.FETCH_ALL_COMPANIES,
+        payload: data
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+};
+
 export const addGenrePreference = payload => dispatch => {
   dispatch({
     type: actions.ADD_GENRE_PREFERENCE,
