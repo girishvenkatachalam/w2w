@@ -16,6 +16,10 @@ public class ProductionCompany {
     public int id;
     public String name;
 
+    public ProductionCompany(){
+
+    }
+
     public ProductionCompany(int id, String name) {
 
         this.id = id;

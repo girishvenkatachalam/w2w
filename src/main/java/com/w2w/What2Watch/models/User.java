@@ -101,13 +101,6 @@ public class User {
         this.genres = genres;
     }
 
-//    public void setGenres(Genre genre) {
-//        Genre setgenre =new Genre();
-//        setgenre.id=genre.id;
-//        setgenre.name=genre.name;
-//        this.genres.add(setgenre);
-//    }
-
     public void setLanguages(List<SpokenLanguage> languages) {
         this.languages = languages;
     }

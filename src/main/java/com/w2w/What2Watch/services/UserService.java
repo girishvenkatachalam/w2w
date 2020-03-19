@@ -2,6 +2,7 @@ package com.w2w.What2Watch.services;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
 import com.w2w.What2Watch.models.Genre;
+import com.w2w.What2Watch.models.ProductionCompany;
 import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.repositories.UserRepository;
@@ -97,6 +98,29 @@ public class UserService {
 
     }
 
+    public User addUserProductionCompanyByEmail(String email, ProductionCompany productionCompany) throws UserNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
+        List<ProductionCompany> productionCompanies= user.getProduction_companies();
+        if(!productionCompanies.contains(productionCompany)) {
+            productionCompanies.add(productionCompany);
+        }
+        user.setProduction_companies(productionCompanies);
+        return userRepository.save(user);
+    }
 
+    public User deleteUserProductionCompanyByEmail(String email, ProductionCompany productionCompany) throws UserNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if(user == null)
+            throw new UserNotFoundException("User with email \"" + email + "\" not found");
+        List<ProductionCompany> productionCompanies= user.getProduction_companies();
+        if(productionCompanies !=null  && productionCompanies.contains(productionCompany)) {
+            productionCompanies.remove(productionCompany);
+        }
+        user.setProduction_companies(productionCompanies);
+        return userRepository.save(user);
+
+    }
 
 }

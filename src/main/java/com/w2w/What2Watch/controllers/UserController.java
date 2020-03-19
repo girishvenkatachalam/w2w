@@ -2,6 +2,7 @@ package com.w2w.What2Watch.controllers;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
 import com.w2w.What2Watch.models.Genre;
+import com.w2w.What2Watch.models.ProductionCompany;
 import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.services.UserService;
@@ -77,6 +78,20 @@ public class UserController {
     @ResponseStatus(value = HttpStatus.OK)
     public User deleteLanguageByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
         User user = userService.deleteUserLanguageByEmail(email, spokenLanguage);
+        return user;
+    }
+
+    @PutMapping("/ProductionCompany/add")
+    @ResponseStatus(value = HttpStatus.OK)
+    public User addProductionCompanyByGivenEmail(@RequestParam(value = "email")String email, @RequestBody ProductionCompany productionCompany) throws UserNotFoundException {
+        User user = userService.addUserProductionCompanyByEmail(email, productionCompany);
+        return user;
+    }
+
+    @PutMapping("/ProductionCompany/remove")
+    @ResponseStatus(value = HttpStatus.OK)
+    public User deleteProductionCompanyByGivenEmail(@RequestParam(value = "email")String email, @RequestBody ProductionCompany productionCompany) throws UserNotFoundException {
+        User user = userService.deleteUserProductionCompanyByEmail(email, productionCompany);
         return user;
     }
 
