@@ -51,7 +51,7 @@ const ProfilePage = ({
       user.email
     )
       fetchAllProductionCompanies();
-  });
+  }, []);
 
   const handleGenreAddition = tag => {
     const payload = {
