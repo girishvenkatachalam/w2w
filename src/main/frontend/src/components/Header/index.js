@@ -13,7 +13,9 @@ const Header = ({ fetchUserData }) => {
 
   const logoutUser = () => {
     fetch("/exit")
-      .then(res => {window.location.href = "/logout";})
+      .then(res => {
+        window.location.href = "/logout";
+      })
       .catch(error => {
         console.error("Error:", error);
       });
@@ -38,7 +40,11 @@ const Header = ({ fetchUserData }) => {
             {texts.logout}
           </button>
           <Link to={"/profile"}>
-            <img src="/images/profile-icon.png" alt="profile icon" />
+            <img
+              src="/images/profile-icon.png"
+              alt="profile icon"
+              className="profile-icon"
+            />
           </Link>
         </div>
       </header>
@@ -46,9 +52,7 @@ const Header = ({ fetchUserData }) => {
   );
 };
 
-const mapStateToProps = ({ movies }) => ({
-  movies
-});
+const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
   fetchUserData: () => dispatch(fetchUserDetails())

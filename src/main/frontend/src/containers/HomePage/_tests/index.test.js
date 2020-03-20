@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
-import { renderHook, act } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react-hooks";
 import { HomePage } from "../index";
 import Loader from "../../../components/Loader";
 import ListCard from "../../../components/ListCard";
