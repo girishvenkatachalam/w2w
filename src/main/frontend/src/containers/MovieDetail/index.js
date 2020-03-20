@@ -25,7 +25,7 @@ const MovieDetail = ({
     const hasLanguage =
       movieDetail.spokenLanguage && movieDetail.spokenLanguage.length;
     return hasLanguage
-      ? movieDetail.spokenLanguage[0].languageName
+      ? movieDetail.spokenLanguage.map(lang => lang.languageName).join(", ")
       : movieDetail.language;
   };
 
@@ -115,7 +115,9 @@ MovieDetail.defaultProps = {
 
 MovieDetail.propTypes = {
   movieDetail: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+  location: PropTypes.object.isRequired,
+  fetchMovieDetail: PropTypes.func,
+  upadateMovieDetail: PropTypes.func
 };
 
 export { MovieDetail };
