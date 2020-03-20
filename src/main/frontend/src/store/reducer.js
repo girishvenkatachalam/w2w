@@ -23,6 +23,9 @@ export const initialState = {
     genre: [],
     language: [],
     company: [],
+    filteredGenre: [],
+    filteredLanguage: [],
+    filteredcompany: [],
     isCompanyLoaded: false //FIXME: in profile, index.js "useEffect" method is getting invoked many times. fetchAllProductionCompanies() will take time respond.
   }
 };
@@ -80,6 +83,10 @@ const fetchAllGenrePreference = (state, payload) => {
     return newElement;
   });
   newState.suggestions.genre = strArr;
+  newState.suggestions.filteredGenre = filterPreferences(
+    strArr,
+    newState.user.preferences.genre
+  );
   return newState;
 };
 
@@ -92,6 +99,11 @@ const fetchAllLanguagePreference = (state, payload) => {
     return newElement;
   });
   newState.suggestions.language = strArr;
+  newState.suggestions.filteredLanguage = filterPreferences(
+    strArr,
+    newState.user.preferences.language
+  );
+  debugger;
   return newState;
 };
 
@@ -111,6 +123,10 @@ const addGenrePreference = (state, payload) => {
   const newState = { ...state };
   payload = mapOnePreference(payload);
   newState.user.preferences.genre.push(payload);
+  newState.suggestions.filteredGenre = filterPreferences(
+    newState.suggestions.genre,
+    newState.user.preferences.genre
+  );
   return newState;
 };
 
@@ -118,6 +134,10 @@ const addLanguagePreference = (state, payload) => {
   const newState = { ...state };
   payload = mapOnePreference(payload);
   newState.user.preferences.language.push(payload);
+  newState.suggestions.filteredLanguage = filterPreferences(
+    newState.suggestions.language,
+    newState.user.preferences.language
+  );
   return newState;
 };
 
@@ -130,29 +150,41 @@ const addCompanyPreference = (state, payload) => {
 
 const deleteGenrePreference = (state, payload) => {
   const newState = { ...state };
+  const showingGenre = [...newState.suggestions.filteredGenre];
   const genreCopy = newState.user.preferences.genre;
   var filtered = [];
   for (var i = 0; i < genreCopy.length; i++) {
+    const mappedGenre = mapOnePreference(genreCopy[i]);
     if (genreCopy[i]._id !== payload._id) {
-      const mappedGenre = mapOnePreference(genreCopy[i]);
       filtered.push(mappedGenre);
+    } else {
+      showingGenre.push(mappedGenre);
     }
   }
   newState.user.preferences.genre = filtered;
+  newState.suggestions.filteredGenre = showingGenre.sort((a, b) =>
+    a._id.localeCompare(b._id)
+  );
   return newState;
 };
 
 const deleteLanguagePreference = (state, payload) => {
   const newState = { ...state };
+  const showingLanguage = [...newState.suggestions.filteredLanguage];
   const languageCopy = newState.user.preferences.language;
   var filtered = [];
   for (var i = 0; i < languageCopy.length; i++) {
+    const mappedLanguage = mapOnePreference(languageCopy[i]);
     if (languageCopy[i]._id !== payload._id) {
-      const mappedLanguage = mapOnePreference(languageCopy[i]);
       filtered.push(mappedLanguage);
+    } else {
+      showingLanguage.push(mappedLanguage);
     }
   }
   newState.user.preferences.language = filtered;
+  newState.suggestions.filteredLanguage = showingLanguage.sort((a, b) =>
+    a._id.localeCompare(b._id)
+  );
   return newState;
 };
 
@@ -191,6 +223,33 @@ const mapArrayOfPreferences = payload => {
     return newElement;
   });
   return strArr;
+};
+
+const objectsEqual = (o1, o2) => {
+  return o1._id === o2._id;
+};
+
+const subtractArrays = (a1, a2) => {
+  if (!a1 || !a2) {
+    return a1;
+  }
+  var arr = [];
+  a1.forEach(o1 => {
+    var found = false;
+    a2.forEach(o2 => {
+      if (objectsEqual(o1, o2)) {
+        found = true;
+      }
+    });
+    if (!found) {
+      arr.push(o1);
+    }
+  });
+  return arr;
+};
+
+const filterPreferences = (allPreferences, selectedPreferences) => {
+  return subtractArrays(allPreferences, selectedPreferences);
 };
 
 const mapOnePreference = payload => {

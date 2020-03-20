@@ -38,10 +38,14 @@ const ProfilePage = ({
   });
 
   useEffect(() => {
-    if (!suggestions.genre || suggestions.genre.length === 0) fetchAllGenres();
-    if (!suggestions.language || suggestions.language.length === 0)
+    if ((!suggestions.genre || suggestions.genre.length === 0) && user.email)
+      fetchAllGenres();
+    if (
+      (!suggestions.language || suggestions.language.length === 0) &&
+      user.email
+    )
       fetchAllLanguages();
-    if (suggestions.isCompanyLoaded === false) {
+    if (suggestions.isCompanyLoaded === false && user.email) {
       suggestions.isCompanyLoaded = true;
       if (!suggestions.company || suggestions.company.length === 0)
         fetchAllProductionCompanies();
@@ -177,7 +181,7 @@ const ProfilePage = ({
             tags={genre}
             placeholder={texts.selectGenre}
             allowDragDrop={false}
-            suggestions={suggestions.genre}
+            suggestions={suggestions.filteredGenre}
             handleDelete={handleGenreDeletion}
             handleAddition={handleGenreAddition}
             handleInputFocus={handleGenreInputFocus}
@@ -194,7 +198,7 @@ const ProfilePage = ({
             tags={language}
             placeholder={texts.selectLanguage}
             allowDragDrop={false}
-            suggestions={suggestions.language}
+            suggestions={suggestions.filteredLanguage}
             handleDelete={handleLanguageDeletion}
             handleAddition={handleLanguageAddition}
             handleInputFocus={handleLanguageInputFocus}
