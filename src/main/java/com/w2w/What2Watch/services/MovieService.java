@@ -65,7 +65,7 @@ public class MovieService {
         HashMap<String, List<Movie>> movieMap = new HashMap<>();
         for(String preference: preferences)
         {
-            List<Movie> movies =movieRepository.findByLanguage(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
+            List<Movie> movies =movieRepository.findBySpokenLanguage(preference, PageRequest.of(0, 4, Sort.Direction.DESC, "popularity"));
             if (movies.size() > 0) {
                 movieMap.put(preference, movies);
             }

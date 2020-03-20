@@ -24,7 +24,8 @@ public interface MovieRepository extends CrudRepository<Movie, String>, MongoRep
     @Query(value = "{ 'productionCompany.name' : ?0 }")
     List<Movie> findByProductionCompany(String companyName, PageRequest pageRequest);
 
-    List<Movie> findByLanguage(String language, PageRequest pageRequest);
+    @Query(value = "{ 'spokenLanguage.iso_639_1' : ?0 }")
+    List<Movie> findBySpokenLanguage(String spokenLanguage, PageRequest pageRequest);
 
     public Movie findById(int id);
 
