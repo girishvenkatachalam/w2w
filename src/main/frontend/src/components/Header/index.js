@@ -13,11 +13,10 @@ const Header = ({ fetchUserData }) => {
 
   const logoutUser = () => {
     fetch("/exit")
-      .then(res => res.json())
+      .then(res => {window.location.href = "/logout";})
       .catch(error => {
         console.error("Error:", error);
       });
-    window.location.href = "/logout";
   };
 
   return (
