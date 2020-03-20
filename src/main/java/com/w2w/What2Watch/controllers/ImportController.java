@@ -133,7 +133,7 @@ public class ImportController {
         return "Added " + keywords.size() + " keywords";
     }
 
-    @GetMapping("/add-all-keywords")
+    //@GetMapping("/add-all-keywords")
     public String addAllKeywords() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
         Set<Keyword> keywords = new HashSet<>();
