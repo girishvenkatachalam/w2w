@@ -27,7 +27,7 @@ public class MovieService {
 
     public Movie getMovieByGivenId(String movieId) {
         Movie movie = new Movie();
-        if("".equals(movieId.trim()) && movieId != null && !movieId.matches("[0-9]+")) {
+        if(!"".equals(movieId.trim()) && movieId != null && movieId.matches("[0-9]+")) {
             movie = movieRepository.findById(Integer.parseInt(movieId));
             return movie;
         }
