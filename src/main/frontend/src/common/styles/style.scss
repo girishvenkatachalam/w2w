@@ -24,13 +24,8 @@ body {
 }
 
 a {
-  text-decoration: none;
   cursor: pointer;
-  &:hover,
-  &:focus,
-  &:active {
-    text-decoration: none;
-  }
+  color: $white;
 }
 
 .btn {
@@ -86,7 +81,7 @@ a {
 }
 
 .tag::after {
-  background: $white;
+  background: $black;
   border-bottom: 13px solid transparent;
   border-left: 10px solid $grey;
   border-top: 13px solid transparent;
