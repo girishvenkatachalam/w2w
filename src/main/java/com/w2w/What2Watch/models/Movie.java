@@ -30,5 +30,6 @@ public class Movie {
     public Movie() {
         this.genre = new ArrayList<>();
         this.productionCompany = new ArrayList<>();
+        this.keyword = new ArrayList<>();
     }
 }

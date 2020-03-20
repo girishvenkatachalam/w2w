@@ -1,6 +1,7 @@
 package com.w2w.What2Watch.utils;
 
 import com.w2w.What2Watch.models.Genre;
+import com.w2w.What2Watch.models.Keyword;
 import com.w2w.What2Watch.models.Movie;
 
 import com.w2w.What2Watch.models.ProductionCompany;
@@ -144,5 +145,23 @@ public class CSVFileExtractorTest {
 
         List<ProductionCompany> productionCompanies = CSVFileExtractor.getAllProductionCompanies(movies);
         assertEquals("Should not fail", 3, productionCompanies.size());
+    }
+
+    @Test
+    public void testGetAllKeywordsFromMovies() {
+        Movie movie = new Movie();
+        movie.keyword.add(new Keyword(1, "lang"));
+        movie.keyword.add(new Keyword(2, "go get"));
+
+        Movie newMovie = new Movie();
+        newMovie.keyword.add(new Keyword(1, "lang"));
+        newMovie.keyword.add(new Keyword(3, "social"));
+
+        List<Movie> movies = new ArrayList<>();
+        movies.add(movie);
+        movies.add(newMovie);
+
+        List<Keyword> keywords = CSVFileExtractor.getAllKeywords(movies);
+        assertEquals("Should not fail", 3, keywords.size());
     }
 }

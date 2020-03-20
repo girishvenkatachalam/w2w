@@ -141,4 +141,13 @@ public class CSVFileExtractor {
 
         return new ArrayList<>(genres);
     }
+
+    public static List<Keyword> getAllKeywords(List<Movie> movies) {
+        Set<Keyword> keywords = new HashSet<>();
+        for(Movie movie : movies){
+            keywords.addAll(movie.keyword);
+        }
+
+        return new ArrayList(keywords);
+    }
 }
