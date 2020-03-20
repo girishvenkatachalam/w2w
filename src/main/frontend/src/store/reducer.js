@@ -103,7 +103,6 @@ const fetchAllLanguagePreference = (state, payload) => {
     strArr,
     newState.user.preferences.language
   );
-  debugger;
   return newState;
 };
 
