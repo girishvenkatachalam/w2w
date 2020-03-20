@@ -8,7 +8,6 @@ import com.w2w.What2Watch.services.MovieService;
 import com.w2w.What2Watch.services.UserService;
 import com.w2w.What2Watch.utils.PreferenceVsMoviesMap;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -44,8 +43,8 @@ public class DashboardController {
         List<ProductionCompany> productionCompanies= user.getProduction_companies();
 
         List<PreferenceVsMoviesMap> preferenceVsMoviesMap = new ArrayList<>();
-        Page<Movie> movies = movieService.getTrendingMovies();
-        preferenceVsMoviesMap.add(new PreferenceVsMoviesMap("Trending", movies.toList()));
+        List<Movie> movies = movieService.getTrendingMovies();
+        preferenceVsMoviesMap.add(new PreferenceVsMoviesMap("Trending", movies));
 
 
         List<String> genrePreference = new ArrayList<>();
@@ -53,7 +52,7 @@ public class DashboardController {
             genrePreference.add(genre.name);
         }
 
-        HashMap<String, List<Movie>> moviesByGenrePreference = movieService.getMoviesByPreference(genrePreference);
+        HashMap<String, List<Movie>> moviesByGenrePreference = movieService.getMoviesByGenrePreference(genrePreference);
 
         for(Map.Entry<String, List<Movie>> map : moviesByGenrePreference.entrySet()) {
             preferenceVsMoviesMap.add(new PreferenceVsMoviesMap(map.getKey(), map.getValue()));
@@ -92,12 +91,6 @@ public class DashboardController {
         for(Map.Entry<String, List<Movie>> map : moviesByCompanyPreference.entrySet()) {
             preferenceVsMoviesMap.add(new PreferenceVsMoviesMap(map.getKey(), map.getValue()));
         }
-
-//        Page<Movie> moviesByLanguagePreference = movieService.getMoviesByLanguagePreference();
-//        preferenceVsMoviesMap.add(new PreferenceVsMoviesMap("Language", moviesByLanguagePreference.toList()));
-//
-//        Page<Movie> moviesByProductionCompanyPreference = movieService.getMoviesByProductionCompanyPreference();
-//        preferenceVsMoviesMap.add(new PreferenceVsMoviesMap("Production Company", moviesByProductionCompanyPreference.toList()));
 
         return ResponseEntity.status(HttpStatus.OK).body(preferenceVsMoviesMap);
     }
