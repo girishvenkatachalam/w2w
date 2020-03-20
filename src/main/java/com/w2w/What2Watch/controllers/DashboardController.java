@@ -33,36 +33,58 @@ public class DashboardController {
     UserService userService;
 
     @RequestMapping(value="/home", method = RequestMethod.GET)
-    public ResponseEntity getMovieDetails(Principal principal, ModelMap modelMap) throws UserNotFoundException {
-        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
-        Authentication authentication = oAuth2Authentication.getUserAuthentication();
-        Map<String, String> details = (Map<String, String>) authentication.getDetails();
-        User user = userService.getUserByGivenEmail(details.get("email"));;
+    public ResponseEntity getMovieDetails(Principal principal) throws UserNotFoundException {
+        String emailID = getUserEmailID(principal);
+        User user = userService.getUserByGivenEmail(emailID);;
         List<Genre> genres = user.getGenres();
         List<SpokenLanguage> spokenLanguages= user.getLanguages();
         List<ProductionCompany> productionCompanies= user.getProduction_companies();
 
+        List<PreferenceVsMoviesMap> preferenceVsMoviesMap = filPreferenceVsMovieMapByTrending();
+
+        fillPreferenceVsMovieMapByGenre(genres, preferenceVsMoviesMap);
+
+        fillPreferenceVsMovieMapByLanguage(spokenLanguages, preferenceVsMoviesMap);
+
+        fillPreferenceVsMovieMapByProductionCompany(productionCompanies, preferenceVsMoviesMap);
+
+        return ResponseEntity.status(HttpStatus.OK).body(preferenceVsMoviesMap);
+    }
+
+    protected String getUserEmailID(Principal principal) {
+        OAuth2Authentication oAuth2Authentication = (OAuth2Authentication) principal;
+        Authentication authentication = oAuth2Authentication.getUserAuthentication();
+        Map<String, String> details = (Map<String, String>) authentication.getDetails();
+        return details.get("email");
+    }
+
+    private List<PreferenceVsMoviesMap> filPreferenceVsMovieMapByTrending() {
         List<PreferenceVsMoviesMap> preferenceVsMoviesMap = new ArrayList<>();
         List<Movie> movies = movieService.getTrendingMovies();
         preferenceVsMoviesMap.add(new PreferenceVsMoviesMap("Trending", movies));
+        return preferenceVsMoviesMap;
+    }
 
-
-        List<String> genrePreference = new ArrayList<>();
-        for (Genre genre : genres) {
-            genrePreference.add(genre.name);
+    private void fillPreferenceVsMovieMapByProductionCompany(List<ProductionCompany> productionCompanies, List<PreferenceVsMoviesMap> preferenceVsMoviesMap) {
+        List<String> productionCompanyPreference = new ArrayList<>();
+        for (ProductionCompany productionCompany : productionCompanies) {
+            productionCompanyPreference.add(productionCompany.name);
         }
 
-        HashMap<String, List<Movie>> moviesByGenrePreference = movieService.getMoviesByGenrePreference(genrePreference);
+        HashMap<String, List<Movie>> moviesByCompanyPreference = movieService.getMoviesByProductionCompanyPreference(productionCompanyPreference);
 
-        for(Map.Entry<String, List<Movie>> map : moviesByGenrePreference.entrySet()) {
+        for(Map.Entry<String, List<Movie>> map : moviesByCompanyPreference.entrySet()) {
             preferenceVsMoviesMap.add(new PreferenceVsMoviesMap(map.getKey(), map.getValue()));
         }
+    }
 
+    private void fillPreferenceVsMovieMapByLanguage(List<SpokenLanguage> spokenLanguages, List<PreferenceVsMoviesMap> preferenceVsMoviesMap) {
         List<SpokenLanguage> languages = new ArrayList<>();
         try {
             languages = languageService.getLanguages();
         }
-        catch(LanguageNotFoundException ex){};
+        catch(LanguageNotFoundException ex){}
+        ;
 
         HashMap<String, String> languageMap = new HashMap<String, String>();
         for(SpokenLanguage sl : languages)
@@ -80,19 +102,19 @@ public class DashboardController {
         for(Map.Entry<String, List<Movie>> map : moviesByLanguagePreference.entrySet()) {
             preferenceVsMoviesMap.add(new PreferenceVsMoviesMap(languageMap.get(map.getKey()), map.getValue()));
         }
+    }
 
-        List<String> productionCompanyPreference = new ArrayList<>();
-        for (ProductionCompany productionCompany : productionCompanies) {
-            productionCompanyPreference.add(productionCompany.name);
+    private void fillPreferenceVsMovieMapByGenre(List<Genre> genres, List<PreferenceVsMoviesMap> preferenceVsMoviesMap) {
+        List<String> genrePreference = new ArrayList<>();
+        for (Genre genre : genres) {
+            genrePreference.add(genre.name);
         }
 
-        HashMap<String, List<Movie>> moviesByCompanyPreference = movieService.getMoviesByProductionCompanyPreference(productionCompanyPreference);
+        HashMap<String, List<Movie>> moviesByGenrePreference = movieService.getMoviesByGenrePreference(genrePreference);
 
-        for(Map.Entry<String, List<Movie>> map : moviesByCompanyPreference.entrySet()) {
+        for(Map.Entry<String, List<Movie>> map : moviesByGenrePreference.entrySet()) {
             preferenceVsMoviesMap.add(new PreferenceVsMoviesMap(map.getKey(), map.getValue()));
         }
-
-        return ResponseEntity.status(HttpStatus.OK).body(preferenceVsMoviesMap);
     }
 
     @GetMapping("/{movieId}")
