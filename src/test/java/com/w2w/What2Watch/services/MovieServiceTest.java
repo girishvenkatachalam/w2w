@@ -111,4 +111,143 @@ public class MovieServiceTest {
         verify(movieRepository, times(1)).findByGenre(eq("Action"),any(PageRequest.class));
         verify(movieRepository, times(1)).findByGenre(eq("Drama"),any(PageRequest.class));
     }
+
+    @Test
+    public void testGetMoviesByPCReturnsEmptyIfNoPreferenceIsPassed()
+    {
+        HashMap<String, List<Movie>> movieMap = movieService.getMoviesByProductionCompanyPreference(new ArrayList<>());
+        assertEquals(0, movieMap.size());
+        verify(movieRepository, times(0)).findByProductionCompany(anyString(),any(PageRequest.class));
+    }
+
+    @Test
+    public void testGetMoviesByPCPreferenceReturnsEmptyIfMovieRepositoryCouldntFindByProductionCompany()
+    {
+        when(movieRepository.findByProductionCompany(eq("Marvels"), any(PageRequest.class))).thenReturn(new ArrayList<>());
+
+        List<String> preferenceList = new ArrayList<>();
+        preferenceList.add("Marvels");
+        HashMap<String, List<Movie>> movieMap = movieService.getMoviesByProductionCompanyPreference(preferenceList);
+        assertEquals(0, movieMap.size());
+        verify(movieRepository, times(1)).findByProductionCompany(eq("Marvels"),any(PageRequest.class));
+    }
+
+    @Test
+    public void testGetMoviesByProductionCompanyPreference()
+    {
+        List<Movie> company1 = new ArrayList<>();
+        company1.add(new Movie());
+        company1.add(new Movie());
+
+        List<Movie> company2 = new ArrayList<>();
+        company2.add(new Movie());
+        company2.add(new Movie());
+
+        when(movieRepository.findByProductionCompany(eq("Marvels"), any(PageRequest.class))).thenReturn(company1);
+        when(movieRepository.findByProductionCompany(eq("DC"), any(PageRequest.class))).thenReturn(company2);
+
+        List<String> preferenceList = new ArrayList<>();
+        preferenceList.add("Marvels");
+        preferenceList.add("DC");
+        HashMap<String, List<Movie>> movieMap = movieService.getMoviesByProductionCompanyPreference(preferenceList);
+        assertEquals(2, movieMap.size());
+
+        assertTrue(movieMap.containsKey("Marvels"));
+        assertTrue(movieMap.containsKey("DC"));
+
+        assertEquals(company1, movieMap.get("Marvels"));
+        assertEquals(company2, movieMap.get("DC"));
+
+        verify(movieRepository, times(1)).findByProductionCompany(eq("Marvels"),any(PageRequest.class));
+        verify(movieRepository, times(1)).findByProductionCompany(eq("DC"),any(PageRequest.class));
+    }
+
+    @Test
+    public void testGetMoviesByLanguageReturnsEmptyIfNoPreferenceIsPassed()
+    {
+        HashMap<String, List<Movie>> movieMap = movieService.getMoviesByLanguagePreference(new ArrayList<>());
+        assertEquals(0, movieMap.size());
+        verify(movieRepository, times(0)).findBySpokenLanguage(anyString(),any(PageRequest.class));
+    }
+
+    @Test
+    public void testGetMoviesByLanguagePreferenceReturnsEmptyIfMovieRepositoryCouldntFindByProductionCompany()
+    {
+        when(movieRepository.findBySpokenLanguage(eq("English"), any(PageRequest.class))).thenReturn(new ArrayList<>());
+
+        List<String> preferenceList = new ArrayList<>();
+        preferenceList.add("English");
+        HashMap<String, List<Movie>> movieMap = movieService.getMoviesByLanguagePreference(preferenceList);
+        assertEquals(0, movieMap.size());
+        verify(movieRepository, times(1)).findBySpokenLanguage(eq("English"),any(PageRequest.class));
+    }
+
+    @Test
+    public void testGetMoviesByLanguagePreference()
+    {
+        List<Movie> english = new ArrayList<>();
+        english.add(new Movie());
+        english.add(new Movie());
+
+        List<Movie> french = new ArrayList<>();
+        french.add(new Movie());
+        french.add(new Movie());
+
+        when(movieRepository.findBySpokenLanguage(eq("English"), any(PageRequest.class))).thenReturn(english);
+        when(movieRepository.findBySpokenLanguage(eq("French"), any(PageRequest.class))).thenReturn(french);
+
+        List<String> preferenceList = new ArrayList<>();
+        preferenceList.add("English");
+        preferenceList.add("French");
+        HashMap<String, List<Movie>> movieMap = movieService.getMoviesByLanguagePreference(preferenceList);
+        assertEquals(2, movieMap.size());
+
+        assertTrue(movieMap.containsKey("English"));
+        assertTrue(movieMap.containsKey("French"));
+
+        assertEquals(english, movieMap.get("English"));
+        assertEquals(french, movieMap.get("French"));
+
+        verify(movieRepository, times(1)).findBySpokenLanguage(eq("English"),any(PageRequest.class));
+        verify(movieRepository, times(1)).findBySpokenLanguage(eq("French"),any(PageRequest.class));
+    }
+
+    @Test
+    public void testgetMovieByTitle()
+    {
+        List<Movie> movies = new ArrayList<>();
+        movies.add(new Movie());
+        movies.add(new Movie());
+
+        when(movieRepository.findByTitleIgnoreCase(eq("Avatar"))).thenReturn(movies);
+        List<Movie> returnedMovies = movieService.getMovieByTitle("Avatar");
+        assertEquals(movies, returnedMovies);
+        verify(movieRepository, times(1)).findByTitleIgnoreCase(eq("Avatar"));
+    }
+
+    @Test
+    public void testgetMovieSimilarToTitle()
+    {
+        List<Movie> movies = new ArrayList<>();
+        movies.add(new Movie());
+        movies.add(new Movie());
+
+        when(movieRepository.findByTitleLikeIgnoreCase(eq("God Father"))).thenReturn(movies);
+        List<Movie> returnedMovies = movieService.getMovieSimilarToTitle("God Father");
+        assertEquals(movies, returnedMovies);
+        verify(movieRepository, times(1)).findByTitleLikeIgnoreCase(eq("God Father"));
+    }
+
+    @Test
+    public void testgetMoviesByKeyword()
+    {
+        List<Movie> movies = new ArrayList<>();
+        movies.add(new Movie());
+        movies.add(new Movie());
+
+        when(movieRepository.findByKeyword(eq("God Father"))).thenReturn(movies);
+        List<Movie> returnedMovies = movieService.getMoviesByKeyword("God Father");
+        assertEquals(movies, returnedMovies);
+        verify(movieRepository, times(1)).findByKeyword(eq("God Father"));
+    }
 }
