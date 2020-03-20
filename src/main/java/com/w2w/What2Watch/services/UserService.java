@@ -47,7 +47,7 @@ public class UserService {
         return user;
     }
 
-    public User addUserGenreByEmail(String email, Genre genre) throws UserNotFoundException {
+    public User addGenreToUserByEmail(String email, Genre genre) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
@@ -60,7 +60,7 @@ public class UserService {
 
     }
 
-    public User deleteUserGenreByEmail(String email, Genre genre) throws UserNotFoundException {
+    public User deleteGenreFromUserByEmail(String email, Genre genre) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
@@ -73,7 +73,7 @@ public class UserService {
 
     }
 
-    public User addUserLanguageByEmail(String email, SpokenLanguage spokenLanguage) throws UserNotFoundException {
+    public User addLanguageToUserByEmail(String email, SpokenLanguage spokenLanguage) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
@@ -85,7 +85,7 @@ public class UserService {
         return userRepository.save(user);
 
     }
-    public User deleteUserLanguageByEmail(String email, SpokenLanguage spokenLanguage) throws UserNotFoundException {
+    public User deleteLanguageFromUserByEmail(String email, SpokenLanguage spokenLanguage) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
@@ -98,7 +98,7 @@ public class UserService {
 
     }
 
-    public User addUserProductionCompanyByEmail(String email, ProductionCompany productionCompany) throws UserNotFoundException {
+    public User addProductionCompanyToUserByEmail(String email, ProductionCompany productionCompany) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");
@@ -110,7 +110,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User deleteUserProductionCompanyByEmail(String email, ProductionCompany productionCompany) throws UserNotFoundException {
+    public User deleteProductionCompanyFromUserByEmail(String email, ProductionCompany productionCompany) throws UserNotFoundException {
         User user = userRepository.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("User with email \"" + email + "\" not found");

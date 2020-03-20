@@ -55,43 +55,43 @@ public class UserController {
 
     @PutMapping("/genre/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public User addGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
-        User user = userService.addUserGenreByEmail(email, genre);
+    public User addGenreToUserByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
+        User user = userService.addGenreToUserByEmail(email, genre);
         return user;
     }
 
     @PutMapping("/genre/remove")
     @ResponseStatus(value = HttpStatus.OK)
-    public User deleteGenreByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
-        User user = userService.deleteUserGenreByEmail(email, genre);
+    public User deleteGenreFromUserByGivenEmail(@RequestParam(value = "email")String email, @RequestBody Genre genre) throws UserNotFoundException {
+        User user = userService.deleteGenreFromUserByEmail(email, genre);
         return user;
     }
 
     @PutMapping("/language/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public User addLanguageByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
-        User user = userService.addUserLanguageByEmail(email, spokenLanguage);
+    public User addLanguageToUserByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
+        User user = userService.addLanguageToUserByEmail(email, spokenLanguage);
         return user;
     }
 
     @PutMapping("/language/remove")
     @ResponseStatus(value = HttpStatus.OK)
-    public User deleteLanguageByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
-        User user = userService.deleteUserLanguageByEmail(email, spokenLanguage);
+    public User deleteLanguageFromUserByGivenEmail(@RequestParam(value = "email")String email, @RequestBody SpokenLanguage spokenLanguage) throws UserNotFoundException {
+        User user = userService.deleteLanguageFromUserByEmail(email, spokenLanguage);
         return user;
     }
 
     @PutMapping("/ProductionCompany/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public User addProductionCompanyByGivenEmail(@RequestParam(value = "email")String email, @RequestBody ProductionCompany productionCompany) throws UserNotFoundException {
-        User user = userService.addUserProductionCompanyByEmail(email, productionCompany);
+    public User addProductionCompanyToUserByGivenEmail(@RequestParam(value = "email")String email, @RequestBody ProductionCompany productionCompany) throws UserNotFoundException {
+        User user = userService.addProductionCompanyToUserByEmail(email, productionCompany);
         return user;
     }
 
     @PutMapping("/ProductionCompany/remove")
     @ResponseStatus(value = HttpStatus.OK)
-    public User deleteProductionCompanyByGivenEmail(@RequestParam(value = "email")String email, @RequestBody ProductionCompany productionCompany) throws UserNotFoundException {
-        User user = userService.deleteUserProductionCompanyByEmail(email, productionCompany);
+    public User deleteProductionFromUserCompanyByGivenEmail(@RequestParam(value = "email")String email, @RequestBody ProductionCompany productionCompany) throws UserNotFoundException {
+        User user = userService.deleteProductionCompanyFromUserByEmail(email, productionCompany);
         return user;
     }
 
