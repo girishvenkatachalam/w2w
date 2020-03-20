@@ -3,7 +3,7 @@
 
 .login-container {
   background-color: $white;
-  background-image: url(/images/roll.png);
+  background-image: url(/images/reel.png);
   background-repeat: no-repeat;
   background-size: contain;
   width: 100%;
@@ -31,7 +31,7 @@
     font-weight: 500;
     line-height: 1;
     display: inline-block;
-    background: $white;
+    color: $black;
     padding: 15px;
     box-shadow: 0 0 10px 3px $grey;
     border-radius: 7px;
@@ -52,7 +52,7 @@
     width: 500px;
     height: 500px;
     position: absolute;
-    left: 60%;
+    right: 0px;
     bottom: 0px;
   }
 }
