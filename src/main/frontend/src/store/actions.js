@@ -113,6 +113,7 @@ export const fetchAllLanguages = () => dispatch => {
 };
 
 export const fetchAllProductionCompanies = () => dispatch => {
+  dispatch(setApiPendingStatus(true));
   fetch("/productionCompanies")
     .then(res => res.json())
     .then(data => {
@@ -120,9 +121,11 @@ export const fetchAllProductionCompanies = () => dispatch => {
         type: actions.FETCH_ALL_COMPANIES,
         payload: data
       });
+      dispatch(setApiPendingStatus(false));
     })
     .catch(error => {
       console.error("Error:", error);
+      dispatch(setApiPendingStatus(false));
     });
 };
 

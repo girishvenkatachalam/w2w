@@ -10,6 +10,7 @@ import { addCompanyPreference } from "../../store/actions";
 import { deleteGenrePreference } from "../../store/actions";
 import { deleteLanguagePreference } from "../../store/actions";
 import { deleteCompanyPreference } from "../../store/actions";
+import Loader from "../../components/Loader";
 import "./index.scss";
 import { WithContext as ReactTags } from "react-tag-input";
 import texts from "../../texts.json";
@@ -17,6 +18,7 @@ import texts from "../../texts.json";
 const ProfilePage = ({
   user,
   suggestions,
+  promise,
   fetchAllGenres,
   fetchAllLanguages,
   fetchAllProductionCompanies,
@@ -153,7 +155,9 @@ const ProfilePage = ({
     setDropDownState(dropDownStateCopy);
   };
 
-  return (
+  return promise.isPending ? (
+    <Loader />
+  ) : (
     <div className="profilepage-container">
       <Link to={"/dashboard"}>
         <button type="button" className="btn primary back-btn">
@@ -221,9 +225,10 @@ const ProfilePage = ({
   );
 };
 
-const mapStateToProps = ({ user, suggestions }) => ({
+const mapStateToProps = ({ user, suggestions, promise }) => ({
   user,
-  suggestions
+  suggestions,
+  promise
 });
 
 const mapDispatchToProps = dispatch => ({
