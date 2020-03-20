@@ -2,6 +2,8 @@ package com.w2w.What2Watch.services;
 
 import com.w2w.What2Watch.exceptions.UserNotFoundException;
 import com.w2w.What2Watch.models.Genre;
+import com.w2w.What2Watch.models.ProductionCompany;
+import com.w2w.What2Watch.models.SpokenLanguage;
 import com.w2w.What2Watch.models.User;
 import com.w2w.What2Watch.repositories.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -89,7 +89,7 @@ public class UserServiceTest {
         user.email="tanvi@movie.com";
 
         when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(user);
-        List<Genre> genres=user.getGenres();
+
         Genre genre = new Genre();
         genre.id=12;
         genre.name="Adventure";
@@ -101,7 +101,7 @@ public class UserServiceTest {
 
         assertEquals("Tanvi", actualUser.getName());
         assertEquals("tanvi@movie.com", actualUser.getEmail());
-        assertEquals(1, user.getGenres().size());
+        assertEquals(1, actualUser.getGenres().size());
         assertEquals(12, actualGenre.id);
         assertEquals("Adventure", actualGenre.name);
 
@@ -115,7 +115,7 @@ public class UserServiceTest {
         user.email="tanvi@movie.com";
 
         when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(user);
-        List<Genre> genres=user.getGenres();
+
         Genre genre = new Genre();
         genre.id=12;
         genre.name="Adventure";
@@ -126,7 +126,7 @@ public class UserServiceTest {
 
         when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(actualUser);
 
-        List<Genre> genresNext=actualUser.getGenres();
+
         Genre genreNext = new Genre();
         genreNext.id=12;
         genreNext.name="Adventure";
@@ -136,12 +136,143 @@ public class UserServiceTest {
         User actualUserNext = userService.addGenreToUserByEmail("tanvi@movie.com",genreNext);
         Genre actualGenreNext= actualUserNext.getGenres().get(0);
 
-        assertEquals("Tanvi", actualUser.getName());
-        assertEquals("tanvi@movie.com", actualUser.getEmail());
-        assertEquals(1, user.getGenres().size());
+        assertEquals("Tanvi", actualUserNext.getName());
+        assertEquals("tanvi@movie.com", actualUserNext.getEmail());
+        assertEquals(1, actualUserNext.getGenres().size());
 
-        assertEquals(12, actualGenre.id);
-        assertEquals("Adventure", actualGenre.name);
+        assertEquals(12, actualGenreNext.id);
+        assertEquals("Adventure", actualGenreNext.name);
 
     }
+
+
+    @Test
+    void shouldAddLanguageToUserSuccessfullyByGivenEmail() throws UserNotFoundException {
+        User user=new User();
+        user.userId="123";
+        user.name="Tanvi";
+        user.email="tanvi@movie.com";
+
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(user);
+
+        SpokenLanguage spokenLanguage = new SpokenLanguage();
+        spokenLanguage.iso_639_1="da";
+        spokenLanguage.name="Dansk";
+
+        when(userRepository.save(user)).thenReturn(user);
+
+        User actualUser = userService.addLanguageToUserByEmail("tanvi@movie.com",spokenLanguage);
+        SpokenLanguage actualLanguage= actualUser.getLanguages().get(0);
+
+        assertEquals("Tanvi", actualUser.getName());
+        assertEquals("tanvi@movie.com", actualUser.getEmail());
+        assertEquals(1, actualUser.getLanguages().size());
+        assertEquals("da", actualLanguage.iso_639_1);
+        assertEquals("Dansk", actualLanguage.name);
+
+    }
+
+    @Test
+    void shouldNotAddDuplicateLanguageToUserSuccessfullyByGivenEmail() throws UserNotFoundException {
+        User user=new User();
+        user.userId="123";
+        user.name="Tanvi";
+        user.email="tanvi@movie.com";
+
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(user);
+
+        SpokenLanguage spokenLanguage = new SpokenLanguage();
+        spokenLanguage.iso_639_1="da";
+        spokenLanguage.name="Dansk";
+
+        when(userRepository.save(user)).thenReturn(user);
+        User actualUser = userService.addLanguageToUserByEmail("tanvi@movie.com",spokenLanguage);
+        //SpokenLanguage actualLanguage= actualUser.getLanguages().get(0);
+
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(actualUser);
+
+
+        SpokenLanguage spokenLanguageNext = new SpokenLanguage();
+        spokenLanguageNext.iso_639_1="da";
+        spokenLanguageNext.name="Dansk";
+
+        when(userRepository.save(actualUser)).thenReturn(actualUser);
+
+        User actualUserNext = userService.addLanguageToUserByEmail("tanvi@movie.com",spokenLanguageNext);
+        SpokenLanguage actualLanguageNext= actualUserNext.getLanguages().get(0);
+
+        assertEquals("Tanvi", actualUserNext.getName());
+        assertEquals("tanvi@movie.com", actualUserNext.getEmail());
+        assertEquals(1, actualUserNext.getLanguages().size());
+
+        assertEquals("da", actualLanguageNext.iso_639_1);
+        assertEquals("Dansk", actualLanguageNext.name);
+
+    }
+
+
+    @Test
+    void shouldAddProductionCompanyToUserSuccessfullyByGivenEmail() throws UserNotFoundException {
+        User user=new User();
+        user.userId="123";
+        user.name="Tanvi";
+        user.email="tanvi@movie.com";
+
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(user);
+
+        ProductionCompany productionCompany = new ProductionCompany();
+        productionCompany.id=10717;
+        productionCompany.name="Shamley Productions";
+
+        when(userRepository.save(user)).thenReturn(user);
+
+        User actualUser = userService.addProductionCompanyToUserByEmail("tanvi@movie.com",productionCompany);
+        ProductionCompany actualproductionCompany= actualUser.getProduction_companies().get(0);
+
+        assertEquals("Tanvi", actualUser.getName());
+        assertEquals("tanvi@movie.com", actualUser.getEmail());
+        assertEquals(1, actualUser.getProduction_companies().size());
+        assertEquals(10717, actualproductionCompany.id);
+        assertEquals("Shamley Productions", actualproductionCompany.name);
+
+    }
+
+    @Test
+    void shouldNotAddDuplicateProductionCompanyToUserSuccessfullyByGivenEmail() throws UserNotFoundException {
+        User user=new User();
+        user.userId="123";
+        user.name="Tanvi";
+        user.email="tanvi@movie.com";
+
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(user);
+
+        ProductionCompany productionCompany = new ProductionCompany();
+        productionCompany.id=10717;
+        productionCompany.name="Shamley Productions";
+
+        when(userRepository.save(user)).thenReturn(user);
+        User actualUser = userService.addProductionCompanyToUserByEmail("tanvi@movie.com",productionCompany);
+       // SpokenLanguage actualProductionCompany= actualUser.getLanguages().get(0);
+
+        when(userRepository.findByEmail("tanvi@movie.com")).thenReturn(actualUser);
+
+
+        ProductionCompany productionCompanyNext = new ProductionCompany();
+        productionCompanyNext.id=10717;
+        productionCompanyNext.name="Shamley Productions";
+
+        when(userRepository.save(actualUser)).thenReturn(actualUser);
+
+        User actualUserNext = userService.addProductionCompanyToUserByEmail("tanvi@movie.com",productionCompanyNext);
+        ProductionCompany actualProductionCompanyNext= actualUserNext.getProduction_companies().get(0);
+
+        assertEquals("Tanvi", actualUserNext.getName());
+        assertEquals("tanvi@movie.com", actualUserNext.getEmail());
+        assertEquals(1, actualUserNext.getProduction_companies().size());
+
+        assertEquals(10717, actualProductionCompanyNext.id);
+        assertEquals("Shamley Productions", actualProductionCompanyNext.name);
+
+    }
+
 }
