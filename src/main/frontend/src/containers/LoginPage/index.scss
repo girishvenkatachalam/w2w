@@ -44,6 +44,17 @@
       }
     }
   }
+
+  .popcorn-container {
+    background-image: url(/images/popcorn.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 60%;
+    bottom: 0px;
+  }
 }
 
 .google-button {

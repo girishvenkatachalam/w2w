@@ -41,6 +41,7 @@ const LoginPage = () => (
         <span className="google-button__text">Sign in with Google</span>
       </button>
     </div>
+      <div class="popcorn-container"></div>
   </div>
 );
 
