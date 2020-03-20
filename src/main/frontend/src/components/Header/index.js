@@ -21,7 +21,7 @@ const Header = ({ fetchUserData }) => {
       <header className="page-header">
         <div className="logo-wrapper">
           <Link to={"/dashboard"}>
-            <img src="images/logo.png" alt="W2W Logo" />
+            <img src="/images/logo.png" alt="W2W Logo" />
           </Link>
           <div>{texts.pagetitle}</div>
         </div>
@@ -34,7 +34,7 @@ const Header = ({ fetchUserData }) => {
             {texts.logout}
           </button>
           <Link to={"/profile"}>
-            <img src="images/profile-icon.png" alt="profile icon" />
+            <img src="/images/profile-icon.png" alt="profile icon" />
           </Link>
         </div>
       </header>
