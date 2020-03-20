@@ -1,5 +1,7 @@
-mongoimport --uri="mongodb+srv://batman:twbootcamp@mongocluster-kuvl0.azure.mongodb.net/MongoCluster" --collection="language" --file=language.json --mode=upsert
-mongoimport --uri="mongodb+srv://batman:twbootcamp@mongocluster-kuvl0.azure.mongodb.net/MongoCluster" --collection="genre" --file=genre.json --mode=upsert
-mongoimport --uri="mongodb+srv://batman:twbootcamp@mongocluster-kuvl0.azure.mongodb.net/MongoCluster" --collection="productionCompany" --file=productionCompany.json --mode=upsert
-mongoimport --uri="mongodb+srv://batman:twbootcamp@mongocluster-kuvl0.azure.mongodb.net/MongoCluster" --collection="keyword" --file=keyword.json --mode=upsert
-mongoimport --uri="mongodb+srv://batman:twbootcamp@mongocluster-kuvl0.azure.mongodb.net/MongoCluster" --collection="movie" --file=movie.json --mode=upsert
+if [ -z "$1" ]
+  then
+    echo "Usage: ./import.sh <db-url>"
+    exit 1
+fi
+
+ls *.json | sed 's/.metadata.json//' | while read col; do mongoimport --uri="$1" --mode=upsert -c $col < $col; done
