@@ -25,8 +25,7 @@ export const initialState = {
     company: [],
     filteredGenre: [],
     filteredLanguage: [],
-    filteredCompany: [],
-    isCompanyLoaded: false //FIXME: in profile, index.js "useEffect" method is getting invoked many times. fetchAllProductionCompanies() will take time respond.
+    filteredCompany: []
   }
 };
 

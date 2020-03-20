@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -45,11 +46,11 @@ const ProfilePage = ({
       user.email
     )
       fetchAllLanguages();
-    if (suggestions.isCompanyLoaded === false && user.email) {
-      suggestions.isCompanyLoaded = true;
-      if (!suggestions.company || suggestions.company.length === 0)
-        fetchAllProductionCompanies();
-    }
+    if (
+      (!suggestions.company || suggestions.company.length === 0) &&
+      user.email
+    )
+      fetchAllProductionCompanies();
   });
 
   const handleGenreAddition = tag => {
