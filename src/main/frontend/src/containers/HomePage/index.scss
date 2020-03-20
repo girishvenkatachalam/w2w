@@ -1,19 +1,18 @@
 @import "../../common/styles/mixins";
 
 .homepage-container {
-  width: 95%;
-  margin: 20px auto;
+  width: 100%;
 
   @include tablet {
     & {
-      width: 70%;
-      margin: 30px auto;
+      width: 1000%;
+      margin: 0px auto;
     }
   }
   @include desktop {
     & {
-      width: 75%;
-      margin: 50px auto;
+      width: 100%;
+      margin: 0px auto;
     }
   }
 

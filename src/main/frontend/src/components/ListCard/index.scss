@@ -3,36 +3,35 @@
 $card_spacer: 20px;
 
 .listcard-wrapper {
-  background: $card_background;
   width: auto;
   display: block;
-  border-radius: 10px;
-  margin: 10px 0 20px;
+  margin: 20px auto;
+  text-align: center;
   padding: 15px 15px 10px;
   header {
-    display: flex;
     justify-content: space-between;
     font-size: $font-large;
     font-weight: 600;
-    color: $secondary;
+    color: $white;
+    text-align: center;
   }
 }
 
 .movie-list {
   margin: 0;
   padding: 10px 0 5px;
-  display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
   .movie-card {
     list-style: none;
-    padding: $card_spacer;
+    padding: 0 20px;
+    display:inline-block;
   }
   figure {
     display: flex;
     flex-flow: column;
-    max-width: 200px;
+    max-width: 250px;
     margin: auto;
     height: 100%;
   }
@@ -50,7 +49,7 @@ $card_spacer: 20px;
     font-size: $font-medium;
     font-weight: 500;
     color: $white;
-    background: $grey;
+    background: $black;
     flex: 1;
     display: inline-flex;
     justify-content: center;
