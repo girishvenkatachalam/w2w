@@ -25,7 +25,7 @@ export const initialState = {
     company: [],
     filteredGenre: [],
     filteredLanguage: [],
-    filteredcompany: [],
+    filteredCompany: [],
     isCompanyLoaded: false //FIXME: in profile, index.js "useEffect" method is getting invoked many times. fetchAllProductionCompanies() will take time respond.
   }
 };
@@ -115,6 +115,10 @@ const fetchAllCompanyPreference = (state, payload) => {
     return newElement;
   });
   newState.suggestions.company = strArr;
+  newState.suggestions.filteredCompany = filterPreferences(
+    strArr,
+    newState.user.preferences.company
+  );
   return newState;
 };
 
@@ -144,6 +148,10 @@ const addCompanyPreference = (state, payload) => {
   const newState = { ...state };
   payload = mapOnePreference(payload);
   newState.user.preferences.company.push(payload);
+  newState.suggestions.filteredCompany = filterPreferences(
+    newState.suggestions.company,
+    newState.user.preferences.company
+  );
   return newState;
 };
 
@@ -189,15 +197,21 @@ const deleteLanguagePreference = (state, payload) => {
 
 const deleteCompanyPreference = (state, payload) => {
   const newState = { ...state };
+  const showingCompany = [...newState.suggestions.filteredCompany];
   const companyCopy = newState.user.preferences.company;
   var filtered = [];
   for (var i = 0; i < companyCopy.length; i++) {
+    const mappedCompany = mapOnePreference(companyCopy[i]);
     if (companyCopy[i]._id !== payload._id) {
-      const mappedCompany = mapOnePreference(companyCopy[i]);
       filtered.push(mappedCompany);
+    } else {
+      showingCompany.push(mappedCompany);
     }
   }
   newState.user.preferences.company = filtered;
+  newState.suggestions.filteredCompany = showingCompany.sort((a, b) =>
+    a._id.localeCompare(b._id)
+  );
   return newState;
 };
 
