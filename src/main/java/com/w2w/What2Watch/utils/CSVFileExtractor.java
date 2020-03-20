@@ -10,13 +10,13 @@ import org.json.JSONObject;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CSVFileExtractor {
-    public static List<Movie> extract(String path) throws IOException {
+    public static List<Movie> extract(String path) throws IOException, ParseException {
         if(path == null){
             throw  new RuntimeException("File path can not be null.");
         }
@@ -28,7 +28,7 @@ public class CSVFileExtractor {
         return getData(path);
     }
 
-    private static List<Movie> getData(String filePath) throws IOException {
+    private static List<Movie> getData(String filePath) throws IOException, ParseException {
         Reader in = new FileReader(filePath);
         CSVParser parser = CSVFormat.EXCEL.withHeader().parse(in);
         List<CSVRecord> csvRecords = parser.getRecords();
@@ -43,7 +43,7 @@ public class CSVFileExtractor {
         return movies;
     }
 
-    private static Movie getMovie(CSVRecord record) {
+    private static Movie getMovie(CSVRecord record) throws ParseException {
         Movie movie = new Movie();
         movie.id = Integer.parseInt(record.get("id"));
         movie.title = record.get("title");
@@ -53,12 +53,21 @@ public class CSVFileExtractor {
         movie.language = record.get("original_language");
         movie.popularity = Double.parseDouble(record.get("popularity"));
 
+        String releaseDateString = record.get("release_date");
+        if (null != releaseDateString && !"".equals(releaseDateString))
+            movie.releaseDate = parseDate(releaseDateString);
+
         movie.genre = getGenres(record.get("genres"));
         movie.productionCompany = getProductionCompany(record.get("production_companies"));
         movie.spokenLanguage = getSpokenLanguages(record.get("spoken_languages"));
         movie.keyword = getKeywords(record.get("keywords"));
 
         return movie;
+    }
+
+    private static Date parseDate(String dateStr) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        return df.parse(dateStr);
     }
 
     private static List<ProductionCompany> getProductionCompany(String productionCompaniesString) {

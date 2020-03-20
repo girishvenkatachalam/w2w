@@ -3,6 +3,8 @@ package com.w2w.What2Watch.models;
 import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class Movie {
@@ -23,6 +25,7 @@ public class Movie {
     public List<ProductionCompany> productionCompany;
     public List<SpokenLanguage> spokenLanguage;
     public List<Keyword> keyword;
+    public Date releaseDate;
 
     public Movie() {
         this.genre = new ArrayList<>();

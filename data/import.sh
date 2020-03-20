@@ -4,4 +4,6 @@ if [ -z "$1" ]
     exit 1
 fi
 
-ls *.json | sed 's/.metadata.json//' | while read col; do mongoimport --uri="$1" --mode=upsert -c $col < $col; done
+for filename in *.json; do
+  mongoimport --uri="$1" --file="$filename" --mode=upsert
+done

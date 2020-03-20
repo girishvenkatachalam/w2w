@@ -29,6 +29,9 @@ const MovieDetail = ({
       : movieDetail.language;
   };
 
+  const releaseDate = movieDetail.releaseDate? new Date(movieDetail.releaseDate.substr(0, 10)) : null;
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
   return movieDetail.id ? (
     <section className="movie-detail-container">
       <Link to={"/dashboard"}>
@@ -36,20 +39,20 @@ const MovieDetail = ({
           {texts.backToHomeMessage}
         </button>
       </Link>
-      <header>{movieDetail.title}</header>
+      <header>{movieDetail.title} {releaseDate? "(" + releaseDate.getFullYear() + ")" : ""}</header>
       <article className="movie-info-wrapper">
         <img
           src={movieDetail.image || "../images/default-poster.png"}
           alt={movieDetail.title}
         />
         <div className="movie-basic-info">
-          {movieDetail.releaseDate && (
+          {releaseDate && (
             <div className="movie-info">
               <span className="label">
                 {texts.release}
                 {": "}
               </span>
-              {movieDetail.releaseDate}
+              {releaseDate.toLocaleDateString("en-US", options)}
             </div>
           )}
           <div className="movie-info">

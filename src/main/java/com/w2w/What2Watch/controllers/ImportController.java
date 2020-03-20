@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.URI;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -79,9 +80,23 @@ public class ImportController {
         return "In Progress";
     }
 
+    @GetMapping("/update-release-date")
+    public String updateReleaseDate() throws IOException, ParseException {
+        List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
+
+        for(Movie movie: movies) {
+            Movie dbMovie = movieRepository.findById(movie.id);
+            if (movie.releaseDate != null) {
+                dbMovie.releaseDate = movie.releaseDate;
+                movieRepository.save(dbMovie);
+            }
+        }
+
+        return "Updated releaseDate";
+    }
 
     //@GetMapping("/update-spoken-languages")
-    public String updateSpokenLanguages() throws IOException {
+    public String updateSpokenLanguages() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
         Set<SpokenLanguage> spokenLanguages = new HashSet<>();
 
@@ -100,7 +115,7 @@ public class ImportController {
     }
 
     //@GetMapping("/update-keywords")
-    public String updateKeywords() throws IOException {
+    public String updateKeywords() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/main/resources/movie-dataset/tmdb_5000_movies.csv");
         Set<Keyword> keywords = new HashSet<>();
 

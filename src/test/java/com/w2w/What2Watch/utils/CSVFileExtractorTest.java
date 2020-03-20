@@ -7,22 +7,32 @@ import com.w2w.What2Watch.models.ProductionCompany;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
 
 import static org.springframework.test.util.AssertionErrors.*;
 
 public class CSVFileExtractorTest {
 
     @Test
-    public void testCSVParser() throws IOException {
+    public void testCSVParser() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",1, movies.size());
         assertEquals("",19995, movies.get(0).id);
+        assertEquals("", new GregorianCalendar(2009, 11, 10).getTime(),
+                movies.get(0).releaseDate);
     }
 
     @Test
-    public void testGenre() throws IOException {
+    public void testCSVParserEmptyReleaseDate() throws IOException, ParseException {
+        List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie_empty_release_date.csv");
+        assertEquals("",1, movies.size());
+        assertEquals("",19995, movies.get(0).id);
+        assertEquals("", null, movies.get(0).releaseDate);
+    }
+
+    @Test
+    public void testGenre() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",2, movies.get(0).genre.size());
 
@@ -34,7 +44,7 @@ public class CSVFileExtractorTest {
     }
 
     @Test
-    public void testGenreProductionCompany() throws IOException {
+    public void testGenreProductionCompany() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",2, movies.get(0).productionCompany.size());
 
@@ -47,13 +57,13 @@ public class CSVFileExtractorTest {
     }
 
     @Test
-    public void testLanguage() throws IOException {
+    public void testLanguage() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("","en", movies.get(0).language);
     }
 
     @Test
-    public void testPopularity() throws IOException {
+    public void testPopularity() throws IOException, ParseException {
         List<Movie> movies = CSVFileExtractor.extract("src/test/resources/tmdb_1_movie.csv");
         assertEquals("",150.437577, movies.get(0).popularity);
     }
