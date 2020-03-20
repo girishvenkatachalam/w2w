@@ -32,7 +32,7 @@ public class WebMvcConfigurerAdapter implements WebMvcConfigurer {
         private static final String IMAGE_STATIC_DIR = "image";
 
         private Resource index = new ClassPathResource(REACT_DIR + "index.html");
-        private List<String> rootStaticFiles = Arrays.asList("favicon.io",
+        private List<String> rootStaticFiles = Arrays.asList("favicon.ico",
                 "asset-manifest.json", "manifest.json", "service-worker.js");
 
         @Override

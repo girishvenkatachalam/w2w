@@ -4,13 +4,21 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import texts from "../../texts.json";
-import { fetchMovieDetail } from "../../store/actions";
+import { fetchMovieDetail, upadateMovieDetail } from "../../store/actions";
 import "./index.scss";
 
-const MovieDetail = ({ movieDetail, location, fetchMovieDetail }) => {
+const MovieDetail = ({
+  movieDetail,
+  location,
+  fetchMovieDetail,
+  upadateMovieDetail
+}) => {
   useEffect(() => {
     const params = location.pathname.split("/movie/");
-    if (params && params[1]) fetchMovieDetail(params[1]);
+    if (params && params[1] && !movieDetail.id) fetchMovieDetail(params[1]);
+    return () => {
+      upadateMovieDetail({});
+    };
   }, []);
 
   const getLanguage = () => {
@@ -93,7 +101,8 @@ const MovieDetail = ({ movieDetail, location, fetchMovieDetail }) => {
 const mapStateToProps = ({ movieDetail }) => ({ movieDetail });
 
 const mapDispatchToProps = dispatch => ({
-  fetchMovieDetail: movieId => dispatch(fetchMovieDetail(movieId))
+  fetchMovieDetail: movieId => dispatch(fetchMovieDetail(movieId)),
+  upadateMovieDetail: payload => dispatch(upadateMovieDetail(payload))
 });
 
 MovieDetail.defaultProps = {
