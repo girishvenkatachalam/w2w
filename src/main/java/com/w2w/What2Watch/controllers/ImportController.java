@@ -201,8 +201,11 @@ public class ImportController {
                 // return it as a String
                 String result = EntityUtils.toString(entity);
                 JSONObject movieJson = new JSONObject(result);
-                posterPath = (movieJson != null)?
-                        movieJson.getString("poster_path") : null;
+                if (movieJson != null && movieJson.has("poster_path") && !movieJson.get("poster_path").equals(null)) {
+                    posterPath = movieJson.getString("poster_path");
+                } else {
+                    posterPath = null;
+                }
             }
 
             return posterPath;
