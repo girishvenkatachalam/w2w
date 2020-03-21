@@ -60,7 +60,7 @@ Phew!
 
 To verify application is running locally, try http://localhost:8080/hello
 
-Integration URL https://whattowatch-int.herokuapp.com/
+Integration URL https://what2watch-project.herokuapp.com/
 
 ## Developer Guidelines
 
